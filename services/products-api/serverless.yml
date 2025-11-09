@@ -1,0 +1,131 @@
+org: 200millas
+service: millas-200
+
+provider:
+  name: aws
+  runtime: python3.13
+  region: us-east-1
+  stage: dev
+  memorySize: 256
+  timeout: 20
+  iam:
+    role: arn:aws:iam::468251834706:role/LabRole
+  environment:
+    USERS_TABLE: t_usuarios-${self:provider.stage}
+    TOKENS_TABLE: t_tokens_acceso-${self:provider.stage}
+    PRODUCTS_TABLE: t_productos-${self:provider.stage}
+    PRODUCTS_BUCKET: products-200millas-${self:provider.stage}
+  httpApi:
+    cors: true
+
+functions:
+  CrearProducto:
+    handler: src.producto.productos_crear.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /productos/crear
+  ActualizarProducto: 
+    handler: src.producto.productos_actualizar.lambda_handler
+    events:
+      - httpApi:
+          method: PUT
+          path: /productos/actualizar 
+  EliminarProducto:
+    handler: src.producto.productos_eliminar.lambda_handler
+    events:
+      - httpApi:
+          method: DELETE
+          path: /productos/eliminar
+  ObtenerProductoPorID:
+    handler: src.producto.producto_id.lambda_handler
+    events:
+      - httpApi:
+          method: POST 
+          path: /productos/buscar
+  ListarProductos:
+    handler: src.producto.productos_listar.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /productos/listar
+  UploadImagenProducto:
+    handler: src.producto.upload_imagen.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /productos/upload_imagen
+  CrearUsuario:
+    handler: src.user.crear_usuario.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /usuarios/crear
+
+  LoginUsuario:
+    handler: src.user.login_usuario.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /usuarios/login
+
+  ValidarTokenAcceso:
+    name: millas-200-dev-ValidarTokenAcceso
+    handler: src.user.validar_token.lambda_handler
+
+resources:
+  Resources:
+    ProductosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: t_productos-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: tenant_id
+            AttributeType: S
+          - AttributeName: product_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: tenant_id
+            KeyType: HASH
+          - AttributeName: product_id
+            KeyType: RANGE
+
+    ProductosBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: products-200millas-${self:provider.stage}
+        CorsConfiguration:
+          CorsRules:
+            - AllowedHeaders: ["*"]
+              AllowedMethods: ["PUT","GET","POST","HEAD"]
+              AllowedOrigins: ["*"]
+              ExposedHeaders: ["ETag"]
+    UsuariosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: t_usuarios-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: tenant_id
+            AttributeType: S
+          - AttributeName: user_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: tenant_id
+            KeyType: HASH
+          - AttributeName: user_id
+            KeyType: RANGE
+
+    TokensTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: t_tokens_acceso-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: token
+            AttributeType: S
+        KeySchema:
+          - AttributeName: token
+            KeyType: HASH
+
