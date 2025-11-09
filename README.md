@@ -137,3 +137,61 @@ curl -X POST "$BASE/usuarios/login" \
 * **Compatibilidad**: si un usuario antiguo no tiene `role`, `login` devuelve `"customer"` por defecto.
 
 ---
+# Cambios para los estados
+Para los cambios añadidos, se le añadieron 4 funciones.
+serverless.yml  src
+:~/r_200_millas/Proyecto-de-200-millas/services/workflow (main) $ sls deploy
+
+✔ Installed Serverless Framework v4.23.0
+
+Deploying "pedidos-workflow" to stage "dev" (us-east-1)
+
+✔ Service deployed to stack pedidos-workflow-dev (93s)
+
+endpoints:
+  POST - https://49ootimq6b.execute-api.us-east-1.amazonaws.com/delivery/cocina-asignada
+  POST - https://49ootimq6b.execute-api.us-east-1.amazonaws.com/delivery/cocina-completa
+  POST - https://49ootimq6b.execute-api.us-east-1.amazonaws.com/delivery/empaquetado-completo
+  POST - https://49ootimq6b.execute-api.us-east-1.amazonaws.com/delivery/entrega-delivery
+functions:
+  CocinaAsignada: pedidos-workflow-dev-CocinaAsignada (3.6 kB)
+  CocinaCompleta: pedidos-workflow-dev-CocinaCompleta (3.6 kB)
+  EmpaquetadoCompleto: pedidos-workflow-dev-EmpaquetadoCompleto (3.6 kB)
+  EntregaDelivery: pedidos-workflow-dev-EntregaDelivery (3.6 kB)
+  AckStatus: pedidos-workflow-dev-AckStatus (3.6 kB)
+
+:~/r_200_millas/Proyecto-de-200-millas/services/workflow (main) $ curl -X POST "https://49ootimq6b.execute-api.us-east-1.amazonaws.com/delivery/cocina-asignada" \
+  -H "Content-Type: application/json" \
+  -d '{"tenant_id":"6200millas","order_id":"ORD-1001"}'
+{"message": "Evento publicado", "detail": {"tenant_id": "6200millas", "order_id": "ORD-1001", "status": "COCINA_ASIGNADA", "at": "2025-11-09T03:48:34.274268", "mensaje": "Est\u00e1 en cocina"}}:~/r_200_millas/Proyecto-de-200-millas/services/workflow (main) $ 
+
+POr ahora, solo se manda a un evnet bridge que llama a otra funciton que manda un ok 200.
+
+## Firma de la funcion
+Paso 1: Llamar a los endpoints (API Delivery)
+Llamada para "Cocina Asignada"
+
+Usa el siguiente comando cURL para hacer la llamada a la API:
+
+curl -X POST "https://49ootimq6b.execute-api.us-east-1.amazonaws.com/delivery/cocina-asignada" \
+  -H "Content-Type: application/json" \
+  -d '{"tenant_id":"6200millas","order_id":"ORD-1001"}'
+
+Esperado:
+
+La respuesta debería ser algo como:
+
+{
+  "message": "Evento publicado",
+  "detail": {
+    "tenant_id": "6200millas",
+    "order_id": "ORD-1001",
+    "status": "COCINA_ASIGNADA",
+    "at": "2025-11-08T12:34:56.000000",
+    "mensaje": "Está en cocina"
+  }
+}
+
+
+Esto significa que el evento fue correctamente publicado en EventBridge.
+
