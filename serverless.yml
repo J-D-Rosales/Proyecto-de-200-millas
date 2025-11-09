@@ -2,15 +2,16 @@ service: pedidos-seguridad
 frameworkVersion: "4"
 
 org: darosv
+
 provider:
   name: aws
   runtime: python3.12
-  region: us-east-1
+  region: us-east-1   # cambia si tu Learner Lab usa otra región
   stage: dev
   memorySize: 256
   timeout: 30
   iam:
-    role: 645337731455   # <-- Reemplazar con el ID de la cuenta AWS
+    role: arn:aws:iam::645337731455:role/LabRole
   environment:
     USERS_TABLE: t_usuarios
     TOKENS_TABLE: t_tokens_acceso
@@ -24,14 +25,17 @@ functions:
       - httpApi:
           method: POST
           path: /usuarios/crear
+
   LoginUsuario:
     handler: src/login_usuario.lambda_handler
     events:
       - httpApi:
           method: POST
           path: /usuarios/login
+
   ValidarTokenAcceso:
     handler: src/validar_token.lambda_handler
+    # sin evento HTTP; la usas internamente desde otras Lambdas si quieres
 
 resources:
   Resources:
@@ -50,6 +54,7 @@ resources:
             KeyType: HASH
           - AttributeName: user_id
             KeyType: RANGE
+
     TokensTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -62,9 +67,7 @@ resources:
           - AttributeName: token
             KeyType: HASH
 
-plugins:
-  - serverless-python-requirements
-
 custom:
+  # En v4 no declares el plugin; esto activa la integración nativa
   pythonRequirements:
     slim: true
