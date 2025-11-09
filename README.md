@@ -1,7 +1,5 @@
 # Proyecto-de-200-millas
 Este proyecto impleemnta el serverless para la gestión de os usuarios y productos.
-¡Qué bien que quedó! Aquí va lo que pediste, súper concreto.
-
 # Resumen de la arquitectura (MVP Auth)
 
 * **API Gateway (HTTP API)** expone dos endpoints:
