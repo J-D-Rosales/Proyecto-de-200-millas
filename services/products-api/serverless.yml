@@ -15,6 +15,7 @@ provider:
     TOKENS_TABLE: t_tokens_acceso-${self:provider.stage}
     PRODUCTS_TABLE: t_productos-${self:provider.stage}
     PRODUCTS_BUCKET: products-200millas-${self:provider.stage}
+    VALIDAR_TOKEN_FN: millas-200-${self:provider.stage}-ValidarTokenAcceso
   httpApi:
     cors: true
 
@@ -70,7 +71,6 @@ functions:
           path: /usuarios/login
 
   ValidarTokenAcceso:
-    name: millas-200-dev-ValidarTokenAcceso
     handler: src.user.validar_token.lambda_handler
 
 resources:
@@ -101,6 +101,7 @@ resources:
               AllowedMethods: ["PUT","GET","POST","HEAD"]
               AllowedOrigins: ["*"]
               ExposedHeaders: ["ETag"]
+              
     UsuariosTable:
       Type: AWS::DynamoDB::Table
       Properties:

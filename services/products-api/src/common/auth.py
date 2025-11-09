@@ -1,6 +1,6 @@
 import os, json, boto3
 
-VALIDAR_TOKEN_FN = os.environ.get("VALIDAR_TOKEN_FN", "millas-200-dev-ValidarTokenAcceso")
+VALIDAR_TOKEN_FN = os.environ.get("VALIDAR_TOKEN_FN")
 _lambda = boto3.client("lambda")
 
 def get_token_from_headers(event):
