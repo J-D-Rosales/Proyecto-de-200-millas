@@ -15,10 +15,25 @@ provider:
   environment:
     USERS_TABLE: t_usuarios
     TOKENS_TABLE: t_tokens_acceso
+    PRODUCTS_TABLE: t_productos
+    PRODUCTS_BUCKET: productos-200millas-dev
   httpApi:
     cors: true
 
 functions:
+  GetUploadUrl:
+    handler: src/productos_get_upload_url.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /productos/upload-url
+
+  CrearProducto:
+    handler: src/productos_crear.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /productos/crear
   CrearUsuario:
     handler: src/crear_usuario.lambda_handler
     events:
@@ -39,6 +54,32 @@ functions:
 
 resources:
   Resources:
+    ProductosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: t_productos
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: tenant_id
+            AttributeType: S
+          - AttributeName: product_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: tenant_id
+            KeyType: HASH
+          - AttributeName: product_id
+            KeyType: RANGE
+
+    ProductosBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: productos-200millas-dev
+        CorsConfiguration:
+          CorsRules:
+            - AllowedHeaders: ["*"]
+              AllowedMethods: ["PUT","GET"]
+              AllowedOrigins: ["*"]
+              ExposedHeaders: ["ETag"]
     UsuariosTable:
       Type: AWS::DynamoDB::Table
       Properties:
