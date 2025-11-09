@@ -1,6 +1,6 @@
 import os, json, uuid, boto3
 from datetime import datetime
-from _auth import validate_token
+from ._auth import validate_token
 
 dynamodb = boto3.resource("dynamodb")
 t = dynamodb.Table(os.environ["PRODUCTS_TABLE"])

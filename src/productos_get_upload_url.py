@@ -1,5 +1,5 @@
 import os, json, uuid, boto3
-from _auth import validate_token
+from ._auth import validate_token
 
 s3 = boto3.client("s3")
 BUCKET = os.environ["PRODUCTS_BUCKET"]
