@@ -1,0 +1,138 @@
+service: pedidos-workflow
+frameworkVersion: "4"
+org: darosv
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: us-east-1
+  stage: dev
+  timeout: 20
+  memorySize: 256
+  iam:
+    role: arn:aws:iam::645337731455:role/LabRole
+  httpApi:
+    cors: true
+  environment:
+    EVENT_SOURCE: 200millas.delivery
+    EVENT_BUS: default
+
+functions:
+  # === API Delivery: una Lambda por estado ===
+  CocinaAsignada:
+    handler: src/cocina_asignada.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /delivery/cocina-asignada
+
+  CocinaCompleta:
+    handler: src/cocina_completa.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /delivery/cocina-completa
+
+  EmpaquetadoCompleto:
+    handler: src/empaquetado_completo.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /delivery/empaquetado-completo
+
+  EntregaDelivery:
+    handler: src/entrega_delivery.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /delivery/entrega-delivery
+
+  # === Lambda invocada por Step Functions (ACK) ===
+  AckStatus:
+    handler: src/ack_status.lambda_handler
+
+resources:
+  Resources:
+
+    # Rol de ejecución para Step Functions (permite invocar la Lambda AckStatus)
+    SfnExecutionRole:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service: states.amazonaws.com
+              Action: sts:AssumeRole
+        Policies:
+          - PolicyName: InvokeAckLambda
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: Allow
+                  Action: lambda:InvokeFunction
+                  Resource: !GetAtt AckStatusLambdaFunction.Arn
+
+    # State Machine (por ahora, un solo Task -> AckStatus)
+    OrderStatusStateMachine:
+      Type: AWS::StepFunctions::StateMachine
+      Properties:
+        RoleArn: !GetAtt SfnExecutionRole.Arn
+        StateMachineName: !Sub "${AWS::StackName}-OrderStatus"
+        Definition:
+          Comment: "Flujo de recepción de estados: EventBridge -> SFN -> AckStatus"
+          StartAt: Ack
+          States:
+            Ack:
+              Type: Task
+              Resource: arn:aws:states:::lambda:invoke
+              OutputPath: "$.Payload"
+              Parameters:
+                FunctionName: !GetAtt AckStatusLambdaFunction.Arn
+                Payload.$: "$.detail"   # pasa SOLO el 'detail' del evento
+              End: true
+
+    # Rol para que EventBridge pueda arrancar la State Machine
+    EventBridgeToSfnRole:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service: events.amazonaws.com
+              Action: sts:AssumeRole
+        Policies:
+          - PolicyName: StartSfn
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: Allow
+                  Action: states:StartExecution
+                  Resource: !Ref OrderStatusStateMachine
+
+    # Regla de EventBridge: solo tus eventos y solo los 4 estados
+    OrderStatusRule:
+      Type: AWS::Events::Rule
+      Properties:
+        Name: !Sub "${AWS::StackName}-OrderStatusRule"
+        EventBusName: default
+        EventPattern:
+          source:
+            - 200millas.delivery
+          detail-type:
+            - COCINA_ASIGNADA
+            - COCINA_COMPLETA
+            - EMPAQUETADO_COMPLETO
+            - ENTREGA_DELIVERY
+        Targets:
+          - Id: SfnStart
+            Arn: !Ref OrderStatusStateMachine
+            RoleArn: !GetAtt EventBridgeToSfnRole.Arn
+
+custom:
+  # (opcional para v4; sin plugins)
+  pythonRequirements:
+    slim: true
