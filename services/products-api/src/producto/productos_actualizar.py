@@ -8,13 +8,11 @@ def _resp(code, body):
     return {"statusCode": code, "body": json.dumps(body, ensure_ascii=False, default=str)}
 
 def lambda_handler(event, context):
-    # Token
     token = get_token_from_headers(event)
     auth = validate_token_and_get_claims(token)
     if auth.get("statusCode") == 403:
         return _resp(403, {"error":"Acceso no autorizado"})
 
-    # Body (PUT también trae body)
     data = json.loads(event.get("body") or "{}", parse_float=Decimal)
     tenant_id = data.pop("tenant_id", None)
     product_id = data.pop("product_id", None)
@@ -25,7 +23,6 @@ def lambda_handler(event, context):
     if not data:
         return _resp(400, {"error":"Body vacío; nada que actualizar"})
 
-    # UpdateExpression dinámico
     expr_names, expr_values, sets = {}, {}, []
     for i, (k, v) in enumerate(data.items(), start=1):
         expr_names[f"#f{i}"] = k
