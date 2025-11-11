@@ -1,6 +1,6 @@
 import os, json, boto3
 from decimal import Decimal
-from src.common.auth import get_token_from_headers, validate_token_and_get_claims
+from src.common.auth import get_token_from_headers, validate_token_and_get_claims, require_admin
 
 PRODUCTS_TABLE = os.environ["PRODUCTS_TABLE"]
 
@@ -12,6 +12,11 @@ def lambda_handler(event, context):
     auth = validate_token_and_get_claims(token)
     if auth.get("statusCode") == 403:
         return _resp(403, {"error":"Acceso no autorizado"})
+    
+    role = require_admin(token)
+    if role.get("statusCode") != 200:
+        err = role.get("body", {}).get("error", "Acceso no autorizado")
+        return _resp(403, {"error": err})
 
     data = json.loads(event.get("body") or "{}", parse_float=Decimal)
     tenant_id = data.pop("tenant_id", None)

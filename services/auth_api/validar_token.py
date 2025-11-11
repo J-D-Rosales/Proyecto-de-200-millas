@@ -10,13 +10,11 @@ def lambda_handler(event, context):
     if not token:
         return {"statusCode": 403, "body": "Token faltante"}
 
-    # Proceso
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table(TOKENS_TABLE)
     try:
         response = table.get_item(Key={'token': token})
     except Exception as e:
-        # Si Dynamo falla, mejor no autorizar
         print(f"Error get_item: {e}")
         return {"statusCode": 403, "body": "Error verificando token"}
 
@@ -28,7 +26,6 @@ def lambda_handler(event, context):
     if not expires_str:
         return {"statusCode": 403, "body": "Token sin fecha de expiración"}
 
-    # Expiración: asumimos formato 'YYYY-MM-DD HH:MM:SS' en UTC
     try:
         expires_dt = datetime.strptime(expires_str, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
     except ValueError:
@@ -38,9 +35,4 @@ def lambda_handler(event, context):
     if now_utc > expires_dt:
         return {"statusCode": 403, "body": "Token expirado"}
 
-    # (opcional) si guardas flags tipo revoked/disabled
-    # if item.get('revoked'):
-    #     return {"statusCode": 403, "body": "Token revocado"}
-
-    # Salida (json)
     return {"statusCode": 200, "body": "Token válido"}

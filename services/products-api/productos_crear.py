@@ -4,21 +4,29 @@ import base64
 import boto3
 from decimal import Decimal
 from botocore.exceptions import ClientError
-from src.common.auth import get_token_from_headers, validate_token_and_get_claims
+from src.common.auth import get_token_from_headers, validate_token_and_get_claims, require_admin
 
 PRODUCTS_BUCKET = os.environ.get("PRODUCTS_BUCKET")
 PRODUCTS_TABLE = os.environ["PRODUCTS_TABLE"]
 
 def _resp(code, body):
-    return {"statusCode": code, "body": json.dumps(body, ensure_ascii=False)}
+    return {"statusCode": code, "body": json.dumps(body, ensure_ascii=False, default=str)}
+
+def _parse_body(event):
+    return json.loads(event.get("body") or "{}", parse_float=Decimal)
 
 def lambda_handler(event, context):
     token = get_token_from_headers(event)
     auth = validate_token_and_get_claims(token)
-    if auth.get("statusCode") == 403:
+    if auth.get("statusCode") != 200:
         return _resp(403, {"error": "Acceso no autorizado"})
 
-    body = json.loads(event.get("body") or "{}", parse_float=Decimal)
+    role = require_admin(token)
+    if role.get("statusCode") != 200:
+        err = role.get("body", {}).get("error", "Acceso no autorizado")
+        return _resp(403, {"error": err})
+    
+    body = _parse_body(event)
     tenant_id = body.get("tenant_id")
     product_id = body.get("product_id")
     if not tenant_id:
@@ -28,18 +36,16 @@ def lambda_handler(event, context):
 
     image_data = body.get("image")
     image_url_or_key = None
-
     if image_data:
         try:
             bucket = PRODUCTS_BUCKET
-            key = body["image"]["key"]
-            file_b64 = body["image"]["file_base64"]
-            content_type = body["image"]["content_type"]
-
             if not bucket:
-                return _resp(400, {"error": "Falta 'bucket'"})
+                return _resp(500, {"error": "PRODUCTS_BUCKET no configurado"})
+            key = image_data.get("key")
+            file_b64 = image_data.get("file_base64")
+            content_type = image_data.get("content_type")
             if not key:
-                return _resp(400, {"error": "Falta 'key'"})
+                return _resp(400, {"error": "Falta 'key' en image"})
             if not file_b64:
                 return _resp(400, {"error": "'file_base64' es requerido"})
 
@@ -52,9 +58,7 @@ def lambda_handler(event, context):
             put_kwargs = {"Bucket": bucket, "Key": key, "Body": file_bytes}
             if content_type:
                 put_kwargs["ContentType"] = content_type
-
-            resp = s3.put_object(**put_kwargs)
-            etag = (resp.get("ETag") or "").strip('"')
+            s3.put_object(**put_kwargs)
 
             image_url_or_key = key
 
