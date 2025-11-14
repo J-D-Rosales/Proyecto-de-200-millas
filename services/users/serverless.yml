@@ -1,5 +1,5 @@
 org: 200millas
-service: 200millas-users
+service: service-users
 
 provider:
   name: aws

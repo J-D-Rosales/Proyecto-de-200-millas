@@ -1,5 +1,5 @@
 org: 200millas
-service: 200millas-employees
+service: service-employees
 
 provider:
   name: aws
