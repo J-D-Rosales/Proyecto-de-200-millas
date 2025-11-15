@@ -22,7 +22,7 @@ functions:
           method: POST
           path: /users/register
   LoginUsuario:
-    handler: login_usuario.lambda_handler
+    handler: login_user.lambda_handler
     events:
       - httpApi:
           method: POST
