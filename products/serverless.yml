@@ -19,39 +19,39 @@ provider:
 
 functions:
   CreateProduct:
-    handler: services.products.product_create.lambda_handler
+    handler: products.product_create.lambda_handler
     events:
       - httpApi:
           method: POST
-          path: /productos/product-create
+          path: /productos/create
     
   UpdateProduct: 
-    handler: services.products.product_update.lambda_handler
+    handler: products.product_update.lambda_handler
     events:
       - httpApi:
           method: PUT
-          path: /productos/product-update 
+          path: /productos/update 
 
   DeleteProduct:
-    handler: services.products.product_delete.lambda_handler
+    handler: products.product_delete.lambda_handler
     events:
       - httpApi:
           method: DELETE
-          path: /productos/product-delete
+          path: /productos/delete
 
   ProductID:
-    handler: services.products.product_id.lambda_handler
+    handler: products.product_id.lambda_handler
     events:
       - httpApi:
           method: POST 
-          path: /productos/product-id
+          path: /productos/id
 
   ListProduct:
-    handler: services.products.product_list.lambda_handler
+    handler: products.product_list.lambda_handler
     events:
       - httpApi:
           method: POST
-          path: /productos/product-list
+          path: /productos/list
 
   ValidarEmployeeTokenAcceso:
-    handler: services.products.validar_token_employee.lambda_handler
+    handler: products.validar_token_employee.lambda_handler

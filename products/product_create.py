@@ -4,7 +4,6 @@ import base64
 import boto3
 from decimal import Decimal
 from botocore.exceptions import ClientError
-from services.products.common.auth import get_token_from_headers, validate_token_and_get_claims
 
 PRODUCTS_BUCKET = os.environ("PRODUCTS_BUCKET")
 PRODUCTS_TABLE = os.environ["PRODUCTS_TABLE"]

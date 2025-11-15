@@ -16,14 +16,14 @@ provider:
 
 functions:
   RegisterEmployee:
-    handler: services.employees.register_employee.lambda_handler
+    handler: employees.register_employee.lambda_handler
     events:
       - httpApi:
           method: POST
-          path: /employees/register-employee
+          path: /employees/register
   LoginEmployee:
-    handler: services.employees.login_employee.lambda_handler
+    handler: employees.login_employee.lambda_handler
     events:
       - httpApi:
           method: POST
-          path: /employees/login-employee
+          path: /employees/login
