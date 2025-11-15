@@ -10,16 +10,16 @@ provider:
 
 services:
   service-resources:
-    path: services/resources
+    path: resources
   service-employees:
-    path: services/employees
+    path: employees
     dependsOn:
       - service-resources
   service-users:
-    path: services/users
+    path: users
     dependsOn:
       - service-resources
   service-products:
-    path: services/products
+    path: products
     dependsOn:
       - service-resources
