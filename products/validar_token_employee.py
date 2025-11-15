@@ -1,7 +1,7 @@
-import boto3
+import boto3, os
 from datetime import datetime
 
-TOKENS_EMPLOYEE_TABLE = os.environ["TOKENS_EMPLOYEE_TABLE"]
+TOKENS_EMPLOYEE_TABLE = os.environ.get("TOKENS_EMPLOYEE_TABLE")
 
 def lambda_handler(event, context):
     # Entrada (json)

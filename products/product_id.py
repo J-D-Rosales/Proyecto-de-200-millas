@@ -1,7 +1,7 @@
 import os, json, boto3
 from decimal import Decimal
 
-PRODUCTS_TABLE = os.environ["PRODUCTS_TABLE"]
+PRODUCTS_TABLE = os.environ.get("PRODUCTS_TABLE")
 
 def _resp(code, body):
     return {"statusCode": code, "body": json.dumps(body, ensure_ascii=False, default=str)}
