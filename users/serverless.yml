@@ -21,11 +21,17 @@ functions:
       - httpApi:
           method: POST
           path: /users/register
+          cors: true
+          integration: lambda
+
   LoginUsuario:
     handler: login_user.lambda_handler
     events:
       - httpApi:
           method: POST
           path: /users/login
+          cors: true
+          integration: lambda
+                    
   ValidarUserTokenAcceso:
     handler: validar_token_users.lambda_handler

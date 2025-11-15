@@ -24,13 +24,17 @@ functions:
       - httpApi:
           method: POST
           path: /productos/create
+          cors: true
+          integration: lambda
     
   UpdateProduct: 
     handler: product_update.lambda_handler
     events:
       - httpApi:
           method: PUT
-          path: /productos/update 
+          path: /productos/update
+          cors: true
+          integration: lambda 
 
   DeleteProduct:
     handler: product_delete.lambda_handler
@@ -38,6 +42,8 @@ functions:
       - httpApi:
           method: DELETE
           path: /productos/delete
+          cors: true
+          integration: lambda         
 
   ProductID:
     handler: product_id.lambda_handler
@@ -45,6 +51,8 @@ functions:
       - httpApi:
           method: POST 
           path: /productos/id
+          cors: true
+          integration: lambda
 
   ListProduct:
     handler: product_list.lambda_handler
@@ -52,6 +60,8 @@ functions:
       - httpApi:
           method: POST
           path: /productos/list
-
+          cors: true
+          integration: lambda
+          
   ValidarEmployeeTokenAcceso:
     handler: validar_token_employee.lambda_handler

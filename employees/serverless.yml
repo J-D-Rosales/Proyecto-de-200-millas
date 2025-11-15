@@ -21,9 +21,14 @@ functions:
       - httpApi:
           method: POST
           path: /employees/register
+          cors: true
+          integration: lambda
+
   LoginEmployee:
     handler: login_employee.lambda_handler
     events:
       - httpApi:
           method: POST
           path: /employees/login
+          cors: true
+          integration: lambda
