@@ -1,7 +1,7 @@
 import os, json, math, boto3
 from boto3.dynamodb.conditions import Key
 
-PRODUCTS_TABLE = os.environ["PRODUCTS_TABLE"]
+PRODUCTS_TABLE = os.environ.get("PRODUCTS_TABLE")
 
 def _resp(code, body):
     return {"statusCode": code, "body": json.dumps(body, ensure_ascii=False, default=str)}

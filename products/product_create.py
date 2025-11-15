@@ -5,9 +5,9 @@ import boto3
 from decimal import Decimal
 from botocore.exceptions import ClientError
 
-PRODUCTS_BUCKET = os.environ("PRODUCTS_BUCKET")
-PRODUCTS_TABLE = os.environ["PRODUCTS_TABLE"]
-VALIDAR_EMPLOYEE_TOKEN_ACCESS_FUNCTION = os.environ["VALIDAR_EMPLOYEE_TOKEN_ACCESS_FUNCTION"]
+PRODUCTS_BUCKET = os.environ.get("PRODUCTS_BUCKET")
+PRODUCTS_TABLE = os.environ.get("PRODUCTS_TABLE")
+VALIDAR_EMPLOYEE_TOKEN_ACCESS_FUNCTION = os.environ.get("VALIDAR_EMPLOYEE_TOKEN_ACCESS_FUNCTION")
 
 def _resp(code, body):
     return {"statusCode": code, "body": json.dumps(body, ensure_ascii=False, default=str)}

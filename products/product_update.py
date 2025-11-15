@@ -1,8 +1,8 @@
 import os, json, boto3
 from decimal import Decimal
 
-PRODUCTS_TABLE = os.environ["PRODUCTS_TABLE"]
-VALIDAR_EMPLOYEE_TOKEN_ACCESS_FUNCTION = os.environ["VALIDAR_EMPLOYEE_TOKEN_ACCESS_FUNCTION"]
+PRODUCTS_TABLE = os.environ.get("PRODUCTS_TABLE")
+VALIDAR_EMPLOYEE_TOKEN_ACCESS_FUNCTION = os.environ.get("VALIDAR_EMPLOYEE_TOKEN_ACCESS_FUNCTION")
 
 def _resp(code, body):
     return {"statusCode": code, "body": json.dumps(body, ensure_ascii=False, default=str)}
