@@ -1,6 +1,6 @@
 import os, json, uuid, boto3
 from datetime import datetime, timedelta
-from .common import hash_password, response
+from common import hash_password, response
 
 EMPLOYEE_TABLE  = os.environ["EMPLOYEE_TABLE"]
 TOKENS_TABLE_EMPLOYEES = os.environ["TOKENS_TABLE_EMPLOYEES"]
