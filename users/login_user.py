@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from common import hash_password, response
 
 USERS_TABLE  = os.environ["USERS_TABLE"]
-TOKENS_TABLE_USERS = os.environ["TOKENS_TABLE"]
+TOKENS_TABLE_USERS = os.environ["TOKENS_TABLE_USERS"]
 dynamodb = boto3.resource("dynamodb")
 t_users = dynamodb.Table(USERS_TABLE)
 t_tokens_users   = dynamodb.Table(TOKENS_TABLE_USERS)
