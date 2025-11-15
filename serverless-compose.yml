@@ -20,6 +20,6 @@ services:
     dependsOn:
       - service-resources
   service-products:
-    path: services/products
+    path: products
     dependsOn:
       - service-resources
