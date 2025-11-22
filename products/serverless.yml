@@ -8,7 +8,7 @@ provider:
   memorySize: 256
   timeout: 20
   iam:
-    role: arn:aws:iam::468251834706:role/LabRole
+    role: arn:aws:iam::645337731455:role/LabRole
   environment:
     TOKENS_EMPLOYEE_TABLE: t_tokens_employee_acceso
     PRODUCTS_TABLE: t_product

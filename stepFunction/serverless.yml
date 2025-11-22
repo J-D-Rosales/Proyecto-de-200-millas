@@ -1,0 +1,33 @@
+service: service-orders-pop-and-dispatch
+
+provider:
+  name: aws
+  runtime: python3.13
+  region: us-east-1
+  memorySize: 256
+  timeout: 20
+  iam:
+    role: arn:aws:iam::645337731455:role/LabRole
+  environment:
+    # Tu Step Function:
+    STATE_MACHINE_ARN: arn:aws:states:us-east-1:645337731455:stateMachine:Handler_pedidos
+    # URL de la cola SQS desde la que se va a "popear" (NO ARN):
+    QUEUE_URL: https://sqs.us-east-1.amazonaws.com/645337731455/Cola_registro_pedidos
+
+  httpApi:
+    cors: true
+
+functions:
+  popAndDispatch:
+    handler: pop_and_dispatch.handler
+    description: "HTTP -> pop N mensajes de SQS y enviar 'estado' (string) a Step Functions"
+    timeout: 30
+    events:
+      - httpApi:
+          path: /pedidos/pop
+          method: POST
+
+package:
+  patterns:
+    - '!**/*'
+    - 'pop_and_dispatch.py'

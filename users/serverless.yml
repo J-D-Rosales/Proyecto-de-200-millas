@@ -7,7 +7,7 @@ provider:
   memorySize: 256
   timeout: 20
   iam:
-    role: arn:aws:iam::468251834706:role/LabRole
+    role: arn:aws:iam::645337731455:role/LabRole
   environment:
     USERS_TABLE: t_users
     TOKENS_TABLE_USERS: t_tokens_users_acceso
