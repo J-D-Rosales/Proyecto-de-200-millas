@@ -18,7 +18,7 @@ functions:
     timeout: 30
     events:
       - sqs:
-          arn: arn:aws:sqs:us-east-1:645337731455:Cola_registro_pedidos-
+          arn: arn:aws:sqs:us-east-1:645337731455:Cola_registro_pedidos
           batchSize: 10
           maximumBatchingWindow: 5
 
