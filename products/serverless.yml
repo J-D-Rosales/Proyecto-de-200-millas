@@ -8,11 +8,11 @@ provider:
   memorySize: 256
   timeout: 20
   iam:
-    role: arn:aws:iam::645337731455:role/LabRole
+    role: arn:aws:iam::${env:AWS_ACCOUNT_ID}:role/LabRole
   environment:
-    TOKENS_EMPLOYEE_TABLE: t_tokens_employee_acceso
-    PRODUCTS_TABLE: t_product
-    PRODUCTS_BUCKET: products-200millas
+    TOKENS_EMPLOYEE_TABLE: ${env:TABLE_TOKENS_EMPLEADOS}
+    PRODUCTS_TABLE: ${env:TABLE_PRODUCTOS}
+    PRODUCTS_BUCKET: ${env:S3_BUCKET_NAME}
     VALIDAR_EMPLOYEE_TOKEN_ACCESS_FUNCTION: service-products-${self:provider.stage}-ValidarEmployeeTokenAcceso
   layers:
     - ${cf:millas-dependencias-dev.PythonDependenciesLayerExport}  

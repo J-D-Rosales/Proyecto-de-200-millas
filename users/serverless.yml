@@ -7,10 +7,10 @@ provider:
   memorySize: 256
   timeout: 20
   iam:
-    role: arn:aws:iam::645337731455:role/LabRole
+    role: arn:aws:iam::${env:AWS_ACCOUNT_ID}:role/LabRole
   environment:
-    USERS_TABLE: t_users
-    TOKENS_TABLE_USERS: t_tokens_users_acceso
+    USERS_TABLE: ${env:TABLE_USUARIOS}
+    TOKENS_TABLE_USERS: ${env:TABLE_TOKENS}
   httpApi:
     cors: true
     

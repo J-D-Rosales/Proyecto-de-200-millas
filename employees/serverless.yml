@@ -7,10 +7,10 @@ provider:
   memorySize: 256
   timeout: 20
   iam:
-    role: arn:aws:iam::645337731455:role/LabRole
+    role: arn:aws:iam::${env:AWS_ACCOUNT_ID}:role/LabRole
   environment:
-    EMPLOYEE_TABLE: t_employee
-    TOKENS_EMPLOYEE_TABLE: t_tokens_employee_acceso
+    EMPLOYEE_TABLE: ${env:TABLE_EMPLEADOS}
+    TOKENS_EMPLOYEE_TABLE: ${env:TABLE_TOKENS_EMPLEADOS}
   layers:
     - ${cf:millas-dependencias-dev.PythonDependenciesLayerExport}  
   httpApi:
