@@ -55,6 +55,28 @@ LOCALES_TOTAL = int(os.getenv("LOCALES_TOTAL", "7"))
 PRODUCTOS_TOTAL = int(os.getenv("PRODUCTOS_TOTAL", "60"))
 PEDIDOS_TOTAL = int(os.getenv("PEDIDOS_TOTAL", "40"))
 
+# === NUEVO helper, ponlo arriba junto a otras utils ===
+def base_url_imagenes_desde_env() -> str:
+    """
+    Construye la BASE_URL_IMAGENES_PRODUCTOS usando S3_BUCKET_NAME y AWS_REGION.
+    Evita problemas de SSL cuando el bucket tiene puntos usando el endpoint regional.
+    """
+    bucket = os.getenv("S3_BUCKET_NAME")
+    region = os.getenv("AWS_REGION", "us-east-1")
+
+    # Si no hay bucket definido, usa fallback
+    if not bucket:
+        return os.getenv("BASE_URL_IMAGENES_PRODUCTOS", "https://example.com/productos")
+
+    # Si el bucket NO tiene puntos, el virtual-hosted-style simple funciona:
+    if "." not in bucket:
+        # https://bucket.s3.amazonaws.com/productos
+        return f"https://{bucket}.s3.amazonaws.com/productos"
+
+    # Si el bucket TIENE puntos, usa endpoint regional para evitar CN mismatch:
+    # https://bucket.s3.{region}.amazonaws.com/productos
+    return f"https://{bucket}.s3.{region}.amazonaws.com/productos"
+
 
 def generar_correo(nombre, apellido):
     base = (
@@ -191,13 +213,11 @@ def generar_empleados(locales, cantidad=None):
 
 
 def generar_productos(locales, cantidad=None):
-    """Genera productos con imagen_url (requerido por el schema)."""
     cantidad = max(1, cantidad or PRODUCTOS_TOTAL)
     productos = []
-    BASE_URL_IMAGENES = os.getenv(
-        "BASE_URL_IMAGENES_PRODUCTOS",
-        "https://example.com/productos"
-    )
+
+    BASE_URL_IMAGENES = base_url_imagenes_desde_env()
+
     for i in range(cantidad):
         local = random.choice(locales)
         categoria = random.choice(CATEGORIAS_PRODUCTO)
@@ -214,6 +234,7 @@ def generar_productos(locales, cantidad=None):
             "imagen_url": imagen_url
         })
     return productos
+
 
 
 def generar_pedidos_y_historial(locales, usuarios, productos, cantidad=None):

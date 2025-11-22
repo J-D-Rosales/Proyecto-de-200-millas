@@ -29,7 +29,7 @@ TABLE_PEDIDOS = os.getenv('TABLE_PEDIDOS')
 TABLE_HISTORIAL_ESTADOS = os.getenv('TABLE_HISTORIAL_ESTADOS')
 
 # Nombre del bucket
-S3_BUCKET_NAME = os.getenv('IMAGES_BUCKET')
+S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
 
 # Carpeta con los datos JSON
 DATA_DIR = "example-data"
