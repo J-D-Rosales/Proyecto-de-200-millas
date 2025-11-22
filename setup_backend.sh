@@ -50,7 +50,6 @@ check_env() {
   : "${TABLE_PEDIDOS:?Falta TABLE_PEDIDOS en .env}"
   : "${TABLE_HISTORIAL_ESTADOS:?Falta TABLE_HISTORIAL_ESTADOS en .env}"
   : "${TABLE_TOKENS_USUARIOS:?Falta TABLE_TOKENS_USUARIOS en .env}"
-  : "${TABLE_TOKENS_EMPLEADOS:?Falta TABLE_TOKENS_EMPLEADOS en .env}"
   : "${S3_BUCKET_NAME:?Falta S3_BUCKET_NAME en .env}"
 
   export AWS_REGION="${AWS_REGION:-us-east-1}"
@@ -194,7 +193,6 @@ remove_infrastructure() {
   aws dynamodb delete-table --table-name "${TABLE_PEDIDOS}" 2>/dev/null || echo "Tabla ${TABLE_PEDIDOS} no existe"
   aws dynamodb delete-table --table-name "${TABLE_HISTORIAL_ESTADOS}" 2>/dev/null || echo "Tabla ${TABLE_HISTORIAL_ESTADOS} no existe"
   aws dynamodb delete-table --table-name "${TABLE_TOKENS_USUARIOS}" 2>/dev/null || echo "Tabla ${TABLE_TOKENS_USUARIOS} no existe"
-  aws dynamodb delete-table --table-name "${TABLE_TOKENS_EMPLEADOS}" 2>/dev/null || echo "Tabla ${TABLE_TOKENS_EMPLEADOS} no existe"
   # Espera corta opcional (algunas regiones tardan en soltar recursos)
   sleep 3
 

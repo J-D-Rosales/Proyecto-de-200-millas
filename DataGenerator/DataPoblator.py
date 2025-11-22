@@ -31,7 +31,6 @@ TABLE_LOCALES = os.getenv('TABLE_LOCALES')
 TABLE_PRODUCTOS = os.getenv('TABLE_PRODUCTOS')
 TABLE_PEDIDOS = os.getenv('TABLE_PEDIDOS')
 TABLE_HISTORIAL_ESTADOS = os.getenv('TABLE_HISTORIAL_ESTADOS')
-TABLE_TOKENS_EMPLEADOS  = os.getenv('TABLE_TOKENS_EMPLEADOS')
 TABLE_TOKENS_USUARIOS   = os.getenv('TABLE_TOKENS_USUARIOS')
 
 # Bucket S3 (para verificación; la carga de imágenes no se hace aquí)
@@ -92,13 +91,6 @@ if TABLE_HISTORIAL_ESTADOS:
 if TABLE_TOKENS_USUARIOS:
     TABLE_MAPPING["tokens_usuarios.json"] = {
         "table_name": TABLE_TOKENS_USUARIOS,
-        "pk": "token",
-        "sk": None
-    }
-
-if TABLE_TOKENS_EMPLEADOS:
-    TABLE_MAPPING["tokens_empleados.json"] = {
-        "table_name": TABLE_TOKENS_EMPLEADOS,
         "pk": "token",
         "sk": None
     }
@@ -559,15 +551,6 @@ def create_all_resources():
     if TABLE_TOKENS_USUARIOS:
         if not create_dynamodb_table(
             table_name=TABLE_TOKENS_USUARIOS,
-            key_schema=[{'AttributeName': 'token', 'KeyType': 'HASH'}],
-            attribute_definitions=[{'AttributeName': 'token', 'AttributeType': 'S'}]
-        ):
-            return False
-    
-    # Tokens Empleados (opcional)
-    if TABLE_TOKENS_EMPLEADOS:
-        if not create_dynamodb_table(
-            table_name=TABLE_TOKENS_EMPLEADOS,
             key_schema=[{'AttributeName': 'token', 'KeyType': 'HASH'}],
             attribute_definitions=[{'AttributeName': 'token', 'AttributeType': 'S'}]
         ):

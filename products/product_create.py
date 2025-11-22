@@ -1,234 +1,239 @@
 import os
 import json
-import uuid
 import base64
-import boto3
-from datetime import datetime, timezone
-from CRUD.utils import validar_token
-from botocore.exceptions import ClientError
 from decimal import Decimal, InvalidOperation
 
-dynamodb = boto3.resource('dynamodb')
-s3 = boto3.client('s3')
-table_name = os.environ.get('TABLE_INCIDENTES')
-incidentes_table = dynamodb.Table(table_name)
-INCIDENTES_BUCKET = os.environ.get('INCIDENTES_BUCKET')
+import boto3
+from botocore.exceptions import ClientError
 
-TIPO_ENUM = ["limpieza", "TI" ,"seguridad", "mantenimiento", "otro"]
-NIVEL_URGENCIA_ENUM = ["bajo", "medio", "alto", "critico"]
-ESTADO_ENUM = ["reportado", "en_progreso", "resuelto"]
-PISO_RANGO = range(-2, 12)
+# ---------- Config ----------
+CORS_HEADERS = {"Access-Control-Allow-Origin": "*"}
+PRODUCTS_TABLE = os.environ.get("PRODUCTS_TABLE", "PRODUCTS_TABLE")
+IMAGES_BUCKET = os.environ.get("PRODUCT_IMAGES_BUCKET", "PRODUCT_IMAGES_BUCKET")
+TOKEN_VALIDATOR_FUNCTION = os.environ.get("TOKEN_VALIDATOR_FUNCTION", "")
 
-def _to_dynamodb_numbers(obj):
-    """
-    Convierte recursivamente int/float -> Decimal.
-    Deja bool, str, Decimal, etc. tal cual.
-    Esto arregla ubicacion.x / ubicacion.y, coordenadas, piso, etc.
-    """
-    if isinstance(obj, dict):
-        return {k: _to_dynamodb_numbers(v) for k, v in obj.items()}
-    if isinstance(obj, list):
-        return [_to_dynamodb_numbers(x) for x in obj]
-    if isinstance(obj, bool):
-        return obj
-    if isinstance(obj, Decimal):
-        return obj
-    if isinstance(obj, (int, float)):
-        return Decimal(str(obj))
-    return obj
+dynamodb = boto3.resource("dynamodb")
+lambda_client = boto3.client("lambda")
+s3 = boto3.client("s3")
+region = os.environ.get("AWS_REGION") or os.environ.get("AWS_DEFAULT_REGION") or "us-east-1"
 
-def lambda_handler(event, context):
-    headers = event.get("headers") or {}
+productos_table = dynamodb.Table(PRODUCTS_TABLE)
+
+CATEGORIA_ENUM = [
+    "Promos Fast","Express","Promociones","Sopas Power","Bowls Del Tigre",
+    "Leche de Tigre","Ceviches","Fritazo","Mostrimar","Box Marino",
+    "Duos Marinos","Trios Marinos","Dobles","Rondas Marinas","Mega Marino","Familiares"
+]
+
+# ---------- Helpers ----------
+def _resp(code, payload=None):
+    return {
+        "statusCode": code,
+        "headers": {"Content-Type": "application/json", **CORS_HEADERS},
+        "body": json.dumps(payload or {}, ensure_ascii=False)
+    }
+
+def _parse_body(event):
+    body = event.get("body", {})
+    if isinstance(body, str):
+        body = json.loads(body) if body.strip() else {}
+    elif not isinstance(body, dict):
+        body = {}
+    return body
+
+def _extract_bearer_token(headers: dict) -> str:
     auth_header = headers.get("Authorization") or headers.get("authorization") or ""
-    if auth_header.lower().startswith("bearer "):
-        auth_header = auth_header.split(" ", 1)[1].strip()
-    token = auth_header
-    
-    resultado_validacion = validar_token(token)
-    
-    if not resultado_validacion.get("valido"):
-        return {
-            "statusCode": 401,
-            "body": json.dumps({"message": resultado_validacion.get("error")})
-        }
-    
-    usuario_autenticado = {
-        "correo": resultado_validacion.get("correo"),
-        "rol": resultado_validacion.get("rol")
-    }
-    
-    if usuario_autenticado["rol"] not in ["estudiante", "personal_administrativo"]:
-        return {
-            "statusCode": 403,
-            "body": json.dumps({"message": "No tienes permisos para crear un incidente"})
-        }
-    
-    body = json.loads(event.get('body', '{}'))
-    
-    required_fields = [
-        "titulo", "descripcion", "piso", "ubicacion", "tipo", "nivel_urgencia"
-    ]
-    
-    for field in required_fields:
-        if field not in body:
-            return {
-                "statusCode": 400,
-                "body": json.dumps({"message": f"Falta el campo obligatorio: {field}"})
-            }
-    
-    if body["tipo"] not in TIPO_ENUM:
-        return {
-            "statusCode": 400,
-            "body": json.dumps({"message": "Valor de 'tipo' no válido"})
-        }
-    
-    if body["nivel_urgencia"] not in NIVEL_URGENCIA_ENUM:
-        return {
-            "statusCode": 400,
-            "body": json.dumps({"message": "Valor de 'nivel_urgencia' no válido"})
-        }
+    return auth_header.split(" ", 1)[1].strip() if auth_header.lower().startswith("bearer ") else auth_header.strip()
+
+def _validate_token_with_lambda(token: str) -> tuple[bool, str]:
+    """Invoca la Lambda de validación: espera statusCode 200 si es válido."""
+    if not TOKEN_VALIDATOR_FUNCTION:
+        return False, "TOKEN_VALIDATOR_FUNCTION no configurado"
+    try:
+        resp = lambda_client.invoke(
+            FunctionName=TOKEN_VALIDATOR_FUNCTION,
+            InvocationType="RequestResponse",
+            Payload=json.dumps({"token": token}).encode("utf-8"),
+        )
+        payload = resp.get("Payload")
+        data = json.loads(payload.read().decode("utf-8")) if payload else {}
+    except Exception as e:
+        return False, f"Error invocando validador: {e}"
+    return (data.get("statusCode") == 200, data.get("body", "Token inválido"))
+
+def _to_decimal(n):
+    if isinstance(n, Decimal):
+        return n
+    if isinstance(n, (int, float, str)):
+        try:
+            return Decimal(str(n))
+        except (InvalidOperation, ValueError, TypeError):
+            pass
+    raise InvalidOperation("No es un número válido")
+
+def _to_int(n):
+    if isinstance(n, bool):
+        raise ValueError("bool no permitido")
+    try:
+        return int(str(n))
+    except Exception as e:
+        raise ValueError("No es un entero válido") from e
+
+def _slug(s: str) -> str:
+    return "".join(ch.lower() if ch.isalnum() else "-" for ch in s).strip("-")
+
+def _strip_data_uri(b64s: str):
+    """Devuelve (base64_puro, mime_hint) si viene como data URI."""
+    if "," in b64s and "base64" in b64s[:64].lower():
+        header, content = b64s.split(",", 1)
+        if ";base64" in header and ":" in header:
+            mime = header.split(":", 1)[1].split(";")[0].strip()
+            return content, mime
+    return b64s, None
+
+def _map_file_type(file_type: str) -> tuple[str, str]:
+    """
+    Convierte file_type a (content_type, ext).
+    Acepta: png | jpg | jpeg | image/png | image/jpeg
+    """
+    ft = (file_type or "").strip().lower()
+    if ft in ("png", "image/png"):
+        return "image/png", "png"
+    if ft in ("jpg", "jpeg", "image/jpg", "image/jpeg"):
+        return "image/jpeg", "jpg"
+    raise ValueError("file_type debe ser 'png' o 'jpg/jpeg'")
+
+# ---------- Handler ----------
+def lambda_handler(event, context):
+    # Preflight
+    method = event.get("httpMethod") or event.get("requestContext", {}).get("http", {}).get("method")
+    if method == "OPTIONS":
+        return _resp(204, {})
+
+    if not IMAGES_BUCKET:
+        return _resp(500, {"message": "PRODUCT_IMAGES_BUCKET no configurado"})
+    if not PRODUCTS_TABLE:
+        return _resp(500, {"message": "PRODUCTS_TABLE no configurado"})
+
+    # 1) Validación de token via Lambda
+    headers = event.get("headers") or {}
+    token = _extract_bearer_token(headers)
+    if not token:
+        return _resp(401, {"message": "Token requerido"})
+    ok, msg = _validate_token_with_lambda(token)
+    if not ok:
+        return _resp(403, {"message": msg})
+
+    # 2) Body + validaciones (imagen_b64 + file_type + resto del schema)
+    body = _parse_body(event)
+
+    required = ["local_id", "nombre", "precio", "categoria", "stock", "imagen_b64", "file_type"]
+    for f in required:
+        if f not in body:
+            return _resp(400, {"message": f"Falta el campo obligatorio: {f}"})
+
+    nombre = body["nombre"]
+    if not isinstance(nombre, str) or not nombre.strip():
+        return _resp(400, {"message": "El campo 'nombre' debe ser string no vacío"})
+
+    local_id = body["local_id"]
+    if not isinstance(local_id, str) or not local_id.strip():
+        return _resp(400, {"message": "El campo 'local_id' debe ser string no vacío"})
 
     try:
-        piso_val = int(body["piso"])
-    except (TypeError, ValueError):
-        return {
-            "statusCode": 400,
-            "body": json.dumps({"message": "El campo 'piso' debe ser un número entero"})
-        }
+        precio = _to_decimal(body["precio"])
+        if precio < 0:
+            return _resp(400, {"message": "El campo 'precio' debe ser >= 0"})
+    except InvalidOperation:
+        return _resp(400, {"message": "El campo 'precio' debe ser numérico"})
 
-    if piso_val not in PISO_RANGO:
-        return {
-            "statusCode": 400,
-            "body": json.dumps({"message": "Valor de 'piso' debe estar entre -2 y 11"})
-        }
+    descripcion = body.get("descripcion")
+    if descripcion is not None and not isinstance(descripcion, str):
+        return _resp(400, {"message": "El campo 'descripcion' debe ser string"})
 
-    coordenadas = body.get("coordenadas")
-    lat = lng = None
+    categoria = body["categoria"]
+    if categoria not in CATEGORIA_ENUM:
+        return _resp(400, {"message": "Valor de 'categoria' no válido"})
 
-    if coordenadas is not None:
-        if not isinstance(coordenadas, dict):
-            return {
-                "statusCode": 400,
-                "body": json.dumps({"message": "'coordenadas' debe ser un objeto con 'lat' y 'lng'"})
-            }
-        
-        if "lat" not in coordenadas or "lng" not in coordenadas:
-            return {
-                "statusCode": 400,
-                "body": json.dumps({"message": "'coordenadas' debe incluir 'lat' y 'lng'"})
-            }
-        
-        try:
-            lat = Decimal(str(coordenadas["lat"]))
-            lng = Decimal(str(coordenadas["lng"]))
-        except (InvalidOperation, TypeError, ValueError):
-            return {
-                "statusCode": 400,
-                "body": json.dumps({"message": "'lat' y 'lng' deben ser números válidos"})
-            }
-
-    incidente_id = str(uuid.uuid4())
-    created_at = datetime.now(timezone.utc).isoformat()
-    
-    evidencia_url = None
-    
-    if 'evidencias' in body and body['evidencias'] is not None:
-        image_data = body['evidencias']
-        
-        if not isinstance(image_data, dict):
-            return {
-                "statusCode": 400,
-                "body": json.dumps({"message": "'evidencias' debe ser un objeto con 'file_base64'"})
-            }
-        
-        file_b64 = image_data.get("file_base64")
-        if not file_b64:
-            return {
-                "statusCode": 400,
-                "body": json.dumps({"message": "'file_base64' es requerido en 'evidencias'"})
-            }
-        
-        try:
-            file_bytes = base64.b64decode(file_b64)
-        except Exception as e:
-            return {
-                "statusCode": 400,
-                "body": json.dumps({"message": f"file_base64 inválido: {e}"})
-            }
-        
-        if not INCIDENTES_BUCKET:
-            return {
-                "statusCode": 500,
-                "body": json.dumps({"error": "INCIDENTES_BUCKET no configurado"})
-            }
-        
-        key = f"evidencia_{incidente_id}"
-        content_type = "image/png"
-        
-        try:
-            s3.put_object(
-                Bucket=INCIDENTES_BUCKET,
-                Key=key,
-                Body=file_bytes,
-                ContentType=content_type
-            )
-            evidencia_url = f"s3://{INCIDENTES_BUCKET}/{key}"
-        except ClientError as e:
-            code = e.response.get("Error", {}).get("Code")
-            if code == "AccessDenied":
-                return {
-                    "statusCode": 403,
-                    "body": json.dumps({"error": "Acceso denegado al bucket"})
-                }
-            if code == "NoSuchBucket":
-                return {
-                    "statusCode": 400,
-                    "body": json.dumps({"error": f"El bucket {INCIDENTES_BUCKET} no existe"})
-                }
-            return {
-                "statusCode": 400,
-                "body": json.dumps({"error": f"Error S3: {e}"})
-            }
-        except Exception as e:
-            return {
-                "statusCode": 500,
-                "body": json.dumps({"error": f"Error interno al subir la imagen: {e}"})
-            }
-    
-    incidente = {
-        "incidente_id": incidente_id,
-        "titulo": body["titulo"],
-        "descripcion": body["descripcion"],
-        "piso": piso_val,
-        "ubicacion": body["ubicacion"],
-        "tipo": body["tipo"],
-        "nivel_urgencia": body["nivel_urgencia"],
-        "evidencias": [evidencia_url] if evidencia_url else [],
-        "estado": "reportado",
-        "usuario_correo": usuario_autenticado["correo"],
-        "created_at": created_at,
-        "updated_at": created_at
-    }
-
-    if coordenadas is not None:
-        incidente["coordenadas"] = {
-            "lat": lat,
-            "lng": lng
-        }
-
-    incidente = _to_dynamodb_numbers(incidente)
-    
     try:
-        incidentes_table.put_item(Item=incidente)
-        return {
-            "statusCode": 201,
-            "body": json.dumps({
-                "message": "Incidente creado correctamente",
-                "incidente_id": incidente_id
-            })
-        }
+        stock = _to_int(body["stock"])
+    except ValueError:
+        return _resp(400, {"message": "El campo 'stock' debe ser un entero"})
+    if stock < 0:
+        return _resp(400, {"message": "El campo 'stock' debe ser un entero >= 0"})
+
+    imagen_b64 = body["imagen_b64"]
+    if not isinstance(imagen_b64, str) or not imagen_b64.strip():
+        return _resp(400, {"message": "El campo 'imagen_b64' es requerido"})
+
+    # Tipo de archivo explícito -> content-type/ext
+    try:
+        content_type, ext = _map_file_type(body["file_type"])
+    except ValueError as e:
+        return _resp(400, {"message": str(e)})
+
+    # 3) Decodificar base64 (admite data URI)
+    b64_clean, _hint = _strip_data_uri(imagen_b64)
+    try:
+        image_bytes = base64.b64decode(b64_clean)
+    except Exception as e:
+        return _resp(400, {"message": f"imagen_b64 inválida: {e}"})
+
+    # 4) Subir imagen a S3 con código interno <local_id>-<slug(nombre)>.<ext>
+    codigo_producto = f"{local_id.strip()}-{_slug(nombre)}"
+    object_key = f"{codigo_producto}.{ext}"
+
+    try:
+        s3.put_object(
+            Bucket=IMAGES_BUCKET,
+            Key=object_key,
+            Body=image_bytes,
+            ContentType=content_type,
+        )
     except ClientError as e:
-        return {
-            "statusCode": 500,
-            "body": json.dumps({"message": f"Error al crear el incidente: {str(e)}"})
+        code = e.response.get("Error", {}).get("Code")
+        if code == "AccessDenied":
+            return _resp(403, {"message": "Acceso denegado al bucket"})
+        if code == "NoSuchBucket":
+            return _resp(400, {"message": f"El bucket {IMAGES_BUCKET} no existe"})
+        return _resp(500, {"message": f"Error S3: {e}"})
+    except Exception as e:
+        return _resp(500, {"message": f"Error al subir imagen: {e}"})
+
+    # HTTPS URL (no s3://). Requiere que el objeto sea público o que generes URL firmada aparte.
+    imagen_url_https = f"https://{IMAGES_BUCKET}.s3.{region}.amazonaws.com/{object_key}"
+
+    # 5) Guardar producto en DynamoDB
+    item = {
+        "local_id": local_id.strip(),
+        "nombre": nombre.strip(),
+        "precio": precio,                # Decimal -> DDB Number
+        "descripcion": descripcion or "",
+        "categoria": categoria,
+        "stock": stock,
+        "imagen_url": imagen_url_https
+    }
+
+    try:
+        productos_table.put_item(
+            Item=item,
+            ConditionExpression="attribute_not_exists(#pk) AND attribute_not_exists(#sk)",
+            ExpressionAttributeNames={"#pk": "local_id", "#sk": "nombre"}
+        )
+    except ClientError as e:
+        code = e.response.get("Error", {}).get("Code")
+        if code == "ConditionalCheckFailedException":
+            return _resp(409, {"message": "Ya existe un producto con ese local_id y nombre"})
+        return _resp(500, {"message": f"Error al crear el producto: {e}"})
+
+    return _resp(201, {
+        "message": "Producto creado correctamente",
+        "producto": {
+            "local_id": item["local_id"],
+            "nombre": item["nombre"],
+            "categoria": item["categoria"],
+            "precio": str(item["precio"]),
+            "stock": item["stock"],
+            "imagen_url": item["imagen_url"]
         }
+    })

@@ -1,0 +1,33 @@
+service: service-products
+
+provider:
+  name: aws
+  runtime: python3.13
+  region: us-east-1
+  stage: ${opt:stage, 'dev'} 
+  memorySize: 256
+  timeout: 20
+  iam:
+    role: arn:aws:iam::${env:AWS_ACCOUNT_ID}:role/LabRole
+  environment:
+    TOKENS_TABLE_USERS: ${env:TOKENS_TABLE_USERS}
+    PRODUCTS_TABLE: ${env:TABLE_PRODUCTOS}
+    TABLE_PEDIDOS : ${env:TABLE_PEDIDOS}
+    TOKEN_VALIDATOR_FUNCTION: service-products-${self:provider.stage}-ValidarToken
+  layers:
+    - ${cf:millas-dependencias-dev.PythonDependenciesLayerExport}  
+  httpApi:
+    cors: true
+
+functions:
+  CreatePedido:
+    handler: pedido_create.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /pedido/create
+          cors: true
+          integration: lambda
+          
+  ValidarToken:
+    handler: validar_token_users.lambda_handler

@@ -10,10 +10,10 @@ provider:
   iam:
     role: arn:aws:iam::${env:AWS_ACCOUNT_ID}:role/LabRole
   environment:
-    TOKENS_EMPLOYEE_TABLE: ${env:TABLE_TOKENS_EMPLEADOS}
+    TOKENS_TABLE_USERS: ${env:TOKENS_TABLE_USERS}
     PRODUCTS_TABLE: ${env:TABLE_PRODUCTOS}
     PRODUCTS_BUCKET: ${env:S3_BUCKET_NAME}
-    VALIDAR_EMPLOYEE_TOKEN_ACCESS_FUNCTION: service-products-${self:provider.stage}-ValidarEmployeeTokenAcceso
+    TOKEN_VALIDATOR_FUNCTION: service-products-${self:provider.stage}-ValidarToken
   layers:
     - ${cf:millas-dependencias-dev.PythonDependenciesLayerExport}  
   httpApi:
@@ -65,5 +65,5 @@ functions:
           cors: true
           integration: lambda
           
-  ValidarEmployeeTokenAcceso:
-    handler: validar_token_employee.lambda_handler
+  ValidarToken:
+    handler: validar_token_users.lambda_handler

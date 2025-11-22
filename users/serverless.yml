@@ -11,18 +11,23 @@ provider:
   environment:
     USERS_TABLE: ${env:TABLE_USUARIOS}
     TOKENS_TABLE_USERS: ${env:TABLE_TOKENS_USUARIOS}
+    TOKEN_VALIDATOR_FUNCTION: ValidarUserTokenAcceso
   httpApi:
     cors: true
-    
+    authorizers:
+      userTokenAuthorizer:
+        type: request
+        functionName: ValidarUserTokenAcceso
+        identitySource: $request.header.Authorization
+
 functions:
+  # públicas
   RegisterUser:
     handler: register_user.lambda_handler
     events:
       - httpApi:
           method: POST
           path: /users/register
-          cors: true
-          integration: lambda
 
   LoginUsuario:
     handler: login_user.lambda_handler
@@ -30,8 +35,71 @@ functions:
       - httpApi:
           method: POST
           path: /users/login
-          cors: true
-          integration: lambda
-                    
+
+  # protegidas
+  CambiarContrasenaUsuario:
+    handler: cambiar_contrasena.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /users/password/change
+          authorizer: userTokenAuthorizer
+
+  EliminarUsuario:
+    handler: eliminar_usuario.lambda_handler
+    events:
+      - httpApi:
+          method: DELETE
+          path: /users/me
+          authorizer: userTokenAuthorizer
+
+  MiUsuario:
+    handler: mi_usuario.lambda_handler
+    events:
+      - httpApi:
+          method: GET
+          path: /users/me
+          authorizer: userTokenAuthorizer
+
+  ModificarUsuario:
+    handler: modificar_usuario.lambda_handler
+    events:
+      - httpApi:
+          method: PUT
+          path: /users/me
+          authorizer: userTokenAuthorizer
+  
+  CrearEmpleado:
+    handler: register_empleado.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /users/employee
+          authorizer: userTokenAuthorizer
+
+  ActualizarEmpleado:
+    handler: actualizar_empleado.lambda_handler
+    events:
+      - httpApi:
+          method: PUT
+          path: /users/employee
+          authorizer: userTokenAuthorizer
+  EliminarEmpleado:
+    handler: eliminar_empleado.lambda_handler
+    events:
+      - httpApi:
+          method: DELETE
+          path: /users/employee
+          authorizer: userTokenAuthorizer
+  ListarEmpleados:
+    handler: listar_empleados.lambda_handler
+    events:
+      - httpApi:
+          method: POST
+          path: /users/employees/list
+          authorizer: userTokenAuthorizer
+          
+
+  # lambda authorizer (no expuesto vía HTTP)
   ValidarUserTokenAcceso:
     handler: validar_token_users.lambda_handler

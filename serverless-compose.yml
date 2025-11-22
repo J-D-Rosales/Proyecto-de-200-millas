@@ -6,11 +6,6 @@ services:
   dependencias:
     path: Dependencias
 
-  service-employees:
-    path: employees
-    dependsOn:
-      - dependencias
-
   service-users:
     path: users
     dependsOn:
