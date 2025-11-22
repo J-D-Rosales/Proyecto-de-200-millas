@@ -25,6 +25,10 @@ functions:
       - httpApi:
           path: /pedidos/pop
           method: POST
+  preparacionStep:
+    handler: handler_preparacion_step.handler
+    description: "Escribe en t_historial_pedidos (id_pedido, estado, createdAt) invocada por Step Functions"
+    timeout: 15
 
 resources:
   Resources:
@@ -52,3 +56,5 @@ package:
   patterns:
     - '!**/*'
     - 'pop_and_dispatch.py'
+    - 'handler_preparacion_step.py'
+
