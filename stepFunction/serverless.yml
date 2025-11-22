@@ -9,10 +9,9 @@ provider:
   iam:
     role: arn:aws:iam::645337731455:role/LabRole
   environment:
-    # Tu Step Function:
     STATE_MACHINE_ARN: arn:aws:states:us-east-1:645337731455:stateMachine:Handler_pedidos
-    # URL de la cola SQS desde la que se va a "popear" (NO ARN):
     QUEUE_URL: https://sqs.us-east-1.amazonaws.com/645337731455/Cola_registro_pedidos
+    HIST_TABLE: t_historial_pedidos   # <— NUEVO
 
   httpApi:
     cors: true
@@ -26,6 +25,28 @@ functions:
       - httpApi:
           path: /pedidos/pop
           method: POST
+
+resources:
+  Resources:
+    HistorialPedidosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: t_historial_pedidos
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id_pedido     # PK
+            AttributeType: S
+          - AttributeName: createdAt     # SK (orden cronológico)
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id_pedido
+            KeyType: HASH
+          - AttributeName: createdAt
+            KeyType: RANGE
+        # (Opcional) TTL si quieres expirar históricos:
+        # TimeToLiveSpecification:
+        #   AttributeName: ttl
+        #   Enabled: true
 
 package:
   patterns:
