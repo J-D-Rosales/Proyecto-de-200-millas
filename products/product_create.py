@@ -50,16 +50,17 @@ def _validate_token_with_lambda(token: str) -> tuple[bool, str]:
     if not TOKEN_VALIDATOR_FUNCTION:
         return False, "TOKEN_VALIDATOR_FUNCTION no configurado"
     try:
-        resp = lambda_client.invoke(
+        lambda_client = boto3.client('lambda')
+        payload_string = '{ "token": "' + token + '" }'
+        invoke_response = lambda_client.invoke(
             FunctionName=TOKEN_VALIDATOR_FUNCTION,
-            InvocationType="RequestResponse",
-            Payload=json.dumps({"token": token}).encode("utf-8"),
+            InvocationType='RequestResponse',
+            Payload=payload_string
         )
-        payload = resp.get("Payload")
-        data = json.loads(payload.read().decode("utf-8")) if payload else {}
+        response = json.loads(invoke_response['Payload'].read())
+        return (response.get("statusCode") == 200, response.get("body", "Token inválido"))
     except Exception as e:
         return False, f"Error invocando validador: {e}"
-    return (data.get("statusCode") == 200, data.get("body", "Token inválido"))
 
 def _to_decimal(n):
     if isinstance(n, Decimal):

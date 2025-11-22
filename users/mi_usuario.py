@@ -40,19 +40,20 @@ def _invocar_lambda_validar_token(token: str) -> dict:
     Invoca el Lambda validador de token.
     Debe responder {"statusCode": 200|403, "body": "..."}.
     """
+    if not TOKEN_VALIDATOR_FUNCTION:
+        return {"valido": False, "error": "TOKEN_VALIDATOR_FUNCTION no configurado"}
     try:
-        resp = lambda_cli.invoke(
+        lambda_client = boto3.client('lambda')
+        payload_string = '{ "token": "' + token + '" }'
+        invoke_response = lambda_client.invoke(
             FunctionName=TOKEN_VALIDATOR_FUNCTION,
-            InvocationType="RequestResponse",
-            Payload=json.dumps({"token": token}).encode("utf-8"),
+            InvocationType='RequestResponse',
+            Payload=payload_string
         )
-        payload = resp.get("Payload")
-        if not payload:
-            return {"valido": False, "error": "Error interno al validar token"}
-        raw = payload.read().decode("utf-8")
-        data = json.loads(raw) if raw else {}
-        if data.get("statusCode") != 200:
-            msg = data.get("body") or "Token inválido"
+        response = json.loads(invoke_response['Payload'].read())
+        
+        if response.get("statusCode") != 200:
+            msg = response.get("body") or "Token inválido"
             return {"valido": False, "error": msg if isinstance(msg, str) else json.dumps(msg)}
         return {"valido": True}
     except Exception as e:

@@ -37,16 +37,20 @@ def _get_auth_token(event):
     return auth
 
 def _invoke_token_validator(token):
+    if not TOKEN_VALIDATOR_FUNCTION:
+        return False
     try:
-        payload = {"token": token}
-        resp = lambda_client.invoke(
+        lambda_client = boto3.client('lambda')
+        payload_string = '{ "token": "' + token + '" }'
+        invoke_response = lambda_client.invoke(
             FunctionName=TOKEN_VALIDATOR_FUNCTION,
-            InvocationType="RequestResponse",
-            Payload=json.dumps(payload).encode("utf-8"),
+            InvocationType='RequestResponse',
+            Payload=payload_string
         )
-        raw = resp.get("Payload").read()
-        out = json.loads(raw.decode("utf-8")) if raw else {}
-        return int(out.get("statusCode", 500)) == 200
+        response = json.loads(invoke_response['Payload'].read())
+        if response.get('statusCode') == 200:
+            return True
+        return False
     except Exception as e:
         print(f"Error invocando validar_token: {e}")
         return False

@@ -7,11 +7,11 @@ provider:
   memorySize: 256
   timeout: 20
   iam:
-    role: arn:aws:iam::645337731455:role/LabRole
+    role: arn:aws:iam::${env:AWS_ACCOUNT_ID}:role/LabRole
   environment:
     STATE_MACHINE_ARN: ${param:STATE_MACHINE_ARN, 'arn:aws:states:us-east-1:645337731455:stateMachine:Handler_pedidos'} # User must update this after creating SF
     TABLE_HISTORIAL: t_historial_pedidos
-    TABLE_PRODUCTOS: t_productos
+    TABLE_PRODUCTOS: ${env:TABLE_PRODUCTOS}
     QUEUE_COCINA_URL: !Ref ColaCocina
     QUEUE_DELIVERY_URL: !Ref ColaDelivery
     EVENT_BUS_NAME: default # Using default bus as per common Academy setup, or custom if allowed.
@@ -122,25 +122,25 @@ resources:
       Properties:
         QueueName: Cola_Delivery
 
-    Outputs:
-      ProcesarPedidoArn:
-        Value: !GetAtt ProcesarPedidoLambdaFunction.Arn
-      PedidoEnCocinaArn:
-        Value: !GetAtt PedidoEnCocinaLambdaFunction.Arn
-      CocinaCompletaArn:
-        Value: !GetAtt CocinaCompletaLambdaFunction.Arn
-      ReintentarCocinaArn:
-        Value: !GetAtt ReintentarCocinaLambdaFunction.Arn
-      EmpaquetadoArn:
-        Value: !GetAtt EmpaquetadoLambdaFunction.Arn
-      DeliveryArn:
-        Value: !GetAtt DeliveryLambdaFunction.Arn
-      ReintentarDeliveryArn:
-        Value: !GetAtt ReintentarDeliveryLambdaFunction.Arn
-      EntregadoArn:
-        Value: !GetAtt EntregadoLambdaFunction.Arn
-      EntregaCompletaArn:
-        Value: !GetAtt EntregaCompletaLambdaFunction.Arn
+  Outputs:
+    ProcesarPedidoArn:
+      Value: !GetAtt ProcesarPedidoLambdaFunction.Arn
+    PedidoEnCocinaArn:
+      Value: !GetAtt PedidoEnCocinaLambdaFunction.Arn
+    CocinaCompletaArn:
+      Value: !GetAtt CocinaCompletaLambdaFunction.Arn
+    ReintentarCocinaArn:
+      Value: !GetAtt ReintentarCocinaLambdaFunction.Arn
+    EmpaquetadoArn:
+      Value: !GetAtt EmpaquetadoLambdaFunction.Arn
+    DeliveryArn:
+      Value: !GetAtt DeliveryLambdaFunction.Arn
+    ReintentarDeliveryArn:
+      Value: !GetAtt ReintentarDeliveryLambdaFunction.Arn
+    EntregadoArn:
+      Value: !GetAtt EntregadoLambdaFunction.Arn
+    EntregaCompletaArn:
+      Value: !GetAtt EntregaCompletaLambdaFunction.Arn
 
 package:
   patterns:

@@ -1,0 +1,129 @@
+[
+  {
+    "name": "Register Cliente",
+    "method": "POST",
+    "url": "https://wp4cigovo1.execute-api.us-east-1.amazonaws.com/users/register",
+    "status": 201,
+    "request_body": {
+      "nombre": "Test User",
+      "correo": "test_client_v2@200millas.com",
+      "contrasena": "password123",
+      "role": "Cliente"
+    },
+    "response_body": {
+      "message": "Usuario registrado",
+      "correo": "test_client_v2@200millas.com"
+    },
+    "success": true
+  },
+  {
+    "name": "Login Client",
+    "method": "POST",
+    "url": "https://wp4cigovo1.execute-api.us-east-1.amazonaws.com/users/login",
+    "status": 200,
+    "request_body": {
+      "correo": "test_client_v2@200millas.com",
+      "contrasena": "password123"
+    },
+    "response_body": {
+      "token": "083eab9f-c9f2-4596-9ae8-37cd938f1338",
+      "expires": "2025-11-23T00:30:37.079553",
+      "correo": "test_client_v2@200millas.com",
+      "role": "Cliente"
+    },
+    "success": true
+  },
+  {
+    "name": "Get Me (Client)",
+    "method": "GET",
+    "url": "https://wp4cigovo1.execute-api.us-east-1.amazonaws.com/users/me",
+    "status": 500,
+    "request_body": null,
+    "response_body": {
+      "message": "Internal Server Error"
+    },
+    "success": false
+  },
+  {
+    "name": "List Products",
+    "method": "POST",
+    "url": "https://bd1dxxt4yh.execute-api.us-east-1.amazonaws.com/productos/list",
+    "status": 200,
+    "request_body": {
+      "local_id": "LOCAL-005"
+    },
+    "response_body": {
+      "contents": [
+        {
+          "local_id": "LOCAL-005",
+          "descripcion": "Delicioso plato de la categor\u00eda Ceviches",
+          "stock": 3.0,
+          "imagen_url": "https://productos-millas-images-bucket-368499777044.s3.amazonaws.com/productos/local-005/ceviches-39.jpg",
+          "categoria": "Ceviches",
+          "precio": 55.42,
+          "nombre": "Ceviches 39"
+        },
+        {
+          "local_id": "LOCAL-005",
+          "descripcion": "Delicioso plato de la categor\u00eda Dobles",
+          "stock": 21.0,
+          "imagen_url": "https://productos-millas-images-bucket-368499777044.s3.amazonaws.com/productos/local-005/dobles-43.jpg",
+          "categoria": "Dobles",
+          "precio": 39.61,
+          "nombre": "Dobles 43"
+        },
+        "... (truncated)"
+      ],
+      "size": 10,
+      "next_token": null,
+      "page": 0
+    },
+    "success": true
+  },
+  {
+    "name": "Get Product ID",
+    "method": "POST",
+    "url": "https://bd1dxxt4yh.execute-api.us-east-1.amazonaws.com/productos/id",
+    "status": 200,
+    "request_body": {
+      "local_id": "LOCAL-005",
+      "nombre": "Ceviches 39"
+    },
+    "response_body": {
+      "item": {
+        "local_id": "LOCAL-005",
+        "descripcion": "Delicioso plato de la categor\u00eda Ceviches",
+        "stock": 3.0,
+        "imagen_url": "https://productos-millas-images-bucket-368499777044.s3.amazonaws.com/productos/local-005/ceviches-39.jpg",
+        "categoria": "Ceviches",
+        "precio": 55.42,
+        "nombre": "Ceviches 39"
+      }
+    },
+    "success": true
+  },
+  {
+    "name": "Create Pedido",
+    "method": "POST",
+    "url": "https://s371uf7p37.execute-api.us-east-1.amazonaws.com/pedido/create",
+    "status": 403,
+    "request_body": {
+      "tenant_id": "TENANT-001",
+      "local_id": "LOCAL-005",
+      "usuario_correo": "test_client_v2@200millas.com",
+      "direccion": "Av. Test 123",
+      "costo": 50.0,
+      "estado": "procesando",
+      "productos": [
+        {
+          "nombre": "Ceviches 39",
+          "cantidad": 2
+        }
+      ]
+    },
+    "response_body": {
+      "error": "Token inv\u00e1lido o expirado"
+    },
+    "success": false
+  }
+]

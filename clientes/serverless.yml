@@ -14,7 +14,7 @@ provider:
   environment:
     TABLE_PEDIDOS: ${env:TABLE_PEDIDOS}
     TOKENS_TABLE_USERS: ${env:TABLE_TOKENS_USUARIOS}
-    TOKEN_VALIDATOR_FUNCTION: ValidarUserTokenAcceso
+    TOKEN_VALIDATOR_FUNCTION: service-users-dev-ValidarUserTokenAcceso
 
 functions:
   CreatePedido:
