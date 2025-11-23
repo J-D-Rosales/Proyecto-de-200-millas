@@ -11,10 +11,14 @@ provider:
     role: arn:aws:iam::${env:AWS_ACCOUNT_ID}:role/LabRole
   httpApi:
     cors: true
+    authorizers:
+      userTokenAuthorizer:
+        type: request
+        functionArn: arn:aws:lambda:${aws:region}:${env:AWS_ACCOUNT_ID}:function:service-users-${self:provider.stage}-ValidarUserTokenAcceso
+        identitySource: $request.header.Authorization
   environment:
     TABLE_PEDIDOS: ${env:TABLE_PEDIDOS}
     TOKENS_TABLE_USERS: ${env:TABLE_TOKENS_USUARIOS}
-    TOKEN_VALIDATOR_FUNCTION: service-users-dev-ValidarUserTokenAcceso
 
 functions:
   CreatePedido:
@@ -23,17 +27,20 @@ functions:
       - httpApi:
           method: POST
           path: /pedido/create
+          authorizer: userTokenAuthorizer
 
   GetPedidoEstado:
-    handler: pedido_status.lambda_handler
+    handler: estado_pedido.lambda_handler
     events:
       - httpApi:
           method: GET
           path: /pedido/status
+          authorizer: userTokenAuthorizer
 
   ConfirmarRecepcion:
-    handler: pedido_confirmar_recepcion.lambda_handler
+    handler: confirmar_recepcion.lambda_handler
     events:
       - httpApi:
           method: POST
           path: /pedido/confirmar
+          authorizer: userTokenAuthorizer

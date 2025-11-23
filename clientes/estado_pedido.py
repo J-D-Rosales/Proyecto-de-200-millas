@@ -6,12 +6,10 @@ from botocore.exceptions import ClientError
 
 TABLE_PEDIDOS = os.environ["TABLE_PEDIDOS"]
 TOKENS_TABLE_USERS = os.environ["TOKENS_TABLE_USERS"]
-TOKEN_VALIDATOR_FUNCTION = os.environ["TOKEN_VALIDATOR_FUNCTION"]
 
 dynamodb = boto3.resource("dynamodb")
 pedidos_table = dynamodb.Table(TABLE_PEDIDOS)
 tokens_table = dynamodb.Table(TOKENS_TABLE_USERS)
-lambda_client = boto3.client("lambda")
 
 CORS_HEADERS = {
     "Access-Control-Allow-Origin": "*",
@@ -36,25 +34,6 @@ def _get_auth_token(event):
         return auth[7:].strip()
     return auth
 
-def _invoke_token_validator(token):
-    if not TOKEN_VALIDATOR_FUNCTION:
-        return False
-    try:
-        lambda_client = boto3.client('lambda')
-        payload_string = '{ "token": "' + token + '" }'
-        invoke_response = lambda_client.invoke(
-            FunctionName=TOKEN_VALIDATOR_FUNCTION,
-            InvocationType='RequestResponse',
-            Payload=payload_string
-        )
-        response = json.loads(invoke_response['Payload'].read())
-        if response.get('statusCode') == 200:
-            return True
-        return False
-    except Exception as e:
-        print(f"Error invocando validar_token: {e}")
-        return False
-
 def _get_token_item(token):
     try:
         r = tokens_table.get_item(Key={"token": token})
@@ -73,20 +52,18 @@ def lambda_handler(event, context):
     if method != "GET":
         return _resp(405, {"error": "Método no permitido"})
 
-    # Auth
+    # Auth - El token ya fue validado por el authorizer de API Gateway
     token = _get_auth_token(event)
     if not token:
         return _resp(403, {"error": "Falta header Authorization"})
-    if not _invoke_token_validator(token):
-        return _resp(403, {"error": "Token inválido o expirado"})
 
     token_item = _get_token_item(token)
     if not token_item:
         return _resp(403, {"error": "Token no encontrado"})
+    
     rol = token_item.get("rol") or token_item.get("role")
-    correo_token = token_item.get("correo") or token_item.get("email") or token_item.get("usuario_correo")
-    if rol != "cliente":
-        return _resp(403, {"error": "Permiso denegado: se requiere rol 'cliente'"})
+    correo_token = token_item.get("user_id") or token_item.get("correo") or token_item.get("email") or token_item.get("usuario_correo")
+    
     if not correo_token:
         return _resp(403, {"error": "Token sin correo asociado"})
 
