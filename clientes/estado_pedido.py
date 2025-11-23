@@ -1,14 +1,15 @@
 import os
 import json
-from datetime import datetime, timezone
+from datetime import datetime
 import boto3
 from botocore.exceptions import ClientError
-from common_auth import get_bearer_token, get_user_from_token
 
 TABLE_PEDIDOS = os.environ["TABLE_PEDIDOS"]
+TOKENS_TABLE = os.environ.get("TOKENS_TABLE_USERS", "TOKENS_TABLE_USERS")
 
 dynamodb = boto3.resource("dynamodb")
 pedidos_table = dynamodb.Table(TABLE_PEDIDOS)
+tokens_table = dynamodb.Table(TOKENS_TABLE)
 
 CORS_HEADERS = {
     "Access-Control-Allow-Origin": "*",
@@ -23,6 +24,56 @@ def _resp(code, body):
         "body": json.dumps(body, ensure_ascii=False, default=str)
     }
 
+def _get_token(event):
+    """Extrae el token del header Authorization"""
+    headers = event.get("headers") or {}
+    for key, value in headers.items():
+        if key.lower() == "authorization":
+            token = value.strip()
+            if token.lower().startswith("bearer "):
+                return token.split(" ", 1)[1].strip()
+            return token
+    return None
+
+def _validate_token(token):
+    """Valida el token consultando la tabla de tokens"""
+    if not token:
+        return False, "Token requerido", None, None
+    
+    try:
+        response = tokens_table.get_item(Key={'token': token})
+        
+        if 'Item' not in response:
+            return False, "Token no existe", None, None
+        
+        item = response['Item']
+        expires_str = item.get('expires')
+        
+        if not expires_str:
+            return False, "Token sin fecha de expiración", None, None
+        
+        try:
+            if 'T' in expires_str:
+                if '.' in expires_str:
+                    expires_str = expires_str.split('.')[0]
+                expires_dt = datetime.strptime(expires_str, '%Y-%m-%dT%H:%M:%S')
+            else:
+                expires_dt = datetime.strptime(expires_str, '%Y-%m-%d %H:%M:%S')
+        except ValueError:
+            return False, "Formato de fecha inválido", None, None
+        
+        now = datetime.now()
+        if now > expires_dt:
+            return False, "Token expirado", None, None
+        
+        correo = item.get('user_id') or item.get('correo')
+        rol = item.get('rol') or item.get('role') or "Cliente"
+        
+        return True, None, correo, rol
+        
+    except Exception as e:
+        return False, f"Error al validar token: {str(e)}", None, None
+
 
 
 def lambda_handler(event, context):
@@ -35,11 +86,11 @@ def lambda_handler(event, context):
     if method != "GET":
         return _resp(405, {"error": "Método no permitido"})
 
-    # Validar token y obtener usuario
-    token = get_bearer_token(event)
-    correo_token, rol, error = get_user_from_token(token)
-    if error:
-        return _resp(403, {"error": error})
+    # Validar token
+    token = _get_token(event)
+    valido, error, correo_token, rol = _validate_token(token)
+    if not valido:
+        return _resp(403, {"error": error or "Token inválido"})
 
     # Params: tenant_id y pedido_id por querystring
     qs = event.get("queryStringParameters") or {}
