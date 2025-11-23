@@ -1,4 +1,4 @@
-service: service-orders-pop-and-dispatch
+service: service-orders-200-millas
 
 provider:
   name: aws
@@ -7,54 +7,142 @@ provider:
   memorySize: 256
   timeout: 20
   iam:
-    role: arn:aws:iam::645337731455:role/LabRole
+    role: arn:aws:iam::${env:AWS_ACCOUNT_ID}:role/LabRole
   environment:
-    STATE_MACHINE_ARN: arn:aws:states:us-east-1:645337731455:stateMachine:Handler_pedidos
-    QUEUE_URL: https://sqs.us-east-1.amazonaws.com/645337731455/Cola_registro_pedidos
-    HIST_TABLE: t_historial_pedidos   # <— NUEVO
-
-  httpApi:
-    cors: true
+    STATE_MACHINE_ARN: ${param:STATE_MACHINE_ARN, 'arn:aws:states:us-east-1:645337731455:stateMachine:Handler_pedidos'} # User must update this after creating SF
+    TABLE_HISTORIAL: t_historial_pedidos
+    TABLE_PRODUCTOS: ${env:TABLE_PRODUCTOS}
+    QUEUE_COCINA_URL: !Ref ColaCocina
+    QUEUE_DELIVERY_URL: !Ref ColaDelivery
+    EVENT_BUS_NAME: default # Using default bus as per common Academy setup, or custom if allowed.
 
 functions:
-  popAndDispatch:
-    handler: pop_and_dispatch.handler
-    description: "HTTP -> pop N mensajes de SQS y enviar 'estado' (string) a Step Functions"
-    timeout: 30
+  # --- Step Function Tasks (Invoked by SF) ---
+  procesarPedido:
+    handler: handlers/procesar_pedido.handler
+  
+  pedidoEnCocina:
+    handler: handlers/pedido_en_cocina.handler
+
+  cocinaCompleta:
+    handler: handlers/cocina_completa.handler
+
+  reintentarCocina:
+    handler: handlers/reintentar_cocina.handler
+
+  empaquetado:
+    handler: handlers/empaquetado.handler
+
+  delivery:
+    handler: handlers/delivery.handler
+
+  reintentarDelivery:
+    handler: handlers/reintentar_delivery.handler
+
+  entregado:
+    handler: handlers/entregado.handler
+
+  entregaCompleta:
+    handler: handlers/entrega_completa.handler
+
+  # --- Control & Events ---
+  startExecution:
+    handler: handlers/start_execution.handler
+    events:
+      - eventBridge:
+          pattern:
+            source:
+              - "200millas.pedidos"
+            detail-type:
+              - "CrearPedido"
+
+  cambiarEstado:
+    handler: handlers/cambiar_estado.handler
+    events:
+      - eventBridge:
+          pattern:
+            source:
+              - "200millas.cocina"
+              - "200millas.delivery"
+              - "200millas.cliente"
+            detail-type:
+              - "EnPreparacion"
+              - "CocinaCompleta"
+              - "Empaquetado"
+              - "PedidoEnCamino"
+              - "EntregaDelivery"
+              - "ConfirmarPedidoCliente"
+
+  triggerEvent:
+    handler: handlers/trigger_event.handler
     events:
       - httpApi:
-          path: /pedidos/pop
+          path: /eventos/trigger
           method: POST
-  preparacionStep:
-    handler: handler_preparacion_step.handler
-    description: "Escribe en t_historial_pedidos (id_pedido, estado, createdAt) invocada por Step Functions"
-    timeout: 15
 
 resources:
   Resources:
+    # DynamoDB Tables
     HistorialPedidosTable:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: t_historial_pedidos
         BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
-          - AttributeName: id_pedido     # PK
+          - AttributeName: id_pedido
             AttributeType: S
-          - AttributeName: createdAt     # SK (orden cronológico)
+          - AttributeName: createdAt
             AttributeType: S
         KeySchema:
           - AttributeName: id_pedido
             KeyType: HASH
           - AttributeName: createdAt
             KeyType: RANGE
-        # (Opcional) TTL si quieres expirar históricos:
-        # TimeToLiveSpecification:
-        #   AttributeName: ttl
-        #   Enabled: true
+
+    ProductosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: t_productos
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id_producto
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id_producto
+            KeyType: HASH
+
+    # SQS Queues
+    ColaCocina:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: Cola_Cocina
+
+    ColaDelivery:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: Cola_Delivery
+
+  Outputs:
+    ProcesarPedidoArn:
+      Value: !GetAtt ProcesarPedidoLambdaFunction.Arn
+    PedidoEnCocinaArn:
+      Value: !GetAtt PedidoEnCocinaLambdaFunction.Arn
+    CocinaCompletaArn:
+      Value: !GetAtt CocinaCompletaLambdaFunction.Arn
+    ReintentarCocinaArn:
+      Value: !GetAtt ReintentarCocinaLambdaFunction.Arn
+    EmpaquetadoArn:
+      Value: !GetAtt EmpaquetadoLambdaFunction.Arn
+    DeliveryArn:
+      Value: !GetAtt DeliveryLambdaFunction.Arn
+    ReintentarDeliveryArn:
+      Value: !GetAtt ReintentarDeliveryLambdaFunction.Arn
+    EntregadoArn:
+      Value: !GetAtt EntregadoLambdaFunction.Arn
+    EntregaCompletaArn:
+      Value: !GetAtt EntregaCompletaLambdaFunction.Arn
 
 package:
   patterns:
     - '!**/*'
-    - 'pop_and_dispatch.py'
-    - 'handler_preparacion_step.py'
-
+    - 'handlers/**/*.py'

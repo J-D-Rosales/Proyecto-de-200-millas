@@ -10,13 +10,11 @@ from decimal import Decimal
 # ==== Variables de entorno ====
 TABLE_PEDIDOS = os.environ["TABLE_PEDIDOS"]
 TOKENS_TABLE_USERS = os.environ["TOKENS_TABLE_USERS"]
-TOKEN_VALIDATOR_FUNCTION = os.environ["TOKEN_VALIDATOR_FUNCTION"]
 
 # ==== Clientes AWS ====
 dynamodb = boto3.resource("dynamodb")
 pedidos_table = dynamodb.Table(TABLE_PEDIDOS)
 tokens_table = dynamodb.Table(TOKENS_TABLE_USERS)
-lambda_client = boto3.client("lambda")
 eventbridge = boto3.client("events")  # bus por defecto
 
 CORS_HEADERS = {
@@ -91,21 +89,6 @@ def _validate_payload(p):
 
     return True, None
 
-def _invoke_token_validator(token):
-    try:
-        payload = {"token": token}
-        resp = lambda_client.invoke(
-            FunctionName=TOKEN_VALIDATOR_FUNCTION,
-            InvocationType="RequestResponse",
-            Payload=json.dumps(payload).encode("utf-8"),
-        )
-        raw = resp.get("Payload").read()
-        out = json.loads(raw.decode("utf-8")) if raw else {}
-        return int(out.get("statusCode", 500)) == 200
-    except Exception as e:
-        print(f"Error invocando validar_token: {e}")
-        return False
-
 def _get_token_item(token):
     try:
         r = tokens_table.get_item(Key={"token": token})
@@ -157,16 +140,14 @@ def lambda_handler(event, context):
     if not token:
         return _resp(403, {"error": "Falta header Authorization"})
 
-    if not _invoke_token_validator(token):
-        return _resp(403, {"error": "Token inválido o expirado"})
-
+    # El token ya fue validado por el authorizer de API Gateway
     token_item = _get_token_item(token)
     if not token_item:
         return _resp(403, {"error": "Token no encontrado"})
+    
     rol = token_item.get("rol") or token_item.get("role")
-    correo_token = token_item.get("correo") or token_item.get("email") or token_item.get("usuario_correo")
-    if rol != "cliente":
-        return _resp(403, {"error": "Permiso denegado: se requiere rol 'cliente'"})
+    correo_token = token_item.get("user_id") or token_item.get("correo") or token_item.get("email") or token_item.get("usuario_correo")
+    
     if not correo_token:
         return _resp(403, {"error": "Token sin correo asociado"})
 
