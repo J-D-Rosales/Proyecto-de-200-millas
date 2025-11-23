@@ -6,7 +6,7 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
       "Parameters": {
-        "FunctionName": "${ProcesarPedidoLambdaArn}",
+        "FunctionName": "arn:aws:lambda:us-east-1:368499777044:function:service-orders-200-millas-dev-procesarPedido",
         "Payload": {
           "taskToken.$": "$$.Task.Token",
           "input.$": "$"
@@ -18,7 +18,7 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
       "Parameters": {
-        "FunctionName": "${PedidoEnCocinaLambdaArn}",
+        "FunctionName": "arn:aws:lambda:us-east-1:368499777044:function:service-orders-200-millas-dev-pedidoEnCocina",
         "Payload": {
           "taskToken.$": "$$.Task.Token",
           "input.$": "$"
@@ -41,7 +41,7 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke",
       "Parameters": {
-        "FunctionName": "${ReintentarCocinaLambdaArn}",
+        "FunctionName": "arn:aws:lambda:us-east-1:368499777044:function:service-orders-200-millas-dev-reintentarCocina",
         "Payload": {
           "input.$": "$"
         }
@@ -78,7 +78,7 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
       "Parameters": {
-        "FunctionName": "${CocinaCompletaLambdaArn}",
+        "FunctionName": "arn:aws:lambda:us-east-1:368499777044:function:service-orders-200-millas-dev-cocinaCompleta",
         "Payload": {
           "taskToken.$": "$$.Task.Token",
           "input.$": "$"
@@ -90,7 +90,7 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
       "Parameters": {
-        "FunctionName": "${EmpaquetadoLambdaArn}",
+        "FunctionName": "arn:aws:lambda:us-east-1:368499777044:function:service-orders-200-millas-dev-empaquetado",
         "Payload": {
           "taskToken.$": "$$.Task.Token",
           "input.$": "$"
@@ -102,7 +102,7 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
       "Parameters": {
-        "FunctionName": "${DeliveryLambdaArn}",
+        "FunctionName": "arn:aws:lambda:us-east-1:368499777044:function:service-orders-200-millas-dev-delivery",
         "Payload": {
           "taskToken.$": "$$.Task.Token",
           "input.$": "$"
@@ -125,7 +125,7 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke",
       "Parameters": {
-        "FunctionName": "${ReintentarDeliveryLambdaArn}",
+        "FunctionName": "arn:aws:lambda:us-east-1:368499777044:function:service-orders-200-millas-dev-reintentarDelivery",
         "Payload": {
           "input.$": "$"
         }
@@ -162,7 +162,7 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
       "Parameters": {
-        "FunctionName": "${EntregadoLambdaArn}",
+        "FunctionName": "arn:aws:lambda:us-east-1:368499777044:function:service-orders-200-millas-dev-entregado",
         "Payload": {
           "taskToken.$": "$$.Task.Token",
           "input.$": "$"
@@ -174,7 +174,7 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke",
       "Parameters": {
-        "FunctionName": "${EntregaCompletaLambdaArn}",
+        "FunctionName": "arn:aws:lambda:us-east-1:368499777044:function:service-orders-200-millas-dev-entregaCompleta",
         "Payload": {
           "input.$": "$"
         }

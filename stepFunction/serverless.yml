@@ -9,7 +9,7 @@ provider:
   iam:
     role: arn:aws:iam::${env:AWS_ACCOUNT_ID}:role/LabRole
   environment:
-    STATE_MACHINE_ARN: ${param:STATE_MACHINE_ARN, 'arn:aws:states:us-east-1:645337731455:stateMachine:Handler_pedidos'} # User must update this after creating SF
+    STATE_MACHINE_ARN: arn:aws:states:us-east-1:368499777044:stateMachine:Millas
     TABLE_HISTORIAL: t_historial_pedidos
     TABLE_PRODUCTOS: ${env:TABLE_PRODUCTOS}
     QUEUE_COCINA_URL: !Ref ColaCocina

@@ -3,7 +3,7 @@
     "name": "Register Cliente",
     "method": "POST",
     "url": "https://wp4cigovo1.execute-api.us-east-1.amazonaws.com/users/register",
-    "status": 201,
+    "status": 200,
     "request_body": {
       "nombre": "Test User",
       "correo": "test_client_v2@200millas.com",
@@ -11,7 +11,7 @@
       "role": "Cliente"
     },
     "response_body": {
-      "message": "Usuario registrado",
+      "message": "Usuario ya existe",
       "correo": "test_client_v2@200millas.com"
     },
     "success": true
@@ -26,8 +26,8 @@
       "contrasena": "password123"
     },
     "response_body": {
-      "token": "083eab9f-c9f2-4596-9ae8-37cd938f1338",
-      "expires": "2025-11-23T00:30:37.079553",
+      "token": "7bde3c54-0d97-4e2e-9ddc-f5da4653d16d",
+      "expires": "2025-11-23T00:56:49.477144",
       "correo": "test_client_v2@200millas.com",
       "role": "Cliente"
     },

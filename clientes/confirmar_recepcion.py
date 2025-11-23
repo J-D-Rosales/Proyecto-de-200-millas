@@ -92,7 +92,7 @@ def lambda_handler(event, context):
     token_item = _get_token_item(token)
     if not token_item:
         return _resp(403, {"error": "Token no encontrado"})
-    rol = token_item.get("rol") or token_item.get("role")
+    rol = (token_item.get("rol") or token_item.get("role") or "").lower()
     correo_token = token_item.get("correo") or token_item.get("email") or token_item.get("usuario_correo")
     if rol != "cliente":
         return _resp(403, {"error": "Permiso denegado: se requiere rol 'cliente'"})
