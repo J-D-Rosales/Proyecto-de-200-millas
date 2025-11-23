@@ -2,18 +2,19 @@ import os
 import json
 import re
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timedelta
 import boto3
 from botocore.exceptions import ClientError
 from decimal import Decimal
-from common_auth import get_bearer_token, get_user_from_token
 
 # ==== Variables de entorno ====
 TABLE_PEDIDOS = os.environ["TABLE_PEDIDOS"]
+TOKENS_TABLE = os.environ.get("TOKENS_TABLE_USERS", "TOKENS_TABLE_USERS")
 
 # ==== Clientes AWS ====
 dynamodb = boto3.resource("dynamodb")
 pedidos_table = dynamodb.Table(TABLE_PEDIDOS)
+tokens_table = dynamodb.Table(TOKENS_TABLE)
 eventbridge = boto3.client("events")  # bus por defecto
 
 CORS_HEADERS = {
@@ -36,6 +37,59 @@ def _parse_body(event):
     elif not isinstance(body, dict):
         body = {}
     return body
+
+def _get_token(event):
+    """Extrae el token del header Authorization"""
+    headers = event.get("headers") or {}
+    for key, value in headers.items():
+        if key.lower() == "authorization":
+            token = value.strip()
+            if token.lower().startswith("bearer "):
+                return token.split(" ", 1)[1].strip()
+            return token
+    return None
+
+def _validate_token(token):
+    """Valida el token consultando la tabla de tokens"""
+    if not token:
+        return False, "Token requerido", None, None
+    
+    try:
+        response = tokens_table.get_item(Key={'token': token})
+        
+        if 'Item' not in response:
+            return False, "Token no existe", None, None
+        
+        item = response['Item']
+        expires_str = item.get('expires')
+        
+        if not expires_str:
+            return False, "Token sin fecha de expiración", None, None
+        
+        # Parsear fecha de expiración
+        try:
+            if 'T' in expires_str:
+                if '.' in expires_str:
+                    expires_str = expires_str.split('.')[0]
+                expires_dt = datetime.strptime(expires_str, '%Y-%m-%dT%H:%M:%S')
+            else:
+                expires_dt = datetime.strptime(expires_str, '%Y-%m-%d %H:%M:%S')
+        except ValueError:
+            return False, "Formato de fecha inválido", None, None
+        
+        # Comparar con fecha actual
+        now = datetime.now()
+        if now > expires_dt:
+            return False, "Token expirado", None, None
+        
+        # Obtener datos del usuario
+        correo = item.get('user_id') or item.get('correo')
+        rol = item.get('rol') or item.get('role') or "Cliente"
+        
+        return True, None, correo, rol
+        
+    except Exception as e:
+        return False, f"Error al validar token: {str(e)}", None, None
 
 
 
@@ -83,7 +137,7 @@ def _validate_payload(p):
 
 
 def _now_iso():
-    return datetime.now(timezone.utc).isoformat()
+    return datetime.now().isoformat()
 
 def _publish_crear_pedido_event(item):
     """
@@ -122,11 +176,11 @@ def lambda_handler(event, context):
 
     body = _parse_body(event)
     
-    # Validar token y obtener usuario
-    token = get_bearer_token(event)
-    correo_token, rol, error = get_user_from_token(token)
-    if error:
-        return _resp(403, {"error": error})
+    # Validar token
+    token = _get_token(event)
+    valido, error, correo_token, rol = _validate_token(token)
+    if not valido:
+        return _resp(403, {"error": error or "Token inválido"})
 
     ok, msg = _validate_payload(body)
     if not ok:
