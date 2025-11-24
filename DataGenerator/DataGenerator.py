@@ -129,8 +129,7 @@ def generar_empleados(locales, cantidad=None):
             "dni": f"{random.randint(10_000_000, 99_999_999)}",
             "nombre": nombre,
             "apellido": apellido,
-            "role": random.choice(ROLES_EMPLEADOS),
-            "ocupado": bool(random.getrandbits(1))
+            "role": random.choice(ROLES_EMPLEADOS)
         })
     return empleados
 
@@ -157,8 +156,12 @@ def generar_productos(locales, cantidad=None):
 
 def generar_pedidos_y_historial(locales, usuarios, productos, cantidad=None):
     """
-    Pedidos (multi-tenant con tenant_id) + historial_estados.
-    La dirección ya no depende de 'informacion_bancaria' del usuario.
+    Pedidos con nueva estructura:
+    - PK: local_id (cambió de tenant_id)
+    - SK: pedido_id
+    - tenant_id_usuario: para GSI by_usuario_v2
+    - created_at: timestamp de creación
+    - productos[].producto_id: en lugar de nombre
     """
     cantidad = max(1, cantidad or PEDIDOS_TOTAL)
     pedidos, historial_estados = [], []
@@ -182,11 +185,14 @@ def generar_pedidos_y_historial(locales, usuarios, productos, cantidad=None):
         productos_pedido, costo = [], 0.0
         for prod in items:
             cant = random.randint(1, 3)
-            productos_pedido.append({"nombre": prod["nombre"], "cantidad": cant})
+            # Usar producto_id (combinación de local_id#nombre)
+            producto_id = f"{prod['local_id']}#{prod['nombre']}"
+            productos_pedido.append({"producto_id": producto_id, "cantidad": cant})
             costo += prod["precio"] * cant
 
         ahora = datetime.now()
         inicio = ahora - timedelta(minutes=random.randint(5, 90))
+        created_at = inicio.isoformat()
 
         estados_posibles = ESTADOS_PEDIDO.copy()
         ultimo_estado = random.choice(estados_posibles)
@@ -207,16 +213,16 @@ def generar_pedidos_y_historial(locales, usuarios, productos, cantidad=None):
             })
             t_actual = t_fin
 
+        # Nuevo formato de pedido
         pedido = {
-            "tenant_id": TENANT_ID,           # multi-tenant
-            "local_id": local_id,             # para GSI si lo usas
-            "pedido_id": pedido_id,
-            "usuario_correo": cliente["correo"],
-            "productos": productos_pedido,
+            "local_id": local_id,                                    # PK (cambió de tenant_id)
+            "pedido_id": pedido_id,                                  # SK
+            "tenant_id_usuario": f"{TENANT_ID}#{cliente['correo']}", # GSI by_usuario_v2
+            "productos": productos_pedido,                           # Ahora usa producto_id
             "costo": round(costo, 2),
             "direccion": f"Calle {random.randint(1,200)} #{random.randint(100,999)}",
-            "fecha_entrega_aproximada": historial_estados[-1]["hora_fin"],
-            "estado": ultimo_estado
+            "estado": ultimo_estado,
+            "created_at": created_at                                 # Nuevo campo requerido
         }
 
         pedidos.append(pedido)

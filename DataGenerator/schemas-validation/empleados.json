@@ -7,16 +7,33 @@
     "sort_key": "dni"
   },
   "properties": {
-    "local_id": { "type": "string" },
-    "dni": { "type": "string" },
-    "nombre": { "type": "string" },
-    "apellido": { "type": "string" },
-    "role": { "type": "string", "enum": ["Repartidor", "Cocinero", "Despachador"] },
-    "ocupado": {
-      "type": "boolean",
-      "default": false
+    "local_id": {
+      "type": "string"
+    },
+    "dni": {
+      "type": "string"
+    },
+    "nombre": {
+      "type": "string"
+    },
+    "apellido": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "Repartidor",
+        "Cocinero",
+        "Despachador"
+      ]
     }
   },
-  "required": ["local_id", "dni", "nombre", "apellido", "role", "ocupado"],
+  "required": [
+    "local_id",
+    "dni",
+    "nombre",
+    "apellido",
+    "role"
+  ],
   "additionalProperties": false
 }

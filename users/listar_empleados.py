@@ -8,7 +8,8 @@ from boto3.dynamodb.conditions import Key, Attr
 TABLE_EMPLEADOS           = os.getenv("TABLE_EMPLEADOS", "TABLE_EMPLEADOS")
 TABLE_USUARIOS            = os.getenv("TABLE_USUARIOS", "TABLE_USUARIOS")
 TOKENS_TABLE_USERS        = os.getenv("TOKENS_TABLE_USERS", "TOKENS_TABLE_USERS")
-TOKEN_VALIDATOR_FUNCTION  = os.getenv("TOKEN_VALIDATOR_FUNCTION", "TOKEN_VALIDATOR_FUNCTION")
+# Nombre fijo por tu serverless.yml; override-able por env si lo necesitas
+TOKEN_VALIDATOR_FUNCTION  =  "ValidarTokenAcceso"
 
 CORS_HEADERS = {"Access-Control-Allow-Origin": "*"}
 
@@ -85,7 +86,7 @@ def _resolver_usuario_desde_token(token: str):
 
 # ---------- Handler (patrón page/size) ----------
 def lambda_handler(event, context):
-    # 0) Validación de token
+    # 0) Autenticación + validación externa
     token = _get_bearer_token(event)
     if not token:
         return _resp(401, {"error": "Token requerido"})
@@ -94,6 +95,7 @@ def lambda_handler(event, context):
     if not valid.get("valido"):
         return _resp(401, {"error": valid.get("error", "Token inválido")})
 
+    # 0.1) Resolver usuario/rol y autorizar listado
     correo_aut, rol_aut, err = _resolver_usuario_desde_token(token)
     if err:
         return _resp(401, {"error": err})
@@ -101,7 +103,11 @@ def lambda_handler(event, context):
         return _resp(403, {"error": "No tienes permiso para listar empleados"})
 
     # 1) Body & parámetros
-    body = json.loads(event.get("body") or "{}")
+    try:
+        body = json.loads(event.get("body") or "{}")
+    except Exception:
+        body = {}
+
     tenant_id = body.get("tenant_id")
     if not tenant_id:
         return _resp(400, {"error": "Falta tenant_id en el body"})
@@ -113,7 +119,7 @@ def lambda_handler(event, context):
     if page < 0:
         page = 0
 
-    # Filtros opcionales (no son claves, van como FilterExpression)
+    # Filtros opcionales (FilterExpression)
     filtro_estado = body.get("estado")
     filtro_role   = body.get("role") or body.get("rol")     # "Repartidor"/"Cocinero"/"Despachador"
     filtro_local  = body.get("local_id")

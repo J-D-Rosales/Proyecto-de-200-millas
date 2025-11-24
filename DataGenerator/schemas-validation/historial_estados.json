@@ -30,6 +30,10 @@
       "type": "string",
       "format": "date-time",
       "description": "Fecha y hora en la que terminó este estado (ISO 8601)"
+    },
+    "empleado": {
+      "type": "string",
+      "description": "Identificador del empleado que se encargo del pedido"
     }
   },
   "required": ["estado_id", "pedido_id", "estado", "hora_inicio", "hora_fin"],

@@ -3,6 +3,7 @@ import json
 from datetime import datetime
 import boto3
 from botocore.exceptions import ClientError
+from auth_helper import get_bearer_token, validate_token_via_lambda
 
 TABLE_PEDIDOS = os.environ["TABLE_PEDIDOS"]
 TOKENS_TABLE = os.environ.get("TOKENS_TABLE_USERS", "TOKENS_TABLE_USERS")
@@ -24,57 +25,16 @@ def _resp(code, body):
         "body": json.dumps(body, ensure_ascii=False, default=str)
     }
 
-def _get_token(event):
-    """Extrae el token del header Authorization"""
-    headers = event.get("headers") or {}
-    for key, value in headers.items():
-        if key.lower() == "authorization":
-            token = value.strip()
-            if token.lower().startswith("bearer "):
-                return token.split(" ", 1)[1].strip()
-            return token
-    return None
-
-def _validate_token(token):
-    """Valida el token consultando la tabla de tokens"""
-    if not token:
-        return False, "Token requerido", None, None
-    
+def _get_correo_from_token(token: str):
+    """Obtiene el correo del usuario desde el token en la tabla"""
     try:
         response = tokens_table.get_item(Key={'token': token})
-        
         if 'Item' not in response:
-            return False, "Token no existe", None, None
-        
+            return None
         item = response['Item']
-        expires_str = item.get('expires')
-        
-        if not expires_str:
-            return False, "Token sin fecha de expiración", None, None
-        
-        try:
-            if 'T' in expires_str:
-                if '.' in expires_str:
-                    expires_str = expires_str.split('.')[0]
-                expires_dt = datetime.strptime(expires_str, '%Y-%m-%dT%H:%M:%S')
-            else:
-                expires_dt = datetime.strptime(expires_str, '%Y-%m-%d %H:%M:%S')
-        except ValueError:
-            return False, "Formato de fecha inválido", None, None
-        
-        now = datetime.now()
-        if now > expires_dt:
-            return False, "Token expirado", None, None
-        
-        correo = item.get('user_id') or item.get('correo')
-        rol = item.get('rol') or item.get('role') or "Cliente"
-        
-        return True, None, correo, rol
-        
-    except Exception as e:
-        return False, f"Error al validar token: {str(e)}", None, None
-
-
+        return item.get('user_id') or item.get('correo')
+    except Exception:
+        return None
 
 def lambda_handler(event, context):
     # CORS preflight
@@ -86,22 +46,27 @@ def lambda_handler(event, context):
     if method != "GET":
         return _resp(405, {"error": "Método no permitido"})
 
-    # Validar token
-    token = _get_token(event)
-    valido, error, correo_token, rol = _validate_token(token)
+    # Validar token mediante Lambda
+    token = get_bearer_token(event)
+    valido, error, rol = validate_token_via_lambda(token)
     if not valido:
         return _resp(403, {"error": error or "Token inválido"})
+    
+    # Obtener correo del usuario autenticado
+    correo_token = _get_correo_from_token(token)
+    if not correo_token:
+        return _resp(401, {"error": "No se pudo obtener el usuario del token"})
 
-    # Params: tenant_id y pedido_id por querystring
+    # Params: local_id y pedido_id por querystring
     qs = event.get("queryStringParameters") or {}
-    tenant_id = (qs.get("tenant_id") or "").strip()
+    local_id = (qs.get("local_id") or "").strip()
     pedido_id = (qs.get("pedido_id") or "").strip()
-    if not tenant_id or not pedido_id:
-        return _resp(400, {"error": "Faltan parámetros tenant_id y/o pedido_id"})
+    if not local_id or not pedido_id:
+        return _resp(400, {"error": "Faltan parámetros local_id y/o pedido_id"})
 
     # Leer pedido
     try:
-        r = pedidos_table.get_item(Key={"tenant_id": tenant_id, "pedido_id": pedido_id})
+        r = pedidos_table.get_item(Key={"local_id": local_id, "pedido_id": pedido_id})
     except ClientError as e:
         print(f"Error get_item pedidos: {e}")
         return _resp(500, {"error": "Error consultando el pedido"})
@@ -111,12 +76,15 @@ def lambda_handler(event, context):
         return _resp(404, {"error": "Pedido no encontrado"})
 
     # AutZ: el pedido debe pertenecer al usuario del token
-    if item.get("usuario_correo") != correo_token:
+    # Verificar usando tenant_id_usuario
+    tenant_id = os.getenv("TENANT_ID", "millas")
+    expected_tenant_usuario = f"{tenant_id}#{correo_token}"
+    if item.get("tenant_id_usuario") != expected_tenant_usuario:
         return _resp(403, {"error": "No autorizado a consultar este pedido"})
 
     # Respuesta mínima (estado del pedido)
     return _resp(200, {
-        "tenant_id": tenant_id,
+        "local_id": local_id,
         "pedido_id": pedido_id,
         "estado": item.get("estado"),
     })

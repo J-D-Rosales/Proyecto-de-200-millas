@@ -2,19 +2,21 @@ import os
 import json
 import re
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime, timezone
 import boto3
 from botocore.exceptions import ClientError
 from decimal import Decimal
+from auth_helper import get_bearer_token, validate_token_via_lambda
 
 # ==== Variables de entorno ====
 TABLE_PEDIDOS = os.environ["TABLE_PEDIDOS"]
-TOKENS_TABLE = os.environ.get("TOKENS_TABLE_USERS", "TOKENS_TABLE_USERS")
+TOKENS_TABLE_USERS = os.environ["TOKENS_TABLE_USERS"]
 
 # ==== Clientes AWS ====
 dynamodb = boto3.resource("dynamodb")
 pedidos_table = dynamodb.Table(TABLE_PEDIDOS)
-tokens_table = dynamodb.Table(TOKENS_TABLE)
+tokens_table = dynamodb.Table(TOKENS_TABLE_USERS)
+lambda_client = boto3.client("lambda")
 eventbridge = boto3.client("events")  # bus por defecto
 
 CORS_HEADERS = {
@@ -38,75 +40,16 @@ def _parse_body(event):
         body = {}
     return body
 
-def _get_token(event):
-    """Extrae el token del header Authorization"""
-    headers = event.get("headers") or {}
-    for key, value in headers.items():
-        if key.lower() == "authorization":
-            token = value.strip()
-            if token.lower().startswith("bearer "):
-                return token.split(" ", 1)[1].strip()
-            return token
-    return None
-
-def _validate_token(token):
-    """Valida el token consultando la tabla de tokens"""
-    if not token:
-        return False, "Token requerido", None, None
-    
-    try:
-        response = tokens_table.get_item(Key={'token': token})
-        
-        if 'Item' not in response:
-            return False, "Token no existe", None, None
-        
-        item = response['Item']
-        expires_str = item.get('expires')
-        
-        if not expires_str:
-            return False, "Token sin fecha de expiración", None, None
-        
-        # Parsear fecha de expiración
-        try:
-            if 'T' in expires_str:
-                if '.' in expires_str:
-                    expires_str = expires_str.split('.')[0]
-                expires_dt = datetime.strptime(expires_str, '%Y-%m-%dT%H:%M:%S')
-            else:
-                expires_dt = datetime.strptime(expires_str, '%Y-%m-%d %H:%M:%S')
-        except ValueError:
-            return False, "Formato de fecha inválido", None, None
-        
-        # Comparar con fecha actual
-        now = datetime.now()
-        if now > expires_dt:
-            return False, "Token expirado", None, None
-        
-        # Obtener datos del usuario
-        correo = item.get('user_id') or item.get('correo')
-        rol = item.get('rol') or item.get('role') or "Cliente"
-        
-        return True, None, correo, rol
-        
-    except Exception as e:
-        return False, f"Error al validar token: {str(e)}", None, None
-
-
-
 def _validate_payload(p):
-    required = ["tenant_id","local_id","usuario_correo","direccion","costo","estado"]
+    required = ["local_id","direccion","costo","estado"]
     missing = [k for k in required if k not in p]
     if missing:
         return False, f"Faltan campos requeridos: {', '.join(missing)}"
 
-    if not isinstance(p["tenant_id"], str) or not p["tenant_id"].strip():
-        return False, "tenant_id debe ser string no vacío"
     if not isinstance(p["local_id"], str) or not p["local_id"].strip():
         return False, "local_id debe ser string"
-    if not isinstance(p["usuario_correo"], str) or "@" not in p["usuario_correo"]:
-        return False, "usuario_correo debe ser un email válido"
     if not isinstance(p["direccion"], str) or not p["direccion"].strip():
-        return False, "direccion debe ser string"
+        return False, "dirección debe ser string"
     if not (isinstance(p["costo"], int) or isinstance(p["costo"], float)) or p["costo"] < 0:
         return False, "costo debe ser number >= 0"
 
@@ -121,109 +64,105 @@ def _validate_payload(p):
     for i, it in enumerate(p["productos"]):
         if not isinstance(it, dict):
             return False, f"productos[{i}] debe ser objeto"
-        if "nombre" not in it or not isinstance(it["nombre"], str) or not it["nombre"].strip():
-            return False, f"productos[{i}].nombre debe ser string"
+        if "producto_id" not in it or not isinstance(it["producto_id"], str) or len(it["producto_id"]) < 3:
+            return False, f"productos[{i}].producto_id debe ser string con mínimo 3 caracteres"
         if "cantidad" not in it or not isinstance(it["cantidad"], int) or it["cantidad"] < 1:
             return False, f"productos[{i}].cantidad debe ser entero >= 1"
 
-    fea = p.get("fecha_entrega_aproximada")
-    if fea is not None:
-        iso_pattern = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+\-]\d{2}:\d{2})$")
-        if not isinstance(fea, str) or not iso_pattern.match(fea):
-            return False, "fecha_entrega_aproximada debe ser ISO 8601 o null"
-
     return True, None
 
-
+def _get_correo_from_token(token: str):
+    """Obtiene el correo del usuario desde el token en la tabla"""
+    try:
+        r = tokens_table.get_item(Key={"token": token})
+        item = r.get("Item")
+        if not item:
+            return None
+        return item.get("correo") or item.get("email") or item.get("usuario_correo") or item.get("user_id")
+    except Exception:
+        return None
 
 def _now_iso():
-    return datetime.now().isoformat()
+    return datetime.now(timezone.utc).isoformat()
 
 def _publish_crear_pedido_event(item):
-    """
-    Publica 'CrearPedido' en el bus por defecto con:
-    - pedido_id
-    - local_id
-    - productos: lista de {nombre, cantidad}
-    """
     productos_simple = [
         {"nombre": p.get("nombre"), "cantidad": p.get("cantidad")}
         for p in item.get("productos", [])
         if isinstance(p, dict) and "nombre" in p and "cantidad" in p
     ]
-
     detail = {
         "pedido_id": item["pedido_id"],
         "local_id": item["local_id"],
         "productos": productos_simple
     }
-
     try:
         eventbridge.put_events(Entries=[{
             "Source": "service-pedidos",
             "DetailType": "CrearPedido",
             "Detail": json.dumps(detail, ensure_ascii=False)
-            # Sin EventBusName -> usa el bus por defecto
         }])
     except Exception as e:
-        # No bloquea el flujo de creación; solo loguea
         print(f"Error publicando evento CrearPedido: {e}")
 
 def lambda_handler(event, context):
     # Preflight CORS
-    if event.get("httpMethod", event.get("requestContext", {}).get("http", {}).get("method")) == "OPTIONS":
+    method = event.get("httpMethod", event.get("requestContext", {}).get("http", {}).get("method"))
+    if method == "OPTIONS":
         return _resp(200, {"ok": True})
 
     body = _parse_body(event)
-    
-    # Validar token
-    token = _get_token(event)
-    valido, error, correo_token, rol = _validate_token(token)
-    if not valido:
-        return _resp(403, {"error": error or "Token inválido"})
 
+    # ======== Validar token mediante Lambda ========
+    token = get_bearer_token(event)
+    valido, error, rol = validate_token_via_lambda(token)
+    if not valido:
+        return _resp(403, {"status": "Forbidden - Acceso No Autorizado", "error": error})
+    
+    # Obtener correo del token
+    correo_token = _get_correo_from_token(token)
+    if not correo_token:
+        return _resp(403, {"error": "Token sin correo asociado"})
+    
+    # Verificar que sea Cliente
+    if rol.lower() != "cliente":
+        return _resp(403, {"error": "Permiso denegado: se requiere rol 'cliente'"})
+
+    # Validación de payload
     ok, msg = _validate_payload(body)
     if not ok:
         return _resp(400, {"error": msg})
-    if body.get("usuario_correo") != correo_token:
-        return _resp(403, {"error": "usuario_correo no coincide con el token"})
 
-    # Generamos el pedido_id (UUID v4)
+    # Generar ID y timestamps
     pedido_id = str(uuid.uuid4())
     now_iso = _now_iso()
+    tenant_id = os.getenv("TENANT_ID", "millas")
 
-    # Item a persistir (sin updated_at)
+    # Construir item con nueva estructura
     item = {
-        "tenant_id": body["tenant_id"],
-        "pedido_id": pedido_id,
-        "local_id": body["local_id"],
-        "usuario_correo": body["usuario_correo"],
-        "productos": body["productos"],
+        "local_id": body["local_id"],                           # PK (cambió de tenant_id)
+        "pedido_id": pedido_id,                                  # SK
+        "tenant_id_usuario": f"{tenant_id}#{correo_token}",     # GSI by_usuario_v2
+        "productos": body["productos"],                         # Ahora usa producto_id
         "costo": Decimal(str(body["costo"])),
         "direccion": body["direccion"],
-        "fecha_entrega_aproximada": body.get("fecha_entrega_aproximada"),
         "estado": body["estado"],
-        "created_at": now_iso
+        "created_at": now_iso                                    # Nuevo campo requerido
     }
 
-    # Claves derivadas para GSIs multi-tenant (si ya adaptaste el esquema propuesto)
-    item["tenant_id_local"]   = f'{item["tenant_id"]}#{item["local_id"]}'
-    item["tenant_id_usuario"] = f'{item["tenant_id"]}#{item["usuario_correo"]}'
-    item["tenant_id_estado"]  = f'{item["tenant_id"]}#{item["estado"]}'
-
-    # Guardar en DynamoDB con condición de unicidad
+    # Persistir en DynamoDB (unicidad por PK compuesta)
     try:
         pedidos_table.put_item(
             Item=item,
-            ConditionExpression="attribute_not_exists(tenant_id) AND attribute_not_exists(pedido_id)"
+            ConditionExpression="attribute_not_exists(local_id) AND attribute_not_exists(pedido_id)"
         )
     except ClientError as e:
         if e.response["Error"]["Code"] == "ConditionalCheckFailedException":
-            return _resp(409, {"error": "El pedido ya existe (tenant_id, pedido_id)"})
+            return _resp(409, {"error": "El pedido ya existe (local_id, pedido_id)"})
         print(f"Error put_item: {e}")
         return _resp(500, {"error": "Error guardando el pedido"})
 
-    # Publicar evento 'CrearPedido' (bus por defecto)
+    # Publicar evento
     _publish_crear_pedido_event(item)
 
     return _resp(201, {"message": "Pedido registrado", "pedido": item})

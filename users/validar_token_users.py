@@ -35,4 +35,7 @@ def lambda_handler(event, context):
     if now_utc > expires_dt:
         return {"statusCode": 403, "body": "Token expirado"}
 
-    return {"statusCode": 200, "body": "Token válido"}
+    # Obtener rol del token
+    rol = item.get('rol') or item.get('role') or "Cliente"
+    
+    return {"statusCode": 200, "body": "Token válido", "rol": rol}

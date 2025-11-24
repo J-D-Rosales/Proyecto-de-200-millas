@@ -4,6 +4,7 @@ import boto3
 from datetime import datetime, timezone
 from botocore.exceptions import ClientError
 from common import response
+from auth_helper import get_bearer_token, validate_token_via_lambda
 
 # === Entorno ===
 EMPLOYEE_TABLE             = os.environ.get("EMPLOYEE_TABLE", "EMPLOYEE_TABLE")
@@ -32,67 +33,29 @@ def _as_bool(val):
         if v in ("false", "0", "no"):       return False
     return None
 
-def _get_bearer_token(event):
-    headers = event.get("headers") or {}
-    auth_header = headers.get("Authorization") or headers.get("authorization") or ""
-    if isinstance(auth_header, str) and auth_header.lower().startswith("bearer "):
-        return auth_header.split(" ", 1)[1].strip()
-    # fallback opcional desde body
-    try:
-        body = json.loads(event.get("body") or "{}")
-        if body.get("token"):
-            return str(body["token"]).strip()
-    except Exception:
-        pass
-    return None
-
-def _parse_expiry(expires_str: str):
-    try:
-        return datetime.strptime(expires_str, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
-    except Exception:
-        try:
-            s = (expires_str or "").strip()
-            if s.endswith("Z"):
-                return datetime.fromisoformat(s[:-1]).replace(tzinfo=timezone.utc)
-            return datetime.fromisoformat(s).replace(tzinfo=timezone.utc)
-        except Exception:
-            return None
-
-def _resolver_usuario_desde_token(token: str):
-    """
-    Una vez validado el token por el otro Lambda, resolvemos correo y rol
-    consultando nuestra tabla de tokens y la tabla de usuarios.
-    """
+def _get_correo_from_token(token: str):
+    """Obtiene el correo del usuario desde el token en la tabla"""
     try:
         tok = t_tokens.get_item(Key={"token": token})
         item = tok.get("Item")
         if not item:
-            return None, None, "Token no encontrado tras validación"
-        exp = _parse_expiry(item.get("expires"))
-        if not exp or datetime.now(timezone.utc) > exp:
-            return None, None, "Token expirado"
-        correo = item.get("user_id")  # en login guardamos user_id = correo
-        if not correo:
-            return None, None, "Token sin usuario"
-        dbu = t_users.get_item(Key={"correo": correo})
-        u = dbu.get("Item")
-        if not u:
-            return None, None, "Usuario no encontrado"
-        return correo, u.get("role"), None
-    except Exception as e:
-        return None, None, f"Error resolviendo usuario: {str(e)}"
+            return None
+        return item.get("user_id")
+    except Exception:
+        return None
 
 def lambda_handler(event, context):
     try:
-        # El token ya fue validado por el authorizer de API Gateway
-        token = _get_bearer_token(event)
-        if not token:
-            return response(401, {"message": "Token requerido"})
-
-        # Resolver correo y rol a partir del token
-        correo, rol, err = _resolver_usuario_desde_token(token)
-        if err:
-            return response(401, {"message": err})
+        # 1. Validar token mediante Lambda
+        token = get_bearer_token(event)
+        valido, err, rol = validate_token_via_lambda(token)
+        if not valido:
+            return response(401, {"message": err or "Token inválido"})
+        
+        # 2. Obtener correo del usuario autenticado
+        correo = _get_correo_from_token(token)
+        if not correo:
+            return response(401, {"message": "No se pudo obtener el usuario del token"})
 
         if rol not in ROLES_PUEDEN_CREAR:
             return response(403, {"message": "No tienes permisos para crear empleados"})

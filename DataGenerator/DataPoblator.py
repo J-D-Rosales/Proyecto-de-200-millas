@@ -72,11 +72,11 @@ if TABLE_PRODUCTOS:
         "sk": "nombre"
     }
 
-# Pedidos multi-tenant (PK=tenant_id, SK=pedido_id)
+# Pedidos (PK=local_id, SK=pedido_id)
 if TABLE_PEDIDOS:
     TABLE_MAPPING["pedidos.json"] = {
         "table_name": TABLE_PEDIDOS,
-        "pk": "tenant_id",
+        "pk": "local_id",
         "sk": "pedido_id"
     }
 
@@ -496,36 +496,27 @@ def create_all_resources():
     ):
         return False
     
-    # Pedidos (multi-tenant): PK = tenant_id, SK = pedido_id
-    # GSIs:
-    #   - GSI_Local   (tenant_id, local_id)
-    #   - GSI_Usuario (tenant_id, usuario_correo)
+    # Pedidos: PK = local_id, SK = pedido_id
+    # GSI:
+    #   - by_usuario_v2 (tenant_id_usuario, created_at)
     if not create_dynamodb_table(
         table_name=TABLE_PEDIDOS,
         key_schema=[
-            {'AttributeName': 'tenant_id', 'KeyType': 'HASH'},
+            {'AttributeName': 'local_id', 'KeyType': 'HASH'},
             {'AttributeName': 'pedido_id', 'KeyType': 'RANGE'}
         ],
         attribute_definitions=[
-            {'AttributeName': 'tenant_id', 'AttributeType': 'S'},
-            {'AttributeName': 'pedido_id', 'AttributeType': 'S'},
             {'AttributeName': 'local_id', 'AttributeType': 'S'},
-            {'AttributeName': 'usuario_correo', 'AttributeType': 'S'}
+            {'AttributeName': 'pedido_id', 'AttributeType': 'S'},
+            {'AttributeName': 'tenant_id_usuario', 'AttributeType': 'S'},
+            {'AttributeName': 'created_at', 'AttributeType': 'S'}
         ],
         global_secondary_indexes=[
             {
-                'IndexName': 'GSI_Local',
+                'IndexName': 'by_usuario_v2',
                 'KeySchema': [
-                    {'AttributeName': 'tenant_id', 'KeyType': 'HASH'},
-                    {'AttributeName': 'local_id', 'KeyType': 'RANGE'}
-                ],
-                'Projection': {'ProjectionType': 'ALL'}
-            },
-            {
-                'IndexName': 'GSI_Usuario',
-                'KeySchema': [
-                    {'AttributeName': 'tenant_id', 'KeyType': 'HASH'},
-                    {'AttributeName': 'usuario_correo', 'KeyType': 'RANGE'}
+                    {'AttributeName': 'tenant_id_usuario', 'KeyType': 'HASH'},
+                    {'AttributeName': 'created_at', 'KeyType': 'RANGE'}
                 ],
                 'Projection': {'ProjectionType': 'ALL'}
             }

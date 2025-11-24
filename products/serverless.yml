@@ -13,6 +13,7 @@ provider:
     TOKENS_TABLE_USERS: ${env:TABLE_TOKENS_USUARIOS}
     PRODUCTS_TABLE: ${env:TABLE_PRODUCTOS}
     PRODUCTS_BUCKET: ${env:S3_BUCKET_NAME}
+    VALIDAR_TOKEN_LAMBDA_NAME: ${env:VALIDAR_TOKEN_LAMBDA_NAME}
   layers:
     - ${cf:millas-dependencias-dev.PythonDependenciesLayerExport}  
   httpApi:

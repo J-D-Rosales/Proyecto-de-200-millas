@@ -4,6 +4,7 @@ import boto3
 from botocore.exceptions import ClientError
 from datetime import datetime
 from common import hash_password
+from auth_helper import get_bearer_token, validate_token_via_lambda
 
 # ===== ENV =====
 TABLE_USUARIOS = os.getenv("USERS_TABLE", "USERS_TABLE")
@@ -29,63 +30,29 @@ def _parse_body(event):
         body = {}
     return body
 
-def _get_token(event):
-    """Extrae el token del header Authorization"""
-    headers = event.get("headers") or {}
-    for key, value in headers.items():
-        if key.lower() == "authorization":
-            token = value.strip()
-            if token.lower().startswith("bearer "):
-                return token.split(" ", 1)[1].strip()
-            return token
-    return None
-
-def _validate_token(token):
-    """Valida el token consultando la tabla de tokens"""
-    if not token:
-        return False, "Token requerido", None, None
-    
+def _get_correo_from_token(token: str):
+    """Obtiene el correo del usuario desde el token en la tabla"""
     try:
         response = tokens_table.get_item(Key={'token': token})
-        
         if 'Item' not in response:
-            return False, "Token no existe", None, None
-        
+            return None
         item = response['Item']
-        expires_str = item.get('expires')
-        
-        if not expires_str:
-            return False, "Token sin fecha de expiración", None, None
-        
-        try:
-            if 'T' in expires_str:
-                if '.' in expires_str:
-                    expires_str = expires_str.split('.')[0]
-                expires_dt = datetime.strptime(expires_str, '%Y-%m-%dT%H:%M:%S')
-            else:
-                expires_dt = datetime.strptime(expires_str, '%Y-%m-%d %H:%M:%S')
-        except ValueError:
-            return False, "Formato de fecha inválido", None, None
-        
-        now = datetime.now()
-        if now > expires_dt:
-            return False, "Token expirado", None, None
-        
-        correo = item.get('user_id') or item.get('correo')
-        rol = item.get('rol') or item.get('role') or "Cliente"
-        
-        return True, None, correo, rol
-        
-    except Exception as e:
-        return False, f"Error al validar token: {str(e)}", None, None
+        return item.get('user_id') or item.get('correo')
+    except Exception:
+        return None
 
 # --------- handler ----------
 def lambda_handler(event, context):
-    # Validar token
-    token = _get_token(event)
-    valido, err, correo_aut, rol_aut = _validate_token(token)
+    # 1. Validar token mediante Lambda
+    token = get_bearer_token(event)
+    valido, err, rol_aut = validate_token_via_lambda(token)
     if not valido:
         return _resp(401, {"message": err or "Token inválido"})
+    
+    # 2. Obtener correo del usuario autenticado
+    correo_aut = _get_correo_from_token(token)
+    if not correo_aut:
+        return _resp(401, {"message": "No se pudo obtener el usuario del token"})
 
     # 2) Body y validaciones básicas
     body = _parse_body(event)

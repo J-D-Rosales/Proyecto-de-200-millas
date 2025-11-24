@@ -2,6 +2,7 @@ import os
 import json
 import boto3
 from botocore.exceptions import ClientError
+from auth_helper import get_bearer_token, validate_token_via_lambda
 
 ALLOWED_ROLES = {"Admin", "Gerente", "Cliente"}
 
@@ -29,41 +30,16 @@ def _parse_body(event):
         body = {}
     return body
 
-def _get_bearer_token(event):
-    headers = event.get("headers") or {}
-    auth_header = headers.get("Authorization") or headers.get("authorization") or ""
-    if isinstance(auth_header, str) and auth_header.lower().startswith("bearer "):
-        return auth_header.split(" ", 1)[1].strip()
-    # fallback opcional: token en body
-    try:
-        body = json.loads(event.get("body") or "{}")
-        if body.get("token"):
-            return str(body["token"]).strip()
-    except Exception:
-        pass
-    return None
-
-def _resolver_usuario_desde_token(token: str):
-    """
-    Con token válido, resolvemos correo/rol:
-    TOKENS_TABLE_USERS (token -> user_id) -> TABLE_USUARIOS (user_id=correo -> rol).
-    """
+def _get_correo_from_token(token: str):
+    """Obtiene el correo del usuario desde el token en la tabla"""
     try:
         r = tokens_table.get_item(Key={"token": token})
         item = r.get("Item")
         if not item:
-            return None, None, "Token no encontrado"
-        correo = item.get("user_id")  # en login guardas user_id = correo
-        if not correo:
-            return None, None, "Token sin usuario"
-
-        u = usuarios_table.get_item(Key={"correo": correo}).get("Item")
-        if not u:
-            return None, None, "Usuario no encontrado"
-        rol = u.get("rol") or u.get("role") or "Cliente"
-        return correo, rol, None
-    except Exception as e:
-        return None, None, f"Error resolviendo usuario: {str(e)}"
+            return None
+        return item.get("user_id")
+    except Exception:
+        return None
 
 def _solo_campos_schema(usuario_dict: dict) -> dict:
     """
@@ -75,17 +51,16 @@ def _solo_campos_schema(usuario_dict: dict) -> dict:
 
 # ---------- Handler ----------
 def lambda_handler(event, context):
-    # El token ya fue validado por el authorizer de API Gateway
-    token = _get_bearer_token(event)
-    if not token:
-        return _resp(401, {"message": "Token requerido"})
-
-    # Resolver usuario autenticado (correo y rol)
-    correo_aut, rol_solicitante, err = _resolver_usuario_desde_token(token)
-    if err:
-        return _resp(401, {"message": err})
-    if not rol_solicitante:
-        return _resp(401, {"message": "No se pudo resolver el rol del usuario"})
+    # 1. Validar token mediante Lambda
+    token = get_bearer_token(event)
+    valido, err, rol_solicitante = validate_token_via_lambda(token)
+    if not valido:
+        return _resp(401, {"message": err or "Token inválido"})
+    
+    # 2. Obtener correo del usuario autenticado
+    correo_aut = _get_correo_from_token(token)
+    if not correo_aut:
+        return _resp(401, {"message": "No se pudo obtener el usuario del token"})
 
     body = _parse_body(event)
 

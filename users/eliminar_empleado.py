@@ -8,10 +8,14 @@ TABLE_EMPLEADOS_NAME      = os.getenv("TABLE_EMPLEADOS", "TABLE_EMPLEADOS")
 TABLE_USUARIOS_NAME       = os.getenv("USERS_TABLE", "USERS_TABLE")
 TOKENS_TABLE_USERS        = os.getenv("TOKENS_TABLE_USERS", "TOKENS_TABLE_USERS")
 
+# Nombre de la lambda validadora (fijo por tu serverless.yml, pero override-able por env)
+TOKEN_VALIDATOR_FUNCTION  = "ValidarTokenAcceso"
+
 CORS_HEADERS = {"Access-Control-Allow-Origin": "*"}
 
 # === AWS ===
 dynamodb   = boto3.resource("dynamodb")
+lambda_cli = boto3.client("lambda")  # <--- cliente para invocar la Lambda validadora
 
 empleados_table = dynamodb.Table(TABLE_EMPLEADOS_NAME)
 usuarios_table  = dynamodb.Table(TABLE_USUARIOS_NAME)
@@ -47,10 +51,12 @@ def _get_bearer_token(event):
 
 def _invocar_lambda_validar_token(token: str) -> dict:
     """
-    Invoca tu Lambda validador de token.
+    Invoca tu Lambda validadora de token (ValidarTokenAcceso por defecto).
     Debe devolver {"statusCode": 200|403, "body": "..."}.
     """
     try:
+        # Equivalente a tu ejemplo:
+        # invoke_response = lambda_client.invoke(FunctionName="ValidarTokenAcceso", ...)
         resp = lambda_cli.invoke(
             FunctionName=TOKEN_VALIDATOR_FUNCTION,
             InvocationType="RequestResponse",
@@ -59,12 +65,16 @@ def _invocar_lambda_validar_token(token: str) -> dict:
         payload = resp.get("Payload")
         if not payload:
             return {"valido": False, "error": "Error interno al validar token"}
+
         raw = payload.read().decode("utf-8")
         data = json.loads(raw) if raw else {}
+
+        # Considera inválido todo lo que no sea 200
         if data.get("statusCode") != 200:
             body = data.get("body")
             msg = body if isinstance(body, str) else (json.dumps(body) if body else "Token inválido")
             return {"valido": False, "error": msg}
+
         return {"valido": True}
     except Exception as e:
         return {"valido": False, "error": f"Error llamando validador: {str(e)}"}

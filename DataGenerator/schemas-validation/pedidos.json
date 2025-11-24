@@ -3,19 +3,9 @@
   "title": "Pedidos",
   "type": "object",
   "x-dynamodb": {
-    "partition_key": "tenant_id",
+    "partition_key": "local_id",
     "sort_key": "pedido_id",
     "global_secondary_indexes": [
-      {
-        "name": "by_tenant_created_at",
-        "partition_key": "tenant_id",
-        "sort_key": "created_at"
-      },
-      {
-        "name": "by_local_v2",
-        "partition_key": "tenant_id_local",
-        "sort_key": "created_at"
-      },
       {
         "name": "by_usuario_v2",
         "partition_key": "tenant_id_usuario",
@@ -29,44 +19,68 @@
     ]
   },
   "properties": {
-    "tenant_id": { "type": "string", "minLength": 1 },
-    "pedido_id": { "type": "string" },
-    "local_id": { "type": "string" },
-    "usuario_correo": { "type": "string", "format": "email" },
+    "pedido_id": {
+      "type": "string"
+    },
+    "local_id": {
+      "type": "string"
+    },
+    "tenant_id_usuario": {
+      "type": "string"
+    },
     "productos": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "nombre": { "type": "string" },
-          "cantidad": { "type": "integer", "minimum": 1 }
+          "producto_id": {
+            "type": "string",
+            "minLength": 3
+          },
+          "cantidad": {
+            "type": "integer",
+            "minimum": 1
+          }
         },
-        "required": ["nombre", "cantidad"],
+        "required": [
+          "producto_id",
+          "cantidad"
+        ],
         "additionalProperties": false
       },
       "minItems": 1
     },
-    "costo": { "type": "number", "minimum": 0 },
-    "moneda": { "type": "string", "enum": ["PEN", "USD"], "default": "PEN" },
-    "direccion": { "type": "string" },
-    "fecha_entrega_aproximada": { "type": ["string", "null"], "format": "date-time" },
-    "estado": { "type": "string", "enum": ["procesando", "cocinando", "empacando", "enviando", "recibido"] },
-    "created_at": { "type": "string", "format": "date-time" },
-
-    "tenant_id_local":   { "type": "string" },
-    "tenant_id_usuario": { "type": "string" },
-    "tenant_id_estado":  { "type": "string" }
+    "costo": {
+      "type": "number",
+      "minimum": 0
+    },
+    "direccion": {
+      "type": "string"
+    },
+    "estado": {
+      "type": "string",
+      "enum": [
+        "procesando",
+        "cocinando",
+        "empacando",
+        "enviando",
+        "recibido"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
   },
   "required": [
-    "tenant_id",
     "pedido_id",
     "local_id",
-    "usuario_correo",
+    "tenant_id_usuario",
     "direccion",
     "costo",
     "estado",
-    "created_at"
+    "created_at",
+    "productos"
   ],
-  "anyOf": [{ "required": ["productos"] }],
   "additionalProperties": false
 }

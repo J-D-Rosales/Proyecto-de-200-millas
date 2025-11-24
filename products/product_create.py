@@ -6,6 +6,7 @@ from datetime import datetime
 
 import boto3
 from botocore.exceptions import ClientError
+from auth_helper import get_bearer_token, validate_token_via_lambda
 
 # ---------- Config ----------
 CORS_HEADERS = {"Access-Control-Allow-Origin": "*"}
@@ -84,73 +85,6 @@ def _map_file_type(file_type: str) -> tuple[str, str]:
         return "image/jpeg", "jpg"
     raise ValueError("file_type debe ser 'png' o 'jpg/jpeg'")
 
-def _get_token(event):
-    """Extrae el token del header Authorization"""
-    headers = event.get("headers") or {}
-    
-    # Buscar el header Authorization (case-insensitive)
-    for key, value in headers.items():
-        if key.lower() == "authorization":
-            token = value.strip()
-            # Si tiene "Bearer ", quitarlo
-            if token.lower().startswith("bearer "):
-                return token.split(" ", 1)[1].strip()
-            return token
-    
-    return None
-
-def _validate_token_and_role(token):
-    """
-    Valida el token consultando la tabla de tokens.
-    Retorna (valido: bool, error: str, rol: str)
-    """
-    if not token:
-        return False, "Token requerido", None
-    
-    try:
-        # Consultar token en DynamoDB
-        response = tokens_table.get_item(Key={'token': token})
-        
-        if 'Item' not in response:
-            return False, "Token no existe", None
-        
-        item = response['Item']
-        expires_str = item.get('expires')
-        
-        if not expires_str:
-            return False, "Token sin fecha de expiración", None
-        
-        # Parsear fecha de expiración (soporta múltiples formatos)
-        try:
-            # Intentar formato ISO 8601: 2025-11-23T02:28:53.290513
-            if 'T' in expires_str:
-                # Remover microsegundos si existen
-                if '.' in expires_str:
-                    expires_str = expires_str.split('.')[0]
-                expires_dt = datetime.strptime(expires_str, '%Y-%m-%dT%H:%M:%S')
-            else:
-                # Formato simple: 2025-11-23 02:28:53
-                expires_dt = datetime.strptime(expires_str, '%Y-%m-%d %H:%M:%S')
-        except ValueError:
-            return False, "Formato de fecha inválido", None
-        
-        # Comparar con fecha actual
-        now = datetime.now()
-        if now > expires_dt:
-            return False, "Token expirado", None
-        
-        # Obtener rol
-        rol = item.get('rol') or item.get('role') or "Cliente"
-        
-        # Validar que sea Admin o Gerente
-        if rol not in ("Admin", "Gerente"):
-            return False, "Permiso denegado: se requiere rol Admin o Gerente", None
-        
-        return True, None, rol
-        
-    except Exception as e:
-        return False, f"Error al validar token: {str(e)}", None
-
 # ---------- Handler ----------
 def lambda_handler(event, context):
     # Preflight
@@ -163,11 +97,15 @@ def lambda_handler(event, context):
     if not PRODUCTS_TABLE:
         return _resp(500, {"message": "PRODUCTS_TABLE no configurado"})
 
-    # 1) Validar token y rol
-    token = _get_token(event)
-    valido, error, rol = _validate_token_and_role(token)
+    # 1) Validar token y rol mediante Lambda
+    token = get_bearer_token(event)
+    valido, error, rol = validate_token_via_lambda(token)
     if not valido:
         return _resp(403, {"message": error or "Token inválido"})
+    
+    # Verificar que sea Admin o Gerente
+    if rol not in ("Admin", "Gerente"):
+        return _resp(403, {"message": "Permiso denegado: se requiere rol Admin o Gerente"})
 
     # 2) Body + validaciones (imagen_b64 + file_type + resto del schema)
     body = _parse_body(event)
