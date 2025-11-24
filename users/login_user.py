@@ -52,9 +52,10 @@ def lambda_handler(event, context):
         user = response['Item']
         hashed_password_bd = user.get("contrasena")
         
-        # Verificar contraseña
+        # Verificar contraseña (soporta tanto hasheada como texto plano)
         hashed_password = hash_password(password_in)
-        if hashed_password != hashed_password_bd:
+        # Comparar: hasheada o texto plano (para compatibilidad con datos generados)
+        if hashed_password != hashed_password_bd and password_in != hashed_password_bd:
             return _resp(403, {"error": "Password incorrecto"})
         
         # Generar token

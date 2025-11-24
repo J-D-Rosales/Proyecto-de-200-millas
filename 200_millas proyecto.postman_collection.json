@@ -1,8 +1,8 @@
 {
     "info": {
         "_postman_id": "e49b7743-10ef-43a8-a32f-a11fc4b04ce3",
-        "name": "200 Millas - API Collection",
-        "description": "Colección actualizada para testing de endpoints con gestión automática de tokens",
+        "name": "200 Millas - API Collection COMPLETA",
+        "description": "Colección completa con TODOS los endpoints del proyecto",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "variable": [
@@ -25,11 +25,16 @@
             "key": "token",
             "value": "",
             "type": "string"
+        },
+        {
+            "key": "local_id",
+            "value": "LOCAL-001",
+            "type": "string"
         }
     ],
     "item": [
         {
-            "name": "Users",
+            "name": "👤 Users - Públicos",
             "item": [
                 {
                     "name": "Register User (Cliente)",
@@ -38,7 +43,6 @@
                             "listen": "test",
                             "script": {
                                 "exec": [
-                                    "// Verificar respuesta exitosa",
                                     "pm.test(\"Status code is 201\", function () {",
                                     "    pm.response.to.have.status(201);",
                                     "});"
@@ -57,7 +61,33 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"nombre\": \"Juan Pérez\",\n  \"correo\": \"juan.perez@cliente.com\",\n  \"contrasena\": \"password123\",\n  \"role\": \"Cliente\"\n}"
+                            "raw": "{\n  \"nombre\": \"Juan Pérez Cliente\",\n  \"correo\": \"juan.cliente@200millas.com\",\n  \"contrasena\": \"password123\",\n  \"role\": \"Cliente\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{users_url}}/users/register",
+                            "host": [
+                                "{{users_url}}"
+                            ],
+                            "path": [
+                                "users",
+                                "register"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Register User (Gerente)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"nombre\": \"María González Gerente\",\n  \"correo\": \"maria.gerente@200millas.com\",\n  \"contrasena\": \"password123\",\n  \"role\": \"Gerente\"\n}"
                         },
                         "url": {
                             "raw": "{{users_url}}/users/register",
@@ -78,17 +108,16 @@
                             "listen": "test",
                             "script": {
                                 "exec": [
-                                    "// Verificar respuesta exitosa",
                                     "pm.test(\"Status code is 200\", function () {",
                                     "    pm.response.to.have.status(200);",
                                     "});",
                                     "",
-                                    "// Extraer y guardar el token automáticamente",
+                                    "// Guardar token automáticamente",
                                     "if (pm.response.code === 200) {",
                                     "    var jsonData = pm.response.json();",
                                     "    if (jsonData.token) {",
                                     "        pm.collectionVariables.set(\"token\", jsonData.token);",
-                                    "        console.log(\"Token guardado: \" + jsonData.token);",
+                                    "        console.log(\"✅ Token guardado: \" + jsonData.token);",
                                     "    }",
                                     "}"
                                 ],
@@ -106,7 +135,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"correo\": \"juan.perez@cliente.com\",\n  \"contrasena\": \"password123\"\n}"
+                            "raw": "{\n  \"correo\": \"juan.cliente@200millas.com\",\n  \"contrasena\": \"password123\"\n}"
                         },
                         "url": {
                             "raw": "{{users_url}}/users/login",
@@ -119,9 +148,14 @@
                             ]
                         }
                     }
-                },
+                }
+            ]
+        },
+        {
+            "name": "👤 Users - Protegidos",
+            "item": [
                 {
-                    "name": "Mi Usuario",
+                    "name": "Mi Usuario (GET)",
                     "request": {
                         "method": "GET",
                         "header": [
@@ -142,11 +176,227 @@
                             ]
                         }
                     }
+                },
+                {
+                    "name": "Modificar Usuario (PUT)",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"nombre\": \"Juan Pérez Actualizado\",\n  \"contrasena\": \"newpassword456\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{users_url}}/users/me",
+                            "host": [
+                                "{{users_url}}"
+                            ],
+                            "path": [
+                                "users",
+                                "me"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Eliminar Usuario (DELETE)",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{users_url}}/users/me",
+                            "host": [
+                                "{{users_url}}"
+                            ],
+                            "path": [
+                                "users",
+                                "me"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Cambiar Contraseña",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"contrasena_actual\": \"password123\",\n  \"contrasena_nueva\": \"newpassword456\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{users_url}}/users/password/change",
+                            "host": [
+                                "{{users_url}}"
+                            ],
+                            "path": [
+                                "users",
+                                "password",
+                                "change"
+                            ]
+                        }
+                    }
                 }
             ]
         },
         {
-            "name": "Products",
+            "name": "👥 Empleados (Admin/Gerente)",
+            "item": [
+                {
+                    "name": "Crear Empleado",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"local_id\": \"{{local_id}}\",\n  \"dni\": \"12345678\",\n  \"nombre\": \"Carlos\",\n  \"apellido\": \"Ramírez\",\n  \"role\": \"Cocinero\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{users_url}}/users/employee",
+                            "host": [
+                                "{{users_url}}"
+                            ],
+                            "path": [
+                                "users",
+                                "employee"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Actualizar Empleado",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"local_id\": \"{{local_id}}\",\n  \"dni\": \"12345678\",\n  \"nombre\": \"Carlos Actualizado\",\n  \"apellido\": \"Ramírez López\",\n  \"role\": \"Repartidor\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{users_url}}/users/employee",
+                            "host": [
+                                "{{users_url}}"
+                            ],
+                            "path": [
+                                "users",
+                                "employee"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Eliminar Empleado",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"local_id\": \"{{local_id}}\",\n  \"dni\": \"12345678\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{users_url}}/users/employee",
+                            "host": [
+                                "{{users_url}}"
+                            ],
+                            "path": [
+                                "users",
+                                "employee"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Listar Empleados",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"local_id\": \"{{local_id}}\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{users_url}}/users/employees/list",
+                            "host": [
+                                "{{users_url}}"
+                            ],
+                            "path": [
+                                "users",
+                                "employees",
+                                "list"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "🍽️ Products - Públicos",
             "item": [
                 {
                     "name": "Listar Productos",
@@ -160,7 +410,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"local_id\": \"LOCAL-001\"\n}"
+                            "raw": "{\n  \"local_id\": \"{{local_id}}\"\n}"
                         },
                         "url": {
                             "raw": "{{products_url}}/productos/list",
@@ -186,7 +436,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"local_id\": \"LOCAL-001\",\n  \"nombre\": \"Ceviches 1\"\n}"
+                            "raw": "{\n  \"local_id\": \"{{local_id}}\",\n  \"nombre\": \"Ceviches 1\"\n}"
                         },
                         "url": {
                             "raw": "{{products_url}}/productos/id",
@@ -199,9 +449,14 @@
                             ]
                         }
                     }
-                },
+                }
+            ]
+        },
+        {
+            "name": "🍽️ Products - Protegidos (Admin/Gerente)",
+            "item": [
                 {
-                    "name": "Crear Producto (Admin/Gerente)",
+                    "name": "Crear Producto",
                     "request": {
                         "method": "POST",
                         "header": [
@@ -217,7 +472,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"local_id\": \"LOCAL-001\",\n  \"nombre\": \"Ceviche de Conchas Negras\",\n  \"precio\": 45.50,\n  \"descripcion\": \"Delicioso ceviche preparado con conchas negras frescas\",\n  \"categoria\": \"Ceviches\",\n  \"stock\": 20,\n  \"imagen_url\": \"https://bucket.s3.amazonaws.com/productos/local-001/ceviche-conchas.jpg\"\n}"
+                            "raw": "{\n  \"local_id\": \"{{local_id}}\",\n  \"nombre\": \"Ceviche de Conchas Negras Premium\",\n  \"precio\": 45.50,\n  \"descripcion\": \"Delicioso ceviche preparado con conchas negras frescas del norte del Perú\",\n  \"categoria\": \"Ceviches\",\n  \"stock\": 20,\n  \"imagen_url\": \"https://bucket.s3.amazonaws.com/productos/local-001/ceviche-conchas.jpg\"\n}"
                         },
                         "url": {
                             "raw": "{{products_url}}/productos/create",
@@ -232,7 +487,7 @@
                     }
                 },
                 {
-                    "name": "Actualizar Producto (Admin/Gerente)",
+                    "name": "Actualizar Producto",
                     "request": {
                         "method": "PUT",
                         "header": [
@@ -248,7 +503,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"local_id\": \"LOCAL-001\",\n  \"nombre\": \"Ceviche de Conchas Negras\",\n  \"precio\": 48.00,\n  \"descripcion\": \"Delicioso ceviche preparado con conchas negras frescas - ACTUALIZADO\",\n  \"stock\": 15\n}"
+                            "raw": "{\n  \"local_id\": \"{{local_id}}\",\n  \"nombre\": \"Ceviche de Conchas Negras Premium\",\n  \"precio\": 48.00,\n  \"descripcion\": \"Delicioso ceviche preparado con conchas negras frescas - ACTUALIZADO\",\n  \"stock\": 15\n}"
                         },
                         "url": {
                             "raw": "{{products_url}}/productos/update",
@@ -263,7 +518,7 @@
                     }
                 },
                 {
-                    "name": "Eliminar Producto (Admin/Gerente)",
+                    "name": "Eliminar Producto",
                     "request": {
                         "method": "DELETE",
                         "header": [
@@ -279,7 +534,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"local_id\": \"LOCAL-001\",\n  \"nombre\": \"Ceviche de Conchas Negras\"\n}"
+                            "raw": "{\n  \"local_id\": \"{{local_id}}\",\n  \"nombre\": \"Ceviche de Conchas Negras Premium\"\n}"
                         },
                         "url": {
                             "raw": "{{products_url}}/productos/delete",
@@ -296,10 +551,28 @@
             ]
         },
         {
-            "name": "Pedidos",
+            "name": "📦 Pedidos (Cliente)",
             "item": [
                 {
-                    "name": "Crear Pedido (Cliente)",
+                    "name": "Crear Pedido",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "// Guardar pedido_id si la respuesta es exitosa",
+                                    "if (pm.response.code === 201) {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    if (jsonData.pedido && jsonData.pedido.pedido_id) {",
+                                    "        pm.collectionVariables.set(\"pedido_id\", jsonData.pedido.pedido_id);",
+                                    "        console.log(\"✅ Pedido ID guardado: \" + jsonData.pedido.pedido_id);",
+                                    "    }",
+                                    "}"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
                     "request": {
                         "method": "POST",
                         "header": [
@@ -315,22 +588,22 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"local_id\": \"LOCAL-001\",\n  \"productos\": [\n    {\n      \"producto_id\": \"LOCAL-001#Ceviches 1\",\n      \"cantidad\": 2\n    },\n    {\n      \"producto_id\": \"LOCAL-001#Ceviches 2\",\n      \"cantidad\": 1\n    }\n  ],\n  \"costo\": 125.50,\n  \"direccion\": \"Av. Principal 123, Lima\",\n  \"estado\": \"procesando\"\n}"
+                            "raw": "{\n  \"local_id\": \"{{local_id}}\",\n  \"productos\": [\n    {\n      \"producto_id\": \"LOCAL-001#Ceviches 1\",\n      \"cantidad\": 2\n    },\n    {\n      \"producto_id\": \"LOCAL-001#Ceviches 2\",\n      \"cantidad\": 1\n    }\n  ],\n  \"costo\": 125.50,\n  \"direccion\": \"Av. Principal 123, Lima, Perú\",\n  \"estado\": \"procesando\"\n}"
                         },
                         "url": {
-                            "raw": "{{pedidos_url}}/pedidos/create",
+                            "raw": "{{pedidos_url}}/pedido/create",
                             "host": [
                                 "{{pedidos_url}}"
                             ],
                             "path": [
-                                "pedidos",
+                                "pedido",
                                 "create"
                             ]
                         }
                     }
                 },
                 {
-                    "name": "Consultar Estado Pedido (Cliente)",
+                    "name": "Consultar Estado Pedido",
                     "request": {
                         "method": "GET",
                         "header": [
@@ -341,29 +614,29 @@
                             }
                         ],
                         "url": {
-                            "raw": "{{base_url}}/pedidos/estado?local_id=LOCAL-001&pedido_id=PEDIDO_ID_AQUI",
+                            "raw": "{{pedidos_url}}/pedido/status?local_id={{local_id}}&pedido_id={{pedido_id}}",
                             "host": [
-                                "{{base_url}}"
+                                "{{pedidos_url}}"
                             ],
                             "path": [
-                                "pedidos",
-                                "estado"
+                                "pedido",
+                                "status"
                             ],
                             "query": [
                                 {
                                     "key": "local_id",
-                                    "value": "LOCAL-001"
+                                    "value": "{{local_id}}"
                                 },
                                 {
                                     "key": "pedido_id",
-                                    "value": "PEDIDO_ID_AQUI"
+                                    "value": "{{pedido_id}}"
                                 }
                             ]
                         }
                     }
                 },
                 {
-                    "name": "Confirmar Recepción (Cliente)",
+                    "name": "Confirmar Recepción",
                     "request": {
                         "method": "POST",
                         "header": [
@@ -379,15 +652,15 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"local_id\": \"LOCAL-001\",\n  \"pedido_id\": \"PEDIDO_ID_AQUI\"\n}"
+                            "raw": "{\n  \"local_id\": \"{{local_id}}\",\n  \"pedido_id\": \"{{pedido_id}}\"\n}"
                         },
                         "url": {
-                            "raw": "{{pedidos_url}}/pedidos/confirmar",
+                            "raw": "{{pedidos_url}}/pedido/confirmar",
                             "host": [
                                 "{{pedidos_url}}"
                             ],
                             "path": [
-                                "pedidos",
+                                "pedido",
                                 "confirmar"
                             ]
                         }

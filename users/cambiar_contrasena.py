@@ -61,7 +61,7 @@ def lambda_handler(event, context):
     if not correo_objetivo:
         return _resp(400, {"message": "correo es obligatorio"})
 
-    nueva_contrasena = body.get("nueva_contrasena")
+    nueva_contrasena = body.get("contrasena_nueva") or body.get("nueva_contrasena")
     if not nueva_contrasena or len(nueva_contrasena) < 6:
         return _resp(400, {"message": "La nueva contraseña debe tener al menos 6 caracteres"})
 
