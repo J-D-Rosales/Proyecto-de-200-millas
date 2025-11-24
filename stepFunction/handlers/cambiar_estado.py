@@ -2,10 +2,21 @@ import json
 import os
 import boto3
 from boto3.dynamodb.conditions import Key
+from decimal import Decimal
 
 dynamodb = boto3.resource('dynamodb')
 stepfunctions = boto3.client('stepfunctions')
 TABLE_HISTORIAL_ESTADOS = os.environ['TABLE_HISTORIAL_ESTADOS']
+
+def decimal_to_number(obj):
+    """Convert Decimal objects to int or float for JSON serialization"""
+    if isinstance(obj, Decimal):
+        return int(obj) if obj % 1 == 0 else float(obj)
+    elif isinstance(obj, dict):
+        return {k: decimal_to_number(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [decimal_to_number(i) for i in obj]
+    return obj
 
 def handler(event, context):
     print(f"CambiarEstado Event: {json.dumps(event)}")
@@ -55,9 +66,9 @@ def handler(event, context):
         "order_id": order_id,
         "event": detail_type,
         "status": detail.get('status', 'ACEPTADO'), # Default to Accepted if not specified
-        "retry_count": retry_count, # Persist retry count
+        "retry_count": decimal_to_number(retry_count), # Convert Decimal to number
         "empleado_id": detail.get('empleado_id', 'UNKNOWN'),
-        "details": detail
+        "details": decimal_to_number(detail) # Convert any Decimals in details
     }
     
     try:

@@ -113,12 +113,12 @@ Guarda la URL del API Gateway que aparece en el output.
    ```json
    {
      "detail": {
-       "order_id": "test-order-002",
+       "order_id": "test-order-001",
        "empleado_id": "EMP-001",
        "productos": [
          {
-           "producto_id": "prod-123",
-           "local_id": "local-001",
+           "producto_id": "085f51bb-d0b3-4871-b9ca-fd82fc657802",
+           "local_id": "LOCAL-007",
            "cantidad": 2
          }
        ]
@@ -138,7 +138,7 @@ Una vez iniciado el flujo, usa los endpoints del servicio de empleados para avan
 curl -X POST https://alkbqjtbdi.execute-api.us-east-1.amazonaws.com/empleados/cocina/iniciar \
   -H "Content-Type: application/json" \
   -d '{
-    "order_id": "test-order-002",
+    "order_id": "test-order-001",
     "empleado_id": "EMP-COCINA-001"
   }'
 ```
@@ -150,7 +150,7 @@ curl -X POST https://alkbqjtbdi.execute-api.us-east-1.amazonaws.com/empleados/co
 curl -X POST https://alkbqjtbdi.execute-api.us-east-1.amazonaws.com/empleados/cocina/completar \
   -H "Content-Type: application/json" \
   -d '{
-    "order_id": "test-order-002",
+    "order_id": "test-order-001",
     "empleado_id": "EMP-COCINA-001"
   }'
 ```
@@ -162,7 +162,7 @@ curl -X POST https://alkbqjtbdi.execute-api.us-east-1.amazonaws.com/empleados/co
 curl -X POST https://alkbqjtbdi.execute-api.us-east-1.amazonaws.com/empleados/empaque/completar \
   -H "Content-Type: application/json" \
   -d '{
-    "order_id": "test-order-002",
+    "order_id": "test-order-001",
     "empleado_id": "EMP-EMPAQUE-001"
   }'
 ```
@@ -171,7 +171,7 @@ curl -X POST https://alkbqjtbdi.execute-api.us-east-1.amazonaws.com/empleados/em
 
 ### Paso 4: Delivery Inicia
 ```bash
-curl -X POST https://TU-API-GATEWAY-URL/empleados/delivery/iniciar \
+curl -X POST https://alkbqjtbdi.execute-api.us-east-1.amazonaws.com/empleados/delivery/iniciar \
   -H "Content-Type: application/json" \
   -d '{
     "order_id": "test-order-001",
@@ -183,7 +183,7 @@ curl -X POST https://TU-API-GATEWAY-URL/empleados/delivery/iniciar \
 
 ### Paso 5: Delivery Entrega
 ```bash
-curl -X POST https://TU-API-GATEWAY-URL/empleados/delivery/entregar \
+curl -X POST https://alkbqjtbdi.execute-api.us-east-1.amazonaws.com/empleados/delivery/entregar \
   -H "Content-Type: application/json" \
   -d '{
     "order_id": "test-order-001",
@@ -195,7 +195,7 @@ curl -X POST https://TU-API-GATEWAY-URL/empleados/delivery/entregar \
 
 ### Paso 6: Cliente Confirma
 ```bash
-curl -X POST https://TU-API-GATEWAY-URL/empleados/cliente/confirmar \
+curl -X POST https://alkbqjtbdi.execute-api.us-east-1.amazonaws.com/empleados/cliente/confirmar \
   -H "Content-Type: application/json" \
   -d '{
     "order_id": "test-order-001",
