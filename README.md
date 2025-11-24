@@ -11,6 +11,18 @@ Documentación de endpoints para desarrollo frontend.
 
 ---
 
+# URL
+servicio clientes -> https://96189ls6ki.execute-api.us-east-1.amazonaws.com
+
+servicio productos -> https://j30x9cucu2.execute-api.us-east-1.amazonaws.com
+
+servicio usuarios -> https://02vk0b0dll.execute-api.us-east-1.amazonaws.com
+
+servicio empleados -> https://uou7ashhbl.execute-api.us-east-1.amazonaws.com
+
+
+---
+
 ## 1. Usuarios y Autenticación
 
 ### Públicos
