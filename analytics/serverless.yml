@@ -127,11 +127,3 @@ resources:
             OutputLocation: s3://athena-results-${env:AWS_ACCOUNT_ID}/
           EnforceWorkGroupConfiguration: true
           PublishCloudWatchMetricsEnabled: true
-
-plugins:
-  - serverless-python-requirements
-
-custom:
-  pythonRequirements:
-    dockerizePip: false
-    slim: true
