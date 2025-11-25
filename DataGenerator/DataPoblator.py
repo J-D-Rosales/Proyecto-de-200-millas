@@ -339,17 +339,64 @@ def verify_credentials():
 
 
 def create_s3_bucket():
-    """Crea el bucket S3 si no existe."""
+    """Crea el bucket S3 con acceso público si no existe."""
     try:
         print(f"\n📦 Verificando bucket S3: {S3_BUCKET_NAME}")
         s3_client.head_bucket(Bucket=S3_BUCKET_NAME)
         print(f"   ✅ El bucket '{S3_BUCKET_NAME}' ya existe")
+        
+        # Verificar y actualizar configuración de acceso público si es necesario
+        try:
+            print(f"   🔓 Configurando acceso público...")
+            
+            # Desactivar el bloqueo de acceso público
+            s3_client.delete_public_access_block(Bucket=S3_BUCKET_NAME)
+            
+            # Habilitar ACLs
+            s3_client.put_bucket_ownership_controls(
+                Bucket=S3_BUCKET_NAME,
+                OwnershipControls={
+                    'Rules': [
+                        {
+                            'ObjectOwnership': 'ObjectWriter'  # Permite ACLs
+                        }
+                    ]
+                }
+            )
+            
+            # Aplicar política de bucket para acceso público de lectura
+            bucket_policy = {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Sid": "PublicReadGetObject",
+                        "Effect": "Allow",
+                        "Principal": "*",
+                        "Action": "s3:GetObject",
+                        "Resource": f"arn:aws:s3:::{S3_BUCKET_NAME}/*"
+                    }
+                ]
+            }
+            
+            s3_client.put_bucket_policy(
+                Bucket=S3_BUCKET_NAME,
+                Policy=json.dumps(bucket_policy)
+            )
+            
+            print(f"   ✅ Acceso público configurado correctamente")
+            
+        except Exception as config_error:
+            print(f"   ⚠️  Advertencia al configurar acceso público: {str(config_error)}")
+        
         return True
+        
     except ClientError as e:
         error_code = e.response['Error']['Code']
         if error_code in ('404', 'NoSuchBucket'):
             try:
-                print(f"   🔨 Creando bucket '{S3_BUCKET_NAME}'...")
+                print(f"   🔨 Creando bucket '{S3_BUCKET_NAME}' con acceso público...")
+                
+                # Crear bucket
                 if AWS_REGION == 'us-east-1':
                     s3_client.create_bucket(Bucket=S3_BUCKET_NAME)
                 else:
@@ -357,21 +404,59 @@ def create_s3_bucket():
                         Bucket=S3_BUCKET_NAME,
                         CreateBucketConfiguration={'LocationConstraint': AWS_REGION}
                     )
+                
+                print(f"   ✅ Bucket creado")
+                
+                # Habilitar versionado
                 s3_client.put_bucket_versioning(
                     Bucket=S3_BUCKET_NAME,
                     VersioningConfiguration={'Status': 'Enabled'}
                 )
-                s3_client.put_public_access_block(
+                print(f"   ✅ Versionado habilitado")
+                
+                # Desactivar el bloqueo de acceso público
+                s3_client.delete_public_access_block(Bucket=S3_BUCKET_NAME)
+                print(f"   ✅ Bloqueo de acceso público desactivado")
+                
+                # Habilitar ACLs (ObjectWriter permite que los objetos tengan ACLs)
+                s3_client.put_bucket_ownership_controls(
                     Bucket=S3_BUCKET_NAME,
-                    PublicAccessBlockConfiguration={
-                        'BlockPublicAcls': True,
-                        'IgnorePublicAcls': True,
-                        'BlockPublicPolicy': True,
-                        'RestrictPublicBuckets': True
+                    OwnershipControls={
+                        'Rules': [
+                            {
+                                'ObjectOwnership': 'ObjectWriter'
+                            }
+                        ]
                     }
                 )
-                print(f"   ✅ Bucket '{S3_BUCKET_NAME}' creado exitosamente")
+                print(f"   ✅ ACLs habilitadas")
+                
+                # Aplicar política de bucket para acceso público de lectura
+                bucket_policy = {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "PublicReadGetObject",
+                            "Effect": "Allow",
+                            "Principal": "*",
+                            "Action": "s3:GetObject",
+                            "Resource": f"arn:aws:s3:::{S3_BUCKET_NAME}/*"
+                        }
+                    ]
+                }
+                
+                s3_client.put_bucket_policy(
+                    Bucket=S3_BUCKET_NAME,
+                    Policy=json.dumps(bucket_policy)
+                )
+                print(f"   ✅ Política de acceso público aplicada")
+                
+                print(f"\n   ⚠️  ADVERTENCIA: El bucket '{S3_BUCKET_NAME}' ahora es público")
+                print(f"   ⚠️  Todos los objetos en este bucket serán accesibles públicamente")
+                print(f"   ✅ Bucket '{S3_BUCKET_NAME}' creado exitosamente con acceso público")
+                
                 return True
+                
             except Exception as create_error:
                 print(f"   ❌ Error al crear bucket: {str(create_error)}")
                 return False
