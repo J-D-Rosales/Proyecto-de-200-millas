@@ -313,3 +313,113 @@ analytics/
 - Los crawlers detectan automáticamente el esquema de los datos
 - Athena cobra por datos escaneados (~$5 por TB)
 - Los resultados se cachean en S3 para consultas repetidas
+
+
+---
+
+## 🔧 Solución de Problemas
+
+### ❌ Error: "COLUMN_NOT_FOUND" o datos aparecen como arrays
+
+**Síntoma:** Al ejecutar queries en Athena ves errores como:
+```
+COLUMN_NOT_FOUND: line 5:19: Column 'local_id' cannot be resolved
+```
+
+O cuando haces `SELECT * FROM pedidos` solo ves 6 filas con arrays en lugar de 40 filas individuales.
+
+**Causa:** Los datos se exportaron en formato JSON array en lugar de JSON Lines (JSONL). Athena necesita un objeto JSON por línea.
+
+**Solución:**
+```bash
+cd analytics
+bash fix_and_reexport.sh
+```
+
+Este script:
+1. ✅ Limpia los datos antiguos en S3
+2. ✅ Recrea las tablas de Glue con el schema correcto
+3. ✅ Re-exporta los datos en formato JSON Lines (un objeto por línea)
+4. ✅ Espera a que los crawlers procesen los datos
+
+**Tiempo estimado:** 2-3 minutos
+
+---
+
+### ❌ Error: "No output location provided"
+
+**Síntoma:** Al hacer preview de una tabla en Athena ves:
+```
+No output location provided. You did not provide an output location for your query results.
+```
+
+**Causa:** Athena no tiene configurado dónde guardar los resultados de las queries.
+
+**Solución automática:**
+```bash
+cd analytics
+bash configure_athena.sh
+```
+
+**Solución manual:**
+1. Ve a la consola de Athena
+2. Click en "Settings" (arriba a la derecha)
+3. En "Query result location", ingresa: `s3://athena-results-{tu-account-id}/results/`
+4. Click "Save"
+
+---
+
+## 📋 Schema de Tablas
+
+### Tabla: `pedidos`
+```sql
+local_id              STRING
+pedido_id             STRING
+tenant_id_usuario     STRING
+productos             ARRAY<STRUCT<producto_id:STRING, cantidad:DOUBLE>>
+costo                 DOUBLE
+direccion             STRING
+estado                STRING
+created_at            STRING
+```
+
+### Tabla: `historial_estados`
+```sql
+estado_id             STRING
+pedido_id             STRING
+estado                STRING
+hora_inicio           STRING
+hora_fin              STRING
+empleado              STRING
+```
+
+---
+
+## 🧪 Verificación
+
+### 1. Verificar datos en S3
+```bash
+aws s3 ls s3://bucket-analytic-{account-id}/pedidos/ --recursive
+aws s3 ls s3://bucket-analytic-{account-id}/historial_estados/ --recursive
+```
+
+### 2. Verificar tablas en Glue
+```bash
+aws glue get-tables --database-name millas_analytics_db --region us-east-1
+```
+
+### 3. Probar query en Athena
+```sql
+SELECT COUNT(*) as total FROM pedidos;
+SELECT local_id, COUNT(*) as total FROM pedidos GROUP BY local_id;
+```
+
+### 4. Probar endpoints
+```bash
+# Obtener API Gateway URL
+sls info
+
+# Probar endpoints
+curl https://YOUR-API-ID.execute-api.us-east-1.amazonaws.com/analytics/pedidos-por-local
+curl https://YOUR-API-ID.execute-api.us-east-1.amazonaws.com/analytics/ganancias-por-local
+```

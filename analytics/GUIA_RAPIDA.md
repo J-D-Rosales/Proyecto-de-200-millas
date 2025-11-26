@@ -1,5 +1,26 @@
 # 🚀 Guía Rápida - Analytics
 
+## 🔧 Solución Rápida a Problemas Comunes
+
+### Problema: "COLUMN_NOT_FOUND" o datos aparecen como arrays
+
+Si ves errores como `COLUMN_NOT_FOUND: line X:X: Column 'local_id' cannot be resolved` o las queries devuelven arrays en lugar de filas individuales, ejecuta:
+
+```bash
+cd analytics
+bash fix_and_reexport.sh
+```
+
+Esto:
+1. Limpia los datos antiguos en S3
+2. Recrea las tablas de Glue con el schema correcto
+3. Re-exporta los datos en formato JSON Lines (correcto para Athena)
+4. Espera a que los crawlers procesen
+
+**Tiempo estimado:** 2-3 minutos
+
+---
+
 ## Flujo de Trabajo
 
 ### 1️⃣ Exportar Datos (Manual o Automático)

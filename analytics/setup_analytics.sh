@@ -39,9 +39,17 @@ if [ $? -ne 0 ]; then
     echo "⚠️  Error al crear tablas de Glue"
 fi
 
+# Limpiar datos antiguos en S3 (para evitar problemas de formato)
+echo ""
+echo "🗑️  Limpiando datos antiguos en S3..."
+ANALYTICS_BUCKET="bucket-analytic-${AWS_ACCOUNT_ID}"
+aws s3 rm "s3://${ANALYTICS_BUCKET}/pedidos/" --recursive 2>/dev/null || true
+aws s3 rm "s3://${ANALYTICS_BUCKET}/historial_estados/" --recursive 2>/dev/null || true
+echo "✅ Datos antiguos eliminados"
+
 # Ejecutar exportación inicial de datos
 echo ""
-echo "📤 Ejecutando exportación inicial de datos..."
+echo "📤 Ejecutando exportación inicial de datos (formato JSON Lines)..."
 aws lambda invoke \
     --function-name service-analytics-dev-ExportDynamoDBToS3 \
     --region us-east-1 \
@@ -50,6 +58,7 @@ aws lambda invoke \
 if [ $? -eq 0 ]; then
     echo "✅ Exportación completada"
     cat /tmp/export-response.json
+    echo ""
 else
     echo "⚠️  Error en la exportación (puede ser normal si las tablas están vacías)"
 fi

@@ -49,17 +49,17 @@ def export_table_to_s3(table_name, s3_prefix):
     # Generar timestamp para el archivo
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     
-    # Guardar en S3
+    # Guardar en S3 como JSON Lines (un objeto por línea)
     s3_key = f"{s3_prefix}/data_{timestamp}.json"
     
-    # Convertir a JSON
-    json_data = json.dumps(items, default=decimal_default, ensure_ascii=False)
+    # Convertir a JSON Lines (JSONL) - un objeto por línea
+    json_lines = '\n'.join([json.dumps(item, default=decimal_default, ensure_ascii=False) for item in items])
     
     # Subir a S3
     s3_client.put_object(
         Bucket=ANALYTICS_BUCKET,
         Key=s3_key,
-        Body=json_data,
+        Body=json_lines,
         ContentType='application/json'
     )
     
