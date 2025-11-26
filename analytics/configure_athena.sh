@@ -43,6 +43,21 @@ else
 fi
 
 echo ""
+echo "⚙️  Configurando workgroup 'primary' (por defecto)..."
+
+# También configurar el workgroup primary para que funcione desde la consola
+aws athena update-work-group \
+    --work-group primary \
+    --configuration-updates "ResultConfigurationUpdates={OutputLocation=s3://${ATHENA_BUCKET}/results/}" \
+    --region us-east-1
+
+if [ $? -eq 0 ]; then
+    echo "✅ Workgroup 'primary' configurado"
+else
+    echo "⚠️  Error al configurar workgroup 'primary'"
+fi
+
+echo ""
 echo "=========================================="
 echo "✅ Configuración completada"
 echo "=========================================="

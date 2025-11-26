@@ -30,6 +30,15 @@ echo ""
 echo "⚙️  Configurando Athena..."
 bash configure_athena.sh
 
+# Crear tablas de Glue con schema correcto
+echo ""
+echo "📊 Creando tablas de Glue con schema correcto..."
+python3 create_glue_tables.py
+
+if [ $? -ne 0 ]; then
+    echo "⚠️  Error al crear tablas de Glue"
+fi
+
 # Ejecutar exportación inicial de datos
 echo ""
 echo "📤 Ejecutando exportación inicial de datos..."
@@ -44,40 +53,6 @@ if [ $? -eq 0 ]; then
 else
     echo "⚠️  Error en la exportación (puede ser normal si las tablas están vacías)"
 fi
-
-# Ejecutar Glue Crawlers
-echo ""
-echo "🕷️  Ejecutando Glue Crawlers..."
-
-echo "  - Crawler de Pedidos..."
-aws glue start-crawler --name millas-pedidos-crawler --region us-east-1 2>/dev/null
-if [ $? -eq 0 ]; then
-    echo "    ✅ Crawler de pedidos iniciado"
-else
-    echo "    ⚠️  Crawler de pedidos ya está ejecutándose o no existe"
-fi
-
-echo "  - Crawler de Historial..."
-aws glue start-crawler --name millas-historial-crawler --region us-east-1 2>/dev/null
-if [ $? -eq 0 ]; then
-    echo "    ✅ Crawler de historial iniciado"
-else
-    echo "    ⚠️  Crawler de historial ya está ejecutándose o no existe"
-fi
-
-echo ""
-echo "⏳ Esperando a que los crawlers terminen (esto puede tomar 1-2 minutos)..."
-sleep 60
-
-# Verificar estado de los crawlers
-echo ""
-echo "📊 Verificando estado de los crawlers..."
-
-PEDIDOS_STATE=$(aws glue get-crawler --name millas-pedidos-crawler --region us-east-1 --query 'Crawler.State' --output text 2>/dev/null)
-HISTORIAL_STATE=$(aws glue get-crawler --name millas-historial-crawler --region us-east-1 --query 'Crawler.State' --output text 2>/dev/null)
-
-echo "  - Pedidos: $PEDIDOS_STATE"
-echo "  - Historial: $HISTORIAL_STATE"
 
 # Mostrar información de las tablas creadas
 echo ""
