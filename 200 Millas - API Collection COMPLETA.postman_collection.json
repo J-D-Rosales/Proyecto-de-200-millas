@@ -1038,11 +1038,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{empleado_url}}/cocina/iniciar",
+							"raw": "{{empleado_url}}/empleados/cocina/iniciar",
 							"host": [
 								"{{empleado_url}}"
 							],
 							"path": [
+								"empleados",
 								"cocina",
 								"iniciar"
 							]
@@ -1064,11 +1065,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{empleado_url}}/cocina/iniciar",
+									"raw": "{{empleado_url}}/empleados/cocina/iniciar",
 									"host": [
 										"{{empleado_url}}"
 									],
 									"path": [
+										"empleados",
 										"cocina",
 										"iniciar"
 									]
@@ -1076,11 +1078,11 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "Date",
-									"value": "Wed, 26 Nov 2025 01:19:58 GMT"
+									"value": "Fri, 28 Nov 2025 15:40:24 GMT"
 								},
 								{
 									"key": "Content-Type",
@@ -1096,11 +1098,11 @@
 								},
 								{
 									"key": "Apigw-Requestid",
-									"value": "UoJVuhfgoAMEVpQ="
+									"value": "UwtQRieuIAMEcOA="
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"message\": \"EnPreparacion event published\",\n    \"order_id\": \"1f0c7075-0ac0-4115-975b-fc938a57e256\"\n}"
+							"body": "{\n    \"message\": \"EnPreparacion event published\",\n    \"order_id\": \"e6d2beeb-19c2-4751-861c-de9003f79f7a\"\n}"
 						}
 					]
 				},
@@ -1119,11 +1121,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{empleado_url}}/cocina/completar",
+							"raw": "{{empleado_url}}/empleados/cocina/completar",
 							"host": [
 								"{{empleado_url}}"
 							],
 							"path": [
+								"empleados",
 								"cocina",
 								"completar"
 							]
@@ -1145,11 +1148,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{empleado_url}}/cocina/completar",
+									"raw": "{{empleado_url}}/empleados/cocina/completar",
 									"host": [
 										"{{empleado_url}}"
 									],
 									"path": [
+										"empleados",
 										"cocina",
 										"completar"
 									]
@@ -1157,11 +1161,11 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "Date",
-									"value": "Wed, 26 Nov 2025 01:20:13 GMT"
+									"value": "Fri, 28 Nov 2025 15:41:11 GMT"
 								},
 								{
 									"key": "Content-Type",
@@ -1177,11 +1181,11 @@
 								},
 								{
 									"key": "Apigw-Requestid",
-									"value": "UoJYBgD2IAMEVEg="
+									"value": "UwtXijJ2oAMEczw="
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"message\": \"CocinaCompleta event published\",\n    \"order_id\": \"1f0c7075-0ac0-4115-975b-fc938a57e256\"\n}"
+							"body": "{\n    \"message\": \"CocinaCompleta event published\",\n    \"order_id\": \"e6d2beeb-19c2-4751-861c-de9003f79f7a\"\n}"
 						}
 					]
 				},
@@ -1192,7 +1196,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"order_id\": \"test-order-001\",\n    \"empleado_id\": \"EMP-EMPAQUE-001\"\n}",
+							"raw": "{\n    \"order_id\": \"{{pedido_id}}\",\n    \"empleado_id\": \"{{dni_local1_cocinero}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1200,17 +1204,73 @@
 							}
 						},
 						"url": {
-							"raw": "{{empleado_url}}/empaque/completar",
+							"raw": "{{empleado_url}}/empleados/empaque/completar",
 							"host": [
 								"{{empleado_url}}"
 							],
 							"path": [
+								"empleados",
 								"empaque",
 								"completar"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Empaquetado Completo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"order_id\": \"{{pedido_id}}\",\n    \"empleado_id\": \"{{dni_local1_cocinero}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{empleado_url}}/empleados/empaque/completar",
+									"host": [
+										"{{empleado_url}}"
+									],
+									"path": [
+										"empleados",
+										"empaque",
+										"completar"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 28 Nov 2025 15:41:59 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "94"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Apigw-Requestid",
+									"value": "UwtfDjU5IAMEcLQ="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Empaquetado event published\",\n    \"order_id\": \"e6d2beeb-19c2-4751-861c-de9003f79f7a\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Delivery Inicia",
@@ -1219,7 +1279,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"order_id\": \"test-order-001\",\n    \"empleado_id\": \"EMP-DELIVERY-001\"\n}",
+							"raw": "{\n    \"order_id\": \"{{pedido_id}}\",\n    \"empleado_id\": \"{{dni_local1_cocinero}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1227,17 +1287,73 @@
 							}
 						},
 						"url": {
-							"raw": "{{empleado_url}}/delivery/iniciar",
+							"raw": "{{empleado_url}}/empleados/delivery/iniciar",
 							"host": [
 								"{{empleado_url}}"
 							],
 							"path": [
+								"empleados",
 								"delivery",
 								"iniciar"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Delivery Inicia",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"order_id\": \"{{pedido_id}}\",\n    \"empleado_id\": \"{{dni_local1_cocinero}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{empleado_url}}/empleados/delivery/iniciar",
+									"host": [
+										"{{empleado_url}}"
+									],
+									"path": [
+										"empleados",
+										"delivery",
+										"iniciar"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 28 Nov 2025 15:42:10 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "97"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Apigw-Requestid",
+									"value": "Uwtg5jufIAMEcUg="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"PedidoEnCamino event published\",\n    \"order_id\": \"e6d2beeb-19c2-4751-861c-de9003f79f7a\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Delivery Entrega",
@@ -1246,7 +1362,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\n}",
+							"raw": "{\n    \"order_id\": \"{{pedido_id}}\",\n    \"empleado_id\": \"{{dni_local1_cocinero}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1254,44 +1370,73 @@
 							}
 						},
 						"url": {
-							"raw": "{{products_url}}/delivery/entregar",
+							"raw": "{{empleado_url}}/empleados/delivery/entregar",
 							"host": [
-								"{{products_url}}"
+								"{{empleado_url}}"
 							],
 							"path": [
+								"empleados",
 								"delivery",
 								"entregar"
 							]
 						}
 					},
-					"response": []
-				},
-				{
-					"name": "Cliente Confirma",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"order_id\": \"test-order-001\",\n    \"empleado_id\": \"CLIENTE\"  \n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"response": [
+						{
+							"name": "Delivery Entrega",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"order_id\": \"{{pedido_id}}\",\n    \"empleado_id\": \"{{dni_local1_cocinero}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{empleado_url}}/empleados/delivery/entregar",
+									"host": [
+										"{{empleado_url}}"
+									],
+									"path": [
+										"empleados",
+										"delivery",
+										"entregar"
+									]
 								}
-							}
-						},
-						"url": {
-							"raw": "{{empleado_url}}/cliente/confirmar",
-							"host": [
-								"{{empleado_url}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 29 Nov 2025 06:26:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "98"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Apigw-Requestid",
+									"value": "UyvCghXFIAMEbMA="
+								}
 							],
-							"path": [
-								"cliente",
-								"confirmar"
-							]
+							"cookie": [],
+							"body": "{\n    \"message\": \"EntregaDelivery event published\",\n    \"order_id\": \"74b26044-9f4d-40ee-b7a7-0ed1d13043ef\"\n}"
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
@@ -1656,6 +1801,88 @@
 			"name": "📦 Pedidos (Cliente)",
 			"item": [
 				{
+					"name": "Cliente Confirma",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"order_id\": \"{{pedido_id}}\",\n    \"empleado_id\": \"{{dni_local1_cocinero}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{clientes_url}}/pedido/confirmar",
+							"host": [
+								"{{clientes_url}}"
+							],
+							"path": [
+								"pedido",
+								"confirmar"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Cliente Confirma",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"order_id\": \"{{pedido_id}}\",\n    \"empleado_id\": \"{{dni_local1_cocinero}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{empleado_url}}/empleados/cliente/confirmar",
+									"host": [
+										"{{empleado_url}}"
+									],
+									"path": [
+										"empleados",
+										"cliente",
+										"confirmar"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 28 Nov 2025 15:43:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "105"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Apigw-Requestid",
+									"value": "UwtttgbuIAMEVUA="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"ConfirmarPedidoCliente event published\",\n    \"order_id\": \"e6d2beeb-19c2-4751-861c-de9003f79f7a\"\n}"
+						}
+					]
+				},
+				{
 					"name": "Crear Pedido",
 					"event": [
 						{
@@ -1692,7 +1919,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"local_id\": \"{{local_id}}\",\n  \"productos\": [\n    {\n      \"producto_id\": \"{{producto_id}}\",\n      \"cantidad\": 2\n    }\n  ],\n  \"costo\": 125.50,\n  \"direccion\": \"Av. Principal 123, Lima, Perú\",\n  \"estado\": \"procesando\"\n}"
+							"raw": "{\n  \"local_id\": \"LOCAL-001\",\n  \"productos\": [\n    {\n      \"producto_id\": \"{{producto_id}}\",\n      \"cantidad\": 2\n    }\n  ],\n  \"costo\": 125.50,\n  \"direccion\": \"Av. Principal 123, Lima, Perú\",\n  \"estado\": \"procesando\"\n}"
 						},
 						"url": {
 							"raw": "{{clientes_url}}/pedido/create",
@@ -1858,40 +2085,68 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"local_id\": \"LOCAL-001\",\n    \"pedido_id\": \"e4ea48e8-9a4c-48be-b5a0-281093271604\",\n    \"estado\": \"procesando\"\n}"
+						},
+						{
+							"name": "Consultar Estado Pedido",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_user}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{clientes_url}}/pedido/status?local_id={{local_id}}&pedido_id={{pedido_id}}",
+									"host": [
+										"{{clientes_url}}"
+									],
+									"path": [
+										"pedido",
+										"status"
+									],
+									"query": [
+										{
+											"key": "local_id",
+											"value": "{{local_id}}"
+										},
+										{
+											"key": "pedido_id",
+											"value": "{{pedido_id}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 29 Nov 2025 06:26:08 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "108"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Apigw-Requestid",
+									"value": "UyvAGgvWoAMEPPA="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"local_id\": \"LOCAL-001\",\n    \"pedido_id\": \"74b26044-9f4d-40ee-b7a7-0ed1d13043ef\",\n    \"estado\": \"pedido_en_camino\"\n}"
 						}
 					]
-				},
-				{
-					"name": "Confirmar Recepción",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token_user}}",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"local_id\": \"{{local_id}}\",\n  \"pedido_id\": \"{{pedido_id}}\"\n}"
-						},
-						"url": {
-							"raw": "{{clientes_url}}/pedido/confirmar",
-							"host": [
-								"{{clientes_url}}"
-							],
-							"path": [
-								"pedido",
-								"confirmar"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -1904,11 +2159,12 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{analytic_url}}/export",
+							"raw": "{{analytic_url}}/analytics/export",
 							"host": [
 								"{{analytic_url}}"
 							],
 							"path": [
+								"analytics",
 								"export"
 							]
 						}
@@ -1946,7 +2202,6 @@
 								{
 									"key": "Content-Type",
 									"value": "application/json",
-									"name": "Content-Type",
 									"description": "",
 									"type": "text"
 								},
@@ -2001,11 +2256,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{analytic_url}}/pedidos-por-local",
+							"raw": "{{analytic_url}}/analytics/pedidos-por-local",
 							"host": [
 								"{{analytic_url}}"
 							],
 							"path": [
+								"analytics",
 								"pedidos-por-local"
 							]
 						}
@@ -2052,7 +2308,6 @@
 								{
 									"key": "Content-Type",
 									"value": "application/json",
-									"name": "Content-Type",
 									"description": "",
 									"type": "text"
 								},
@@ -2131,7 +2386,6 @@
 								{
 									"key": "Content-Type",
 									"value": "application/json",
-									"name": "Content-Type",
 									"description": "",
 									"type": "text"
 								},
@@ -2186,11 +2440,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{analytic_url}}/ganancias-por-local",
+							"raw": "{{analytic_url}}/analytics/ganancias-por-local",
 							"host": [
 								"{{analytic_url}}"
 							],
 							"path": [
+								"analytics",
 								"ganancias-por-local"
 							]
 						}
@@ -2237,7 +2492,6 @@
 								{
 									"key": "Content-Type",
 									"value": "application/json",
-									"name": "Content-Type",
 									"description": "",
 									"type": "text"
 								},
@@ -2316,7 +2570,6 @@
 								{
 									"key": "Content-Type",
 									"value": "application/json",
-									"name": "Content-Type",
 									"description": "",
 									"type": "text"
 								},
@@ -2371,18 +2624,19 @@
 							}
 						},
 						"url": {
-							"raw": "{{analytic_url}}/tiempo-pedido",
+							"raw": "{{analytic_url}}/analytics/tiempo-pedido",
 							"host": [
 								"{{analytic_url}}"
 							],
 							"path": [
+								"analytics",
 								"tiempo-pedido"
 							]
 						}
 					},
 					"response": [
 						{
-							"name": "New Request",
+							"name": "Tiempo pedido",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
@@ -2396,14 +2650,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://9chtp1assj.execute-api.us-east-1.amazonaws.com/analytics/tiempo-pedido",
-									"protocol": "https",
+									"raw": "{{analytic_url}}/analytics/tiempo-pedido",
 									"host": [
-										"9chtp1assj",
-										"execute-api",
-										"us-east-1",
-										"amazonaws",
-										"com"
+										"{{analytic_url}}"
 									],
 									"path": [
 										"analytics",
@@ -2417,7 +2666,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Wed, 26 Nov 2025 01:09:48 GMT"
+									"value": "Sat, 29 Nov 2025 06:54:20 GMT"
 								},
 								{
 									"key": "Content-Type",
@@ -2428,7 +2677,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "1154"
+									"value": "908"
 								},
 								{
 									"key": "Connection",
@@ -2448,7 +2697,7 @@
 								},
 								{
 									"key": "Apigw-Requestid",
-									"value": "UoH2AiI4oAMEbTQ="
+									"value": "UyzIFgsYIAMEPxw="
 								}
 							],
 							"cookie": [
@@ -2458,7 +2707,7 @@
 									"path": ""
 								}
 							],
-							"body": "{\n    \"query\": \"Tiempo total de pedido (procesado -> recibido) por local\",\n    \"local_id\": \"LOCAL-007\",\n    \"data\": [\n        {\n            \"local_id\": \"LOCAL-007\",\n            \"pedido_id\": \"d2ad6759-abfb-4725-a195-dc74fd010865\",\n            \"inicio\": \"2025-11-26T00:20:39.091326\",\n            \"fin\": \"2025-11-26T01:23:39.091326\",\n            \"tiempo_total_minutos\": 63,\n            \"tiempo_total_horas\": 1\n        },\n        {\n            \"local_id\": \"LOCAL-007\",\n            \"pedido_id\": \"40cd6232-3121-42a0-83da-92dab66d37a7\",\n            \"inicio\": \"2025-11-25T23:37:39.091867\",\n            \"fin\": \"2025-11-26T00:38:39.091867\",\n            \"tiempo_total_minutos\": 61,\n            \"tiempo_total_horas\": 1\n        },\n        {\n            \"local_id\": \"LOCAL-007\",\n            \"pedido_id\": \"a87a7d8b-da3c-41fd-aff4-302b7e035473\",\n            \"inicio\": \"2025-11-26T00:25:39.091049\",\n            \"fin\": \"2025-11-26T01:18:39.091049\",\n            \"tiempo_total_minutos\": 53,\n            \"tiempo_total_horas\": 0\n        },\n        {\n            \"local_id\": \"LOCAL-007\",\n            \"pedido_id\": \"7f541bf6-a4d7-44a2-8a9c-ca2900cde1ce\",\n            \"inicio\": \"2025-11-25T23:56:39.092258\",\n            \"fin\": \"2025-11-26T00:44:39.092258\",\n            \"tiempo_total_minutos\": 48,\n            \"tiempo_total_horas\": 0\n        },\n        {\n            \"local_id\": \"LOCAL-007\",\n            \"pedido_id\": \"a14b32b1-d3ff-4b86-9ad6-53e8a20101db\",\n            \"inicio\": \"2025-11-26T00:19:39.091976\",\n            \"fin\": \"2025-11-26T01:01:39.091976\",\n            \"tiempo_total_minutos\": 42,\n            \"tiempo_total_horas\": 0\n        }\n    ]\n}"
+							"body": "{\n    \"query\": \"Tiempo total de pedido (procesado -> recibido) por local\",\n    \"local_id\": \"todos\",\n    \"pagination\": {\n        \"page\": 1,\n        \"page_size\": 10,\n        \"total_items\": 5,\n        \"total_pages\": 1,\n        \"has_next\": false,\n        \"has_prev\": false\n    },\n    \"data\": [\n        {\n            \"local_id\": \"LOCAL-001\",\n            \"total_pedidos\": 2,\n            \"tiempo_promedio_minutos\": 47.5,\n            \"tiempo_minimo_minutos\": 40,\n            \"tiempo_maximo_minutos\": 55\n        },\n        {\n            \"local_id\": \"LOCAL-005\",\n            \"total_pedidos\": 1,\n            \"tiempo_promedio_minutos\": 47,\n            \"tiempo_minimo_minutos\": 47,\n            \"tiempo_maximo_minutos\": 47\n        },\n        {\n            \"local_id\": \"LOCAL-004\",\n            \"total_pedidos\": 2,\n            \"tiempo_promedio_minutos\": 46.5,\n            \"tiempo_minimo_minutos\": 46,\n            \"tiempo_maximo_minutos\": 47\n        },\n        {\n            \"local_id\": \"LOCAL-007\",\n            \"total_pedidos\": 2,\n            \"tiempo_promedio_minutos\": 41,\n            \"tiempo_minimo_minutos\": 38,\n            \"tiempo_maximo_minutos\": 44\n        },\n        {\n            \"local_id\": \"LOCAL-006\",\n            \"total_pedidos\": 1,\n            \"tiempo_promedio_minutos\": 35,\n            \"tiempo_minimo_minutos\": 35,\n            \"tiempo_maximo_minutos\": 35\n        }\n    ]\n}"
 						}
 					]
 				},
@@ -2477,11 +2726,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{analytic_url}}/promedio-por-estado",
+							"raw": "{{analytic_url}}/analytics/promedio-por-estado",
 							"host": [
 								"{{analytic_url}}"
 							],
 							"path": [
+								"analytics",
 								"promedio-por-estado"
 							]
 						}
@@ -2528,7 +2778,6 @@
 								{
 									"key": "Content-Type",
 									"value": "application/json",
-									"name": "Content-Type",
 									"description": "",
 									"type": "text"
 								},
