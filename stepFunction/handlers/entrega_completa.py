@@ -3,12 +3,29 @@ import os
 import boto3
 from datetime import datetime
 from boto3.dynamodb.conditions import Key
-from update_pedido_estado import update_pedido_estado
 
 dynamodb = boto3.resource('dynamodb')
 events = boto3.client('events')
 TABLE_HISTORIAL_ESTADOS = os.environ['TABLE_HISTORIAL_ESTADOS']
+TABLE_PEDIDOS = os.environ.get('TABLE_PEDIDOS')
 EVENT_BUS_NAME = os.environ.get('EVENT_BUS_NAME', 'default')
+
+def update_pedido_estado(pedido_id, local_id, nuevo_estado):
+    """Updates the estado field in the Pedidos table"""
+    if not TABLE_PEDIDOS:
+        return False
+    try:
+        table = dynamodb.Table(TABLE_PEDIDOS)
+        table.update_item(
+            Key={'local_id': local_id, 'pedido_id': pedido_id},
+            UpdateExpression='SET estado = :estado',
+            ExpressionAttributeValues={':estado': nuevo_estado}
+        )
+        print(f"✅ Updated pedido {pedido_id} estado to: {nuevo_estado}")
+        return True
+    except Exception as e:
+        print(f"❌ Error updating pedido estado: {e}")
+        return False
 
 def handler(event, context):
     print(f"EntregaCompleta Event: {json.dumps(event)}")
