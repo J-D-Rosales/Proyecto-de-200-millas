@@ -128,6 +128,44 @@ make_request "/empleados/delivery/entregar" \
     "{\"order_id\": \"${ORDER_ID}\", \"empleado_id\": \"${EMPLEADO_DELIVERY}\"}" \
     "Entregando pedido"
 echo ""
+sleep 3
+
+# Paso 6: Cliente Confirma Recepción
+echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${YELLOW}PASO 6: Cliente Confirma Recepción${NC}"
+echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+
+# Obtener URL del API de clientes
+echo -e "${BLUE}🔍 Obteniendo URL del API de clientes...${NC}"
+API_URL_CLIENTES=$(aws cloudformation describe-stacks \
+    --stack-name service-clientes-dev \
+    --query 'Stacks[0].Outputs[?OutputKey==`HttpApiUrl`].OutputValue' \
+    --output text 2>/dev/null || echo "")
+
+if [ -z "$API_URL_CLIENTES" ]; then
+    echo -e "${YELLOW}⚠️  No se pudo obtener la URL del API de clientes automáticamente${NC}"
+    echo -e "${YELLOW}Saltando paso de confirmación de cliente${NC}"
+else
+    API_URL_CLIENTES="${API_URL_CLIENTES%/}"
+    echo -e "${GREEN}✅ URL del API de clientes: ${API_URL_CLIENTES}${NC}"
+    
+    echo -e "${BLUE}📤 Cliente confirmando recepción${NC}"
+    echo "   Endpoint: /pedido/confirmar"
+    echo "   Body: {\"order_id\": \"${ORDER_ID}\", \"empleado_id\": \"CLIENTE\"}"
+    
+    response=$(curl -s -X POST "${API_URL_CLIENTES}/pedido/confirmar" \
+        -H "Content-Type: application/json" \
+        -d "{\"order_id\": \"${ORDER_ID}\", \"empleado_id\": \"CLIENTE\"}")
+    
+    echo "   Respuesta: ${response}"
+    
+    if echo "$response" | grep -q '"error"'; then
+        echo -e "${RED}   ❌ Error en la respuesta${NC}"
+    else
+        echo -e "${GREEN}   ✅ Éxito${NC}"
+    fi
+fi
+echo ""
 
 echo "=========================================="
 echo -e "${GREEN}✅ Flujo Completo Ejecutado${NC}"

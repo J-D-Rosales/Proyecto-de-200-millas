@@ -15,6 +15,7 @@ provider:
     TABLE_PEDIDOS: ${env:TABLE_PEDIDOS}
     TOKENS_TABLE_USERS: ${env:TABLE_TOKENS_USUARIOS}
     VALIDAR_TOKEN_LAMBDA_NAME: ${env:VALIDAR_TOKEN_LAMBDA_NAME}
+    EVENT_BUS_NAME: default
 
 functions:
   CreatePedido:

@@ -267,6 +267,17 @@ deploy_services() {
     echo -e "${YELLOW}ℹ️  No se encontró directorio servicio-empleados, saltando...${NC}"
   fi
   
+  # Desplegar servicio de clientes
+  if [[ -d "clientes" ]]; then
+    echo -e "${YELLOW}👤 Desplegando servicio de clientes...${NC}"
+    pushd clientes > /dev/null
+    sls deploy
+    popd > /dev/null
+    echo -e "${GREEN}✅ Servicio de clientes desplegado${NC}"
+  else
+    echo -e "${YELLOW}ℹ️  No se encontró directorio clientes, saltando...${NC}"
+  fi
+  
   # Desplegar servicio de analytics
   if [[ -d "analytics" ]]; then
     echo -e "${YELLOW}📊 Desplegando servicio de analytics...${NC}"

@@ -71,7 +71,7 @@ def handler(event, context):
         'pedido_id': order_id,
         'estado_id': timestamp,
         'createdAt': timestamp,
-        'estado': 'enviando',
+        'estado': 'pedido_en_camino',
         'taskToken': task_token,
         'hora_inicio': timestamp,
         'empleado': empleado_id,

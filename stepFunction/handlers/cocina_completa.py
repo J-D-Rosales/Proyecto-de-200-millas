@@ -80,7 +80,7 @@ def handler(event, context):
         'pedido_id': order_id,
         'estado_id': timestamp,
         'createdAt': timestamp,
-        'estado': 'cocinando',  # Still in cooking phase, will move to empacando next
+        'estado': 'cocina_completa',
         'taskToken': task_token,
         'hora_inicio': timestamp,
         'empleado': empleado_id,

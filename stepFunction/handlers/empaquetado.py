@@ -59,7 +59,7 @@ def handler(event, context):
         'pedido_id': order_id,
         'estado_id': timestamp,
         'createdAt': timestamp,
-        'estado': 'empacando',
+        'estado': 'empaquetando',
         'taskToken': task_token,
         'hora_inicio': timestamp,
         'empleado': empleado_id,
