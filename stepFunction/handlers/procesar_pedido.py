@@ -61,6 +61,11 @@ def handler(event, context):
     table = dynamodb.Table(TABLE_HISTORIAL_ESTADOS)
     timestamp = datetime.utcnow().isoformat()
     
+    # Ensure local_id is in details for next steps
+    details_with_local = dict(input_data)
+    if 'local_id' not in details_with_local:
+        details_with_local['local_id'] = local_id
+    
     item = {
         'pedido_id': order_id,
         'estado_id': timestamp,
@@ -69,7 +74,7 @@ def handler(event, context):
         'taskToken': task_token,
         'hora_inicio': timestamp,
         'empleado': empleado_id,
-        'details': input_data
+        'details': details_with_local
     }
     table.put_item(Item=item)
     

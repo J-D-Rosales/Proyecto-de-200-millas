@@ -68,9 +68,10 @@ def handler(event, context):
     
     print(f"Found token for order {order_id} in estado {current_estado}. Triggering SF...")
     
-    # Retrieve stored input/details to preserve context (like retry_count)
+    # Retrieve stored input/details to preserve context (like retry_count and local_id)
     stored_data = latest_item.get('details') or {}
     retry_count = stored_data.get('retry_count', 0) if isinstance(stored_data, dict) else 0
+    local_id = stored_data.get('local_id') if isinstance(stored_data, dict) else None
     
     # Determine output status based on event
     output_payload = {
@@ -81,6 +82,11 @@ def handler(event, context):
         "empleado_id": detail.get('empleado_id', 'UNKNOWN'),
         "details": decimal_to_number(detail) # Convert any Decimals in details
     }
+    
+    # Add local_id if available
+    if local_id:
+        output_payload['local_id'] = local_id
+        print(f"📍 Passing local_id: {local_id}")
     
     try:
         print(f"📤 Sending task success with payload: {json.dumps(output_payload, indent=2)}")

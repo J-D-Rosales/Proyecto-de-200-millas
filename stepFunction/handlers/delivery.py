@@ -34,7 +34,15 @@ def handler(event, context):
     input_data = event.get('input', {})
     order_id = input_data.get('order_id')
     empleado_id = input_data.get('empleado_id', 'DELIVERY')
-    local_id = input_data.get('details', {}).get('local_id') or input_data.get('local_id', 'UNKNOWN')
+    
+    # Get local_id from multiple possible locations
+    local_id = (
+        input_data.get('local_id') or
+        input_data.get('details', {}).get('local_id') or
+        'UNKNOWN'
+    )
+    
+    print(f"📍 local_id: {local_id}, order_id: {order_id}")
     
     # Update Pedidos table
     update_pedido_estado(order_id, local_id, 'pedido_en_camino')

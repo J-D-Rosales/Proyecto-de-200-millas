@@ -118,6 +118,8 @@ def lambda_handler(event, context):
             """
             print(f"Ejecutando query: Total de pedidos para local {local_id}")
         else:
+            # Athena doesn't support OFFSET without LIMIT, so we use a workaround
+            # We fetch more results and filter in Python
             query = f"""
             SELECT 
                 local_id,
@@ -125,22 +127,22 @@ def lambda_handler(event, context):
             FROM pedidos
             GROUP BY local_id
             ORDER BY total_pedidos DESC
-            LIMIT {page_size}
-            OFFSET {offset}
             """
             print(f"Ejecutando query: Total de pedidos por local (página {page}, tamaño {page_size})")
         
         results = execute_athena_query(query)
         
         # Parsear resultados
-        data = parse_results(results)
+        all_data = parse_results(results)
         
-        # Get total count for pagination metadata
-        total_query = "SELECT COUNT(DISTINCT local_id) as total FROM pedidos"
-        total_results = execute_athena_query(total_query)
-        total_data = parse_results(total_results)
-        total_items = total_data[0]['total'] if total_data else 0
-        total_pages = (total_items + page_size - 1) // page_size
+        # Apply pagination in Python
+        total_items = len(all_data)
+        total_pages = (total_items + page_size - 1) // page_size if total_items > 0 else 1
+        
+        # Get the page slice
+        start_idx = offset
+        end_idx = offset + page_size
+        data = all_data[start_idx:end_idx]
         
         return {
             'statusCode': 200,
