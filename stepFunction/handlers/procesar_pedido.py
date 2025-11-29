@@ -15,7 +15,12 @@ def handler(event, context):
     # Event comes from SF: { "taskToken": "...", "input": { ... } }
     task_token = event.get('taskToken')
     input_data = event.get('input', {})
-    order_id = input_data.get('detail', {}).get('order_id') or input_data.get('order_id') or str(uuid.uuid4())
+    order_id = (
+        input_data.get('detail', {}).get('order_id') or 
+        input_data.get('order_id') or 
+        input_data.get('pedido_id') or  # ← NUEVO: también buscar pedido_id
+        str(uuid.uuid4())
+    )
     empleado_id = input_data.get('detail', {}).get('empleado_id') or input_data.get('empleado_id', 'SYSTEM')
     
     # 1. Enqueue to SQS Cocina
