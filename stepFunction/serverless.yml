@@ -45,6 +45,9 @@ functions:
 
   entregaCompleta:
     handler: handlers/entrega_completa.handler
+  
+  pedidoFallido:
+    handler: handlers/pedido_fallido.handler
 
   # --- Control & Events ---
   startExecution:
@@ -113,6 +116,8 @@ resources:
       Value: !GetAtt EntregadoLambdaFunction.Arn
     EntregaCompletaArn:
       Value: !GetAtt EntregaCompletaLambdaFunction.Arn
+    PedidoFallidoArn:
+      Value: !GetAtt PedidoFallidoLambdaFunction.Arn
 
 package:
   patterns:

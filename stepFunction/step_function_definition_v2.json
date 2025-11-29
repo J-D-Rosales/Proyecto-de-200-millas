@@ -1,0 +1,230 @@
+{
+  "Comment": "Orquestación de Pedidos - Proyecto 200 Millas con manejo de errores",
+  "StartAt": "ProcesarPedido",
+  "States": {
+    "ProcesarPedido": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
+      "TimeoutSeconds": 900,
+      "Parameters": {
+        "FunctionName": "service-orders-200-millas-dev-procesarPedido",
+        "Payload": {
+          "taskToken.$": "$$.Task.Token",
+          "input.$": "$"
+        }
+      },
+      "Catch": [
+        {
+          "ErrorEquals": ["States.Timeout"],
+          "ResultPath": "$.error",
+          "Next": "PedidoFallido"
+        }
+      ],
+      "Next": "PedidoEnCocina"
+    },
+    "PedidoEnCocina": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
+      "TimeoutSeconds": 900,
+      "Parameters": {
+        "FunctionName": "service-orders-200-millas-dev-pedidoEnCocina",
+        "Payload": {
+          "taskToken.$": "$$.Task.Token",
+          "input.$": "$"
+        }
+      },
+      "Catch": [
+        {
+          "ErrorEquals": ["States.Timeout"],
+          "ResultPath": "$.error",
+          "Next": "PedidoFallido"
+        }
+      ],
+      "Next": "EvaluarCocina"
+    },
+    "EvaluarCocina": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.status",
+          "StringEquals": "RECHAZADO",
+          "Next": "ReintentarCocina"
+        }
+      ],
+      "Default": "CocinaCompleta"
+    },
+    "ReintentarCocina": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "service-orders-200-millas-dev-reintentarCocina",
+        "Payload": {
+          "input.$": "$"
+        }
+      },
+      "Retry": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "IntervalSeconds": 1,
+          "MaxAttempts": 3,
+          "BackoffRate": 2.0
+        }
+      ],
+      "Next": "EvaluarReintentoCocina"
+    },
+    "EvaluarReintentoCocina": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.retry_count",
+          "NumericLessThanEquals": 3,
+          "Next": "PedidoEnCocina"
+        }
+      ],
+      "Default": "PedidoFallido"
+    },
+    "CocinaCompleta": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
+      "TimeoutSeconds": 900,
+      "Parameters": {
+        "FunctionName": "service-orders-200-millas-dev-cocinaCompleta",
+        "Payload": {
+          "taskToken.$": "$$.Task.Token",
+          "input.$": "$"
+        }
+      },
+      "Catch": [
+        {
+          "ErrorEquals": ["States.Timeout"],
+          "ResultPath": "$.error",
+          "Next": "PedidoFallido"
+        }
+      ],
+      "Next": "Empaquetado"
+    },
+    "Empaquetado": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
+      "TimeoutSeconds": 900,
+      "Parameters": {
+        "FunctionName": "service-orders-200-millas-dev-empaquetado",
+        "Payload": {
+          "taskToken.$": "$$.Task.Token",
+          "input.$": "$"
+        }
+      },
+      "Catch": [
+        {
+          "ErrorEquals": ["States.Timeout"],
+          "ResultPath": "$.error",
+          "Next": "PedidoFallido"
+        }
+      ],
+      "Next": "Delivery"
+    },
+    "Delivery": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
+      "TimeoutSeconds": 900,
+      "Parameters": {
+        "FunctionName": "service-orders-200-millas-dev-delivery",
+        "Payload": {
+          "taskToken.$": "$$.Task.Token",
+          "input.$": "$"
+        }
+      },
+      "Catch": [
+        {
+          "ErrorEquals": ["States.Timeout"],
+          "ResultPath": "$.error",
+          "Next": "PedidoFallido"
+        }
+      ],
+      "Next": "EvaluarDelivery"
+    },
+    "EvaluarDelivery": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.status",
+          "StringEquals": "RECHAZADO",
+          "Next": "ReintentarDelivery"
+        }
+      ],
+      "Default": "Entregado"
+    },
+    "ReintentarDelivery": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "service-orders-200-millas-dev-reintentarDelivery",
+        "Payload": {
+          "input.$": "$"
+        }
+      },
+      "Retry": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "IntervalSeconds": 1,
+          "MaxAttempts": 3,
+          "BackoffRate": 2.0
+        }
+      ],
+      "Next": "EvaluarReintentoDelivery"
+    },
+    "EvaluarReintentoDelivery": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.retry_count",
+          "NumericLessThanEquals": 3,
+          "Next": "Delivery"
+        }
+      ],
+      "Default": "PedidoFallido"
+    },
+    "Entregado": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
+      "TimeoutSeconds": 900,
+      "Parameters": {
+        "FunctionName": "service-orders-200-millas-dev-entregado",
+        "Payload": {
+          "taskToken.$": "$$.Task.Token",
+          "input.$": "$"
+        }
+      },
+      "Catch": [
+        {
+          "ErrorEquals": ["States.Timeout"],
+          "ResultPath": "$.error",
+          "Next": "PedidoFallido"
+        }
+      ],
+      "Next": "EntregaCompleta"
+    },
+    "EntregaCompleta": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "service-orders-200-millas-dev-entregaCompleta",
+        "Payload": {
+          "input.$": "$"
+        }
+      },
+      "End": true
+    },
+    "PedidoFallido": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "service-orders-200-millas-dev-pedidoFallido",
+        "Payload": {
+          "input.$": "$"
+        }
+      },
+      "End": true
+    }
+  }
+}
