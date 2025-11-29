@@ -84,16 +84,21 @@ def parse_results(results):
 
 def lambda_handler(event, context):
     """
-    Query: Tiempo total de pedido desde procesado hasta recibido, agrupado por local
-    Body: { "local_id": "LOCAL-001" } (opcional)
+    Query: Tiempo total de pedido desde procesado hasta recibido, agrupado por local con paginación
+    Query params:
+        - local_id (opcional): Filtrar por local específico
+        - page (opcional): Número de página (default: 1)
+        - page_size (opcional): Tamaño de página (default: 10, max: 100)
     """
     try:
-        # Parsear body
-        body = {}
-        if event.get('body'):
-            body = json.loads(event['body']) if isinstance(event['body'], str) else event['body']
+        # Parsear query parameters
+        params = event.get('queryStringParameters', {}) or {}
+        local_id = params.get('local_id')
+        page = int(params.get('page', 1))
+        page_size = min(int(params.get('page_size', 10)), 100)  # Max 100 items per page
         
-        local_id = body.get('local_id')
+        # Calculate offset
+        offset = (page - 1) * page_size
         
         # Query SQL que calcula el tiempo entre el primer estado (procesado) y el último (recibido)
         if local_id:
@@ -186,7 +191,17 @@ def lambda_handler(event, context):
         
         results = execute_athena_query(query)
         
-        data = parse_results(results)
+        # Parsear resultados
+        all_data = parse_results(results)
+        
+        # Apply pagination in Python (Athena doesn't support OFFSET well)
+        total_items = len(all_data)
+        total_pages = (total_items + page_size - 1) // page_size if total_items > 0 else 1
+        
+        # Get the page slice
+        start_idx = offset
+        end_idx = offset + page_size
+        data = all_data[start_idx:end_idx]
         
         return {
             'statusCode': 200,
@@ -194,6 +209,14 @@ def lambda_handler(event, context):
             'body': json.dumps({
                 'query': 'Tiempo total de pedido (procesado -> recibido) por local',
                 'local_id': local_id if local_id else 'todos',
+                'pagination': {
+                    'page': page,
+                    'page_size': page_size,
+                    'total_items': total_items,
+                    'total_pages': total_pages,
+                    'has_next': page < total_pages,
+                    'has_prev': page > 1
+                },
                 'data': data
             }, ensure_ascii=False)
         }
