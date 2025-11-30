@@ -217,6 +217,82 @@ deploy_infrastructure() {
 }
 
 
+setup_glue_athena() {
+  echo -e "${BLUE}⚙️  Configurando Glue y Athena...${NC}"
+  
+  local GLUE_DATABASE="millas_analytics_db"
+  local ANALYTICS_BUCKET="bucket-analytic-${AWS_ACCOUNT_ID}"
+  local ATHENA_BUCKET="athena-results-${AWS_ACCOUNT_ID}"
+  
+  # 1. Crear Athena Workgroup
+  echo -e "${YELLOW}   Creando Athena Workgroup...${NC}"
+  aws athena create-work-group \
+    --name millas-analytics-workgroup \
+    --configuration "ResultConfigurationUpdates={OutputLocation=s3://${ATHENA_BUCKET}/results/},EnforceWorkGroupConfiguration=true,PublishCloudWatchMetricsEnabled=true" \
+    --description "Workgroup para analytics de 200 Millas" \
+    --region "${AWS_REGION}" 2>/dev/null && echo -e "${GREEN}   ✅ Workgroup creado${NC}" || echo -e "${YELLOW}   ℹ️  Workgroup ya existe${NC}"
+  
+  # 2. Crear Glue Crawler para Pedidos
+  echo -e "${YELLOW}   Creando Glue Crawler para Pedidos...${NC}"
+  aws glue create-crawler \
+    --name millas-pedidos-crawler \
+    --role "arn:aws:iam::${AWS_ACCOUNT_ID}:role/LabRole" \
+    --database-name "$GLUE_DATABASE" \
+    --targets "{\"S3Targets\":[{\"Path\":\"s3://${ANALYTICS_BUCKET}/pedidos/\"}]}" \
+    --schema-change-policy "UpdateBehavior=UPDATE_IN_DATABASE,DeleteBehavior=LOG" \
+    --region "${AWS_REGION}" 2>/dev/null && echo -e "${GREEN}   ✅ Crawler de pedidos creado${NC}" || echo -e "${YELLOW}   ℹ️  Crawler ya existe${NC}"
+  
+  # 3. Crear Glue Crawler para Historial Estados
+  echo -e "${YELLOW}   Creando Glue Crawler para Historial Estados...${NC}"
+  aws glue create-crawler \
+    --name millas-historial-crawler \
+    --role "arn:aws:iam::${AWS_ACCOUNT_ID}:role/LabRole" \
+    --database-name "$GLUE_DATABASE" \
+    --targets "{\"S3Targets\":[{\"Path\":\"s3://${ANALYTICS_BUCKET}/historial_estados/\"}]}" \
+    --schema-change-policy "UpdateBehavior=UPDATE_IN_DATABASE,DeleteBehavior=LOG" \
+    --region "${AWS_REGION}" 2>/dev/null && echo -e "${GREEN}   ✅ Crawler de historial creado${NC}" || echo -e "${YELLOW}   ℹ️  Crawler ya existe${NC}"
+  
+  echo -e "${GREEN}✅ Glue y Athena configurados${NC}"
+}
+
+cleanup_failed_stacks() {
+  echo -e "${BLUE}🧹 Limpiando stacks fallidos...${NC}"
+  
+  local stacks=(
+    "service-analytics-dev"
+    "service-users-dev"
+    "service-products-dev"
+    "service-clientes-dev"
+    "servicio-empleados-dev"
+    "service-orders-200-millas-dev"
+    "millas-dependencias-dev"
+  )
+  
+  for stack in "${stacks[@]}"; do
+    local status=$(aws cloudformation describe-stacks --stack-name "$stack" --region "${AWS_REGION}" --query 'Stacks[0].StackStatus' --output text 2>/dev/null || echo "NOT_FOUND")
+    
+    if [[ "$status" == "DELETE_FAILED" ]] || [[ "$status" == "ROLLBACK_FAILED" ]] || [[ "$status" == "UPDATE_ROLLBACK_FAILED" ]]; then
+      echo -e "${YELLOW}   Limpiando stack fallido: $stack (estado: $status)${NC}"
+      
+      # Intentar eliminar recursos retenidos
+      aws cloudformation delete-stack --stack-name "$stack" --region "${AWS_REGION}" 2>/dev/null || true
+      
+      # Esperar un poco
+      sleep 2
+      
+      # Si sigue fallando, intentar con retain
+      local new_status=$(aws cloudformation describe-stacks --stack-name "$stack" --region "${AWS_REGION}" --query 'Stacks[0].StackStatus' --output text 2>/dev/null || echo "DELETED")
+      
+      if [[ "$new_status" == "DELETE_FAILED" ]]; then
+        echo -e "${YELLOW}   Stack $stack requiere limpieza manual en la consola de AWS${NC}"
+        echo -e "${YELLOW}   URL: https://console.aws.amazon.com/cloudformation/home?region=${AWS_REGION}#/stacks${NC}"
+      fi
+    fi
+  done
+  
+  echo -e "${GREEN}✅ Limpieza de stacks completada${NC}"
+}
+
 fix_eventbridge_rules() {
   echo -e "${BLUE}🔧 Configurando EventBridge para Step Functions...${NC}"
   
@@ -285,6 +361,9 @@ fix_eventbridge_rules() {
 deploy_services() {
   echo -e "\n${BLUE}🚀 Desplegando microservicios con Serverless...${NC}"
   
+  # 0) Limpiar stacks fallidos
+  cleanup_failed_stacks
+  
   # 1) Preparar dependencias (Lambda Layer)
   prepare_dependencies
   
@@ -323,16 +402,14 @@ deploy_services() {
     echo -e "${YELLOW}📊 Desplegando servicio de analytics...${NC}"
     pushd analytics > /dev/null
     
-    # Verificar si existe setup_analytics.sh
-    if [[ -f "setup_analytics.sh" ]]; then
-      bash setup_analytics.sh
-    else
-      # Si no existe el script, desplegar directamente
-      sls deploy
-    fi
+    # Desplegar con serverless
+    sls deploy
     
     popd > /dev/null
     echo -e "${GREEN}✅ Servicio de analytics desplegado${NC}"
+    
+    # Configurar Glue y Athena
+    setup_glue_athena
   else
     echo -e "${YELLOW}ℹ️  No se encontró directorio analytics, saltando...${NC}"
   fi
@@ -426,6 +503,23 @@ remove_infrastructure() {
   
   aws s3 rm "s3://${ATHENA_BUCKET}" --recursive 2>/dev/null || echo "   Bucket ${ATHENA_BUCKET} vacío/no existe"
   aws s3 rb "s3://${ATHENA_BUCKET}" --region "${AWS_REGION}" 2>/dev/null || echo "   Bucket ${ATHENA_BUCKET} no existe"
+  
+  # 4) Eliminar recursos de Glue y Athena
+  echo -e "${YELLOW}Eliminando recursos de Glue y Athena...${NC}"
+  
+  # Eliminar crawlers
+  aws glue delete-crawler --name millas-pedidos-crawler --region "${AWS_REGION}" 2>/dev/null || echo "   Crawler millas-pedidos-crawler no existe"
+  aws glue delete-crawler --name millas-historial-crawler --region "${AWS_REGION}" 2>/dev/null || echo "   Crawler millas-historial-crawler no existe"
+  
+  # Eliminar tablas de Glue
+  aws glue delete-table --database-name millas_analytics_db --name pedidos --region "${AWS_REGION}" 2>/dev/null || true
+  aws glue delete-table --database-name millas_analytics_db --name historial_estados --region "${AWS_REGION}" 2>/dev/null || true
+  
+  # Eliminar database de Glue
+  aws glue delete-database --name millas_analytics_db --region "${AWS_REGION}" 2>/dev/null || echo "   Database millas_analytics_db no existe"
+  
+  # Eliminar Athena Workgroup
+  aws athena delete-work-group --work-group millas-analytics-workgroup --recursive-delete-option --region "${AWS_REGION}" 2>/dev/null || echo "   Workgroup millas-analytics-workgroup no existe"
 
   echo -e "${GREEN}✅ Infraestructura eliminada${NC}"
 }
@@ -463,9 +557,15 @@ show_deployment_summary() {
   echo "3. Ver logs de una función:"
   echo "   aws logs tail /aws/lambda/NOMBRE_FUNCION --follow"
   echo ""
-  echo "4. Consultar analytics:"
-  echo "   • Exportar datos: POST /analytics/export"
-  echo "   • Ver reportes: POST /analytics/pedidos-por-local"
+  echo "4. Usar Analytics:"
+  echo "   • Exportar datos a S3: POST /analytics/export"
+  echo "   • Ejecutar crawlers:"
+  echo "     aws glue start-crawler --name millas-pedidos-crawler --region ${AWS_REGION}"
+  echo "     aws glue start-crawler --name millas-historial-crawler --region ${AWS_REGION}"
+  echo "   • Ver reportes:"
+  echo "     POST /analytics/pedidos-por-local"
+  echo "     POST /analytics/ganancias-por-local"
+  echo "     POST /analytics/tiempo-pedido"
   echo ""
   echo -e "${BLUE}============================================================${NC}"
 }

@@ -88,43 +88,43 @@ resources:
           Name: millas_analytics_db
           Description: Database para analytics de 200 Millas
 
-    # Glue Crawler para Pedidos
-    GlueCrawlerPedidos:
-      Type: AWS::Glue::Crawler
-      Properties:
-        Name: millas-pedidos-crawler
-        Role: arn:aws:iam::${env:AWS_ACCOUNT_ID}:role/LabRole
-        DatabaseName: !Ref GlueDatabase
-        Targets:
-          S3Targets:
-            - Path: s3://bucket-analytic-${env:AWS_ACCOUNT_ID}/pedidos/
-        SchemaChangePolicy:
-          UpdateBehavior: UPDATE_IN_DATABASE
-          DeleteBehavior: LOG
+    # Glue Crawler para Pedidos (comentado - crear manualmente si es necesario)
+    # GlueCrawlerPedidos:
+    #   Type: AWS::Glue::Crawler
+    #   Properties:
+    #     Name: millas-pedidos-crawler
+    #     Role: arn:aws:iam::${env:AWS_ACCOUNT_ID}:role/LabRole
+    #     DatabaseName: !Ref GlueDatabase
+    #     Targets:
+    #       S3Targets:
+    #         - Path: s3://bucket-analytic-${env:AWS_ACCOUNT_ID}/pedidos/
+    #     SchemaChangePolicy:
+    #       UpdateBehavior: UPDATE_IN_DATABASE
+    #       DeleteBehavior: LOG
 
-    # Glue Crawler para Historial Estados
-    GlueCrawlerHistorial:
-      Type: AWS::Glue::Crawler
-      Properties:
-        Name: millas-historial-crawler
-        Role: arn:aws:iam::${env:AWS_ACCOUNT_ID}:role/LabRole
-        DatabaseName: !Ref GlueDatabase
-        Targets:
-          S3Targets:
-            - Path: s3://bucket-analytic-${env:AWS_ACCOUNT_ID}/historial_estados/
-        SchemaChangePolicy:
-          UpdateBehavior: UPDATE_IN_DATABASE
-          DeleteBehavior: LOG
+    # Glue Crawler para Historial Estados (comentado - crear manualmente si es necesario)
+    # GlueCrawlerHistorial:
+    #   Type: AWS::Glue::Crawler
+    #   Properties:
+    #     Name: millas-historial-crawler
+    #     Role: arn:aws:iam::${env:AWS_ACCOUNT_ID}:role/LabRole
+    #     DatabaseName: !Ref GlueDatabase
+    #     Targets:
+    #       S3Targets:
+    #         - Path: s3://bucket-analytic-${env:AWS_ACCOUNT_ID}/historial_estados/
+    #     SchemaChangePolicy:
+    #       UpdateBehavior: UPDATE_IN_DATABASE
+    #       DeleteBehavior: LOG
 
-    # Athena Workgroup
-    AthenaWorkgroup:
-      Type: AWS::Athena::WorkGroup
-      Properties:
-        Name: millas-analytics-workgroup
-        State: ENABLED
-        WorkGroupConfiguration:
-          ResultConfiguration:
-            OutputLocation: s3://athena-results-${env:AWS_ACCOUNT_ID}/results/
-          EnforceWorkGroupConfiguration: true
-          PublishCloudWatchMetricsEnabled: true
-        Description: Workgroup para analytics de 200 Millas
+    # Athena Workgroup (comentado - crear manualmente si es necesario)
+    # AthenaWorkgroup:
+    #   Type: AWS::Athena::WorkGroup
+    #   Properties:
+    #     Name: millas-analytics-workgroup
+    #     State: ENABLED
+    #     WorkGroupConfiguration:
+    #       ResultConfiguration:
+    #         OutputLocation: s3://athena-results-${env:AWS_ACCOUNT_ID}/results/
+    #       EnforceWorkGroupConfiguration: true
+    #       PublishCloudWatchMetricsEnabled: true
+    #     Description: Workgroup para analytics de 200 Millas
