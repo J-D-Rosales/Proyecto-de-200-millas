@@ -14,6 +14,10 @@ Sistema completo de gestión de pedidos con arquitectura serverless en AWS, dise
 
 ## 🏗 Arquitectura
 
+
+![Diagrama de arquitectura](./ProyectoFinal2.png)
+
+
 ### Servicios AWS Utilizados
 
 - **DynamoDB**: Base de datos NoSQL para almacenamiento de datos
