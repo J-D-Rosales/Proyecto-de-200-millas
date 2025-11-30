@@ -1,838 +1,806 @@
 [
   {
     "local_id": "LOCAL-002",
-    "pedido_id": "d9da8b1a-ad3b-4894-9a6a-f309f5065aa2",
-    "correo": "miguel.gonzalez@hotmail.com",
+    "pedido_id": "2f781aa1-71cf-40be-b037-70cc8481778b",
+    "correo": "carlos.sanchez@outlook.com",
     "productos": [
       {
-        "producto_id": "LOCAL-002#Bowls Del Tigre 32",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-002#Mega Marino 59",
+        "producto_id": "LOCAL-002#Box Marino 6",
         "cantidad": 2
       },
       {
-        "producto_id": "LOCAL-002#Dobles 41",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-002#Ceviches 52",
-        "cantidad": 1
-      }
-    ],
-    "costo": 543.24,
-    "direccion": "Calle 7 #639",
-    "estado": "procesando",
-    "created_at": "2025-11-30T16:35:26.024611"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "pedido_id": "650d176a-3d99-4705-8a63-ccc5355f6a80",
-    "correo": "sofia.rodriguez@outlook.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-003#Familiares 35",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-003#Box Marino 4",
+        "producto_id": "LOCAL-002#Leche de Tigre 42",
         "cantidad": 2
       }
     ],
-    "costo": 173.58,
-    "direccion": "Calle 178 #901",
-    "estado": "procesando",
-    "created_at": "2025-11-30T16:08:26.024776"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "pedido_id": "ffb68565-b8db-496b-8689-c35f20b004a7",
-    "correo": "isabel.lopez@hotmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-002#Trios Marinos 6",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-002#Leche de Tigre 18",
-        "cantidad": 1
-      }
-    ],
-    "costo": 233.17,
-    "direccion": "Calle 35 #527",
+    "costo": 175.38,
+    "direccion": "Calle 53 #837",
     "estado": "recibido",
-    "created_at": "2025-11-30T16:12:26.024797"
+    "created_at": "2025-11-30T16:25:54.710449"
   },
   {
     "local_id": "LOCAL-003",
-    "pedido_id": "e6eeec90-ddc8-4e7b-bfe1-b5a83fbacb5a",
-    "correo": "miguel.gonzalez@hotmail.com",
+    "pedido_id": "11407d39-b820-4f6d-a057-eef133d911a1",
+    "correo": "sofia.flores@gmail.com",
     "productos": [
       {
-        "producto_id": "LOCAL-003#Ceviches 23",
-        "cantidad": 2
+        "producto_id": "LOCAL-003#Promos Fast 8",
+        "cantidad": 3
       },
       {
-        "producto_id": "LOCAL-003#Promos Fast 49",
-        "cantidad": 3
-      }
-    ],
-    "costo": 222.09,
-    "direccion": "Calle 22 #214",
-    "estado": "cocinando",
-    "created_at": "2025-11-30T15:44:26.024828"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "pedido_id": "8de59cf1-2f62-4848-85cd-5f6b074a0f5e",
-    "correo": "pedro.garcia@hotmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-003#Leche de Tigre 55",
+        "producto_id": "LOCAL-003#Leche de Tigre 46",
         "cantidad": 1
       }
     ],
-    "costo": 31.33,
-    "direccion": "Calle 190 #483",
-    "estado": "enviando",
-    "created_at": "2025-11-30T16:25:26.024847"
+    "costo": 262.06,
+    "direccion": "Calle 163 #728",
+    "estado": "procesando",
+    "created_at": "2025-11-30T17:16:54.710612"
   },
   {
     "local_id": "LOCAL-001",
-    "pedido_id": "a20b5d4b-89e3-41d7-801a-23aac98715d2",
-    "correo": "juan.silva@outlook.com",
+    "pedido_id": "45b16dc5-00ef-4bbd-949d-def583ec72fd",
+    "correo": "jose.castro@gmail.com",
     "productos": [
       {
-        "producto_id": "LOCAL-001#Dobles 50",
+        "producto_id": "LOCAL-001#Promociones 35",
         "cantidad": 3
       },
       {
-        "producto_id": "LOCAL-001#Mega Marino 5",
+        "producto_id": "LOCAL-001#Leche de Tigre 32",
         "cantidad": 2
-      }
-    ],
-    "costo": 363.87,
-    "direccion": "Calle 61 #794",
-    "estado": "procesando",
-    "created_at": "2025-11-30T16:17:26.024873"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "pedido_id": "0804fb95-5399-49f5-bbc5-019f847e7c46",
-    "correo": "andres.martinez@hotmail.com",
-    "productos": [
+      },
       {
-        "producto_id": "LOCAL-002#Ceviches 38",
+        "producto_id": "LOCAL-001#Express 4",
         "cantidad": 1
       }
     ],
-    "costo": 70.7,
-    "direccion": "Calle 178 #705",
-    "estado": "cocinando",
-    "created_at": "2025-11-30T16:59:26.024885"
+    "costo": 209.87,
+    "direccion": "Calle 195 #269",
+    "estado": "procesando",
+    "created_at": "2025-11-30T16:47:54.710650"
   },
   {
     "local_id": "LOCAL-003",
-    "pedido_id": "bbb25403-680e-4ccf-b0ef-13f43aa6be94",
-    "correo": "carlos.rodriguez@hotmail.com",
+    "pedido_id": "833033f2-104b-45ca-8cae-40c16c47e777",
+    "correo": "camila.sanchez@outlook.com",
     "productos": [
       {
-        "producto_id": "LOCAL-003#Leche de Tigre 34",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-003#Ceviches 29",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-003#Ceviches 27",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-003#Sopas Power 26",
+        "producto_id": "LOCAL-003#Duos Marinos 19",
         "cantidad": 2
       }
     ],
-    "costo": 299.59,
-    "direccion": "Calle 131 #585",
-    "estado": "procesando",
-    "created_at": "2025-11-30T15:59:26.024909"
+    "costo": 134.64,
+    "direccion": "Calle 124 #778",
+    "estado": "enviando",
+    "created_at": "2025-11-30T15:57:54.710672"
   },
   {
-    "local_id": "LOCAL-002",
-    "pedido_id": "36eb3b68-9b37-49ae-b775-0b491f4d5559",
-    "correo": "sofia.rodriguez@outlook.com",
+    "local_id": "LOCAL-001",
+    "pedido_id": "f57125c4-765a-4ecd-8876-933e07cf8eed",
+    "correo": "andres.fernandez@hotmail.com",
     "productos": [
       {
-        "producto_id": "LOCAL-002#Express 1",
-        "cantidad": 1
+        "producto_id": "LOCAL-001#Familiares 9",
+        "cantidad": 2
       },
       {
-        "producto_id": "LOCAL-002#Leche de Tigre 60",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-002#Trios Marinos 46",
+        "producto_id": "LOCAL-001#Trios Marinos 49",
         "cantidad": 3
       },
       {
-        "producto_id": "LOCAL-002#Ceviches 52",
+        "producto_id": "LOCAL-001#Mostrimar 29",
+        "cantidad": 3
+      }
+    ],
+    "costo": 413.7,
+    "direccion": "Calle 194 #228",
+    "estado": "cocinando",
+    "created_at": "2025-11-30T16:56:54.710694"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "pedido_id": "8af5531d-ca4b-4cc0-a6f1-40a31638c512",
+    "correo": "miguel.sanchez@gmail.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-002#Dobles 40",
+        "cantidad": 3
+      },
+      {
+        "producto_id": "LOCAL-002#Mostrimar 16",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-002#Promociones 44",
         "cantidad": 1
       }
     ],
-    "costo": 328.53,
-    "direccion": "Calle 36 #701",
+    "costo": 244.89,
+    "direccion": "Calle 141 #489",
     "estado": "recibido",
-    "created_at": "2025-11-30T16:25:26.024926"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "pedido_id": "0cb4e4dd-acf5-4ef1-9068-2d1e6c14cd87",
-    "correo": "carlos.fernandez@hotmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-003#Sopas Power 53",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-003#Ceviches 24",
-        "cantidad": 2
-      }
-    ],
-    "costo": 121.83,
-    "direccion": "Calle 63 #786",
-    "estado": "enviando",
-    "created_at": "2025-11-30T16:16:26.024960"
+    "created_at": "2025-11-30T17:15:54.710714"
   },
   {
     "local_id": "LOCAL-002",
-    "pedido_id": "0358ced7-1155-4a9a-937e-c193bc82c0f1",
-    "correo": "isabel.lopez@hotmail.com",
+    "pedido_id": "88ae4410-df14-4d5b-a071-744eeb8de8aa",
+    "correo": "andres.garcia@hotmail.com",
     "productos": [
       {
-        "producto_id": "LOCAL-002#Ceviches 30",
+        "producto_id": "LOCAL-002#Dobles 33",
         "cantidad": 1
       },
       {
-        "producto_id": "LOCAL-002#Promos Fast 10",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-002#Mostrimar 13",
+        "producto_id": "LOCAL-002#Rondas Marinas 22",
         "cantidad": 3
       },
       {
-        "producto_id": "LOCAL-002#Ceviches 38",
-        "cantidad": 1
-      }
-    ],
-    "costo": 388.91,
-    "direccion": "Calle 80 #968",
-    "estado": "enviando",
-    "created_at": "2025-11-30T16:28:26.024983"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "pedido_id": "aa9ba31f-d7d8-444a-9952-5a087ef0f106",
-    "correo": "jose.ortiz@gmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-003#Dobles 19",
-        "cantidad": 2
-      }
-    ],
-    "costo": 70.98,
-    "direccion": "Calle 61 #186",
-    "estado": "recibido",
-    "created_at": "2025-11-30T16:02:26.025008"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "pedido_id": "dcb1adb5-1b2f-4b09-8706-ca5cae778fc0",
-    "correo": "luis.fernandez@outlook.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-002#Promos Fast 7",
+        "producto_id": "LOCAL-002#Duos Marinos 1",
         "cantidad": 1
       },
       {
-        "producto_id": "LOCAL-002#Dobles 41",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-002#Box Marino 40",
+        "producto_id": "LOCAL-002#Box Marino 6",
         "cantidad": 1
       }
     ],
-    "costo": 234.44,
-    "direccion": "Calle 114 #249",
-    "estado": "empacando",
-    "created_at": "2025-11-30T15:55:26.025034"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "pedido_id": "028dff8d-e518-4d19-a54c-f751d3070707",
-    "correo": "pedro.sanchez@outlook.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-002#Trios Marinos 46",
-        "cantidad": 1
-      }
-    ],
-    "costo": 55.52,
-    "direccion": "Calle 115 #855",
-    "estado": "cocinando",
-    "created_at": "2025-11-30T16:43:26.025059"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "pedido_id": "227d77a3-b79c-47e4-ad0d-f1665ce03c67",
-    "correo": "andres.martinez@hotmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-003#Mega Marino 56",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-003#Sopas Power 57",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-003#Familiares 43",
-        "cantidad": 2
-      }
-    ],
-    "costo": 404.46,
-    "direccion": "Calle 16 #429",
+    "costo": 244.0,
+    "direccion": "Calle 101 #372",
     "estado": "procesando",
-    "created_at": "2025-11-30T16:17:26.025077"
+    "created_at": "2025-11-30T16:40:54.710736"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "pedido_id": "9a5101bf-b898-4c74-b152-fb7436f24578",
+    "correo": "andres.garcia@hotmail.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-002#Trios Marinos 47",
+        "cantidad": 3
+      },
+      {
+        "producto_id": "LOCAL-002#Duos Marinos 36",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-002#Dobles 40",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-002#Box Marino 6",
+        "cantidad": 1
+      }
+    ],
+    "costo": 389.88,
+    "direccion": "Calle 36 #883",
+    "estado": "enviando",
+    "created_at": "2025-11-30T16:00:54.710753"
   },
   {
     "local_id": "LOCAL-001",
-    "pedido_id": "9132843c-75f1-4b4a-868c-130d2a1ff69c",
-    "correo": "sofia.rodriguez@outlook.com",
+    "pedido_id": "00d8a648-ac15-48e2-9cf6-648d8f9e913e",
+    "correo": "andres.fernandez@hotmail.com",
     "productos": [
       {
-        "producto_id": "LOCAL-001#Dobles 36",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-001#Ceviches 22",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-001#Mega Marino 15",
+        "producto_id": "LOCAL-001#Mega Marino 14",
         "cantidad": 3
       }
     ],
-    "costo": 100.84,
-    "direccion": "Calle 7 #878",
+    "costo": 200.04,
+    "direccion": "Calle 171 #822",
     "estado": "recibido",
-    "created_at": "2025-11-30T16:19:26.025096"
+    "created_at": "2025-11-30T16:25:54.710778"
   },
   {
-    "local_id": "LOCAL-001",
-    "pedido_id": "87f4845e-50eb-4b86-853a-2a0904419df2",
-    "correo": "andres.perez@hotmail.com",
+    "local_id": "LOCAL-003",
+    "pedido_id": "4f7cc4e1-0b0a-4fd4-abbc-34e5bb9ddfae",
+    "correo": "miguel.fernandez@outlook.com",
     "productos": [
       {
-        "producto_id": "LOCAL-001#Promos Fast 21",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-001#Mega Marino 15",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-001#Dobles 36",
+        "producto_id": "LOCAL-003#Express 41",
         "cantidad": 1
       }
     ],
-    "costo": 246.89,
-    "direccion": "Calle 68 #759",
+    "costo": 41.03,
+    "direccion": "Calle 19 #350",
     "estado": "recibido",
-    "created_at": "2025-11-30T15:37:26.025123"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "pedido_id": "b907b56c-9ff5-4f0f-be58-a67228a39031",
-    "correo": "pedro.garcia@hotmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-003#Leche de Tigre 55",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-003#Ceviches 27",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-003#Sopas Power 47",
-        "cantidad": 1
-      }
-    ],
-    "costo": 185.22,
-    "direccion": "Calle 41 #762",
-    "estado": "empacando",
-    "created_at": "2025-11-30T16:41:26.025152"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "pedido_id": "ac249ad7-67b3-47bd-808a-c77382be686a",
-    "correo": "miguel.martinez@hotmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-002#Box Marino 40",
-        "cantidad": 2
-      }
-    ],
-    "costo": 114.76,
-    "direccion": "Calle 135 #610",
-    "estado": "cocinando",
-    "created_at": "2025-11-30T16:03:26.025173"
+    "created_at": "2025-11-30T16:18:54.710800"
   },
   {
     "local_id": "LOCAL-001",
-    "pedido_id": "b7852d1f-9d1b-4b74-b923-e8ab6b4b9dd3",
-    "correo": "juan.torres@outlook.com",
+    "pedido_id": "fa4add5e-f41a-4ac3-83ac-b773ac70ca12",
+    "correo": "andres.garcia@hotmail.com",
     "productos": [
       {
-        "producto_id": "LOCAL-001#Ceviches 22",
+        "producto_id": "LOCAL-001#Trios Marinos 49",
         "cantidad": 3
       },
       {
-        "producto_id": "LOCAL-001#Rondas Marinas 48",
-        "cantidad": 1
+        "producto_id": "LOCAL-001#Promos Fast 57",
+        "cantidad": 2
       },
       {
-        "producto_id": "LOCAL-001#Promos Fast 21",
-        "cantidad": 3
-      }
-    ],
-    "costo": 333.58,
-    "direccion": "Calle 8 #777",
-    "estado": "empacando",
-    "created_at": "2025-11-30T16:47:26.025192"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "pedido_id": "b5cabd18-a00e-4daf-aa69-ce94e2bfc0b3",
-    "correo": "valentina.martinez@outlook.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-003#Fritazo 33",
+        "producto_id": "LOCAL-001#Sopas Power 59",
         "cantidad": 1
       }
     ],
-    "costo": 75.42,
-    "direccion": "Calle 174 #485",
-    "estado": "cocinando",
-    "created_at": "2025-11-30T16:05:26.025218"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "pedido_id": "ec479876-3ee9-4395-a342-6f69ca115698",
-    "correo": "isabel.lopez@hotmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-002#Promos Fast 10",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-002#Express 1",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-002#Mega Marino 59",
-        "cantidad": 3
-      }
-    ],
-    "costo": 441.28,
-    "direccion": "Calle 137 #826",
-    "estado": "enviando",
-    "created_at": "2025-11-30T16:49:26.025234"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "pedido_id": "e14552aa-3670-4566-8491-cf956a674af9",
-    "correo": "jose.silva@gmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-001#Box Marino 31",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-001#Rondas Marinas 48",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-001#Box Marino 54",
-        "cantidad": 3
-      }
-    ],
-    "costo": 362.8,
-    "direccion": "Calle 75 #577",
+    "costo": 212.96,
+    "direccion": "Calle 146 #677",
     "estado": "procesando",
-    "created_at": "2025-11-30T16:45:26.025257"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "pedido_id": "70b70774-f43f-48e9-9f0a-833d9d0ef332",
-    "correo": "andres.perez@hotmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-003#Bowls Del Tigre 20",
-        "cantidad": 2
-      }
-    ],
-    "costo": 58.9,
-    "direccion": "Calle 12 #241",
-    "estado": "enviando",
-    "created_at": "2025-11-30T16:43:26.025289"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "pedido_id": "713fc721-e6b8-4935-9f58-4dcc4cf65de8",
-    "correo": "carlos.fernandez@hotmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-003#Trios Marinos 42",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-003#Sopas Power 57",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-003#Ceviches 27",
-        "cantidad": 2
-      }
-    ],
-    "costo": 146.41,
-    "direccion": "Calle 43 #994",
-    "estado": "empacando",
-    "created_at": "2025-11-30T16:34:26.025311"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "pedido_id": "3b61002f-9e05-4ac1-9f8b-0794943b9dcd",
-    "correo": "carlos.rodriguez@hotmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-003#Fritazo 33",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-003#Bowls Del Tigre 20",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-003#Familiares 43",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-003#Ceviches 27",
-        "cantidad": 2
-      }
-    ],
-    "costo": 340.83,
-    "direccion": "Calle 189 #783",
-    "estado": "empacando",
-    "created_at": "2025-11-30T15:34:26.025338"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "pedido_id": "fb1556fb-62a3-4d42-963c-00b2f0dea9bb",
-    "correo": "isabel.lopez@hotmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-003#Express 45",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-003#Sopas Power 26",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-003#Ceviches 23",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-003#Express 11",
-        "cantidad": 2
-      }
-    ],
-    "costo": 512.3,
-    "direccion": "Calle 128 #107",
-    "estado": "enviando",
-    "created_at": "2025-11-30T16:53:26.025358"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "pedido_id": "fccfbf5c-1c25-4ab7-8189-d649b4c4b767",
-    "correo": "pedro.garcia@hotmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-003#Duos Marinos 17",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-003#Familiares 35",
-        "cantidad": 3
-      }
-    ],
-    "costo": 137.84,
-    "direccion": "Calle 118 #163",
-    "estado": "cocinando",
-    "created_at": "2025-11-30T16:59:26.025382"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "pedido_id": "6dd7cd3d-acb4-44a0-a5d1-85d6e8292ee4",
-    "correo": "luis.fernandez@outlook.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-002#Leche de Tigre 3",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-002#Box Marino 25",
-        "cantidad": 2
-      }
-    ],
-    "costo": 237.26,
-    "direccion": "Calle 51 #808",
-    "estado": "cocinando",
-    "created_at": "2025-11-30T16:57:26.025397"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "pedido_id": "95eeb75b-ac9b-4f15-a99b-2f493a88f4f6",
-    "correo": "juan.perez@hotmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-002#Promociones 12",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-002#Box Marino 25",
-        "cantidad": 1
-      }
-    ],
-    "costo": 96.89,
-    "direccion": "Calle 181 #539",
-    "estado": "enviando",
-    "created_at": "2025-11-30T16:12:26.025411"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "pedido_id": "e35bcf41-1369-4772-b415-c44cfe15a8bb",
-    "correo": "jose.silva@gmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-003#Express 45",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-003#Familiares 43",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-003#Familiares 16",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-003#Mega Marino 56",
-        "cantidad": 1
-      }
-    ],
-    "costo": 413.77,
-    "direccion": "Calle 48 #874",
-    "estado": "empacando",
-    "created_at": "2025-11-30T15:52:26.025434"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "pedido_id": "47ff3100-b06a-4578-9c60-b3b0468cd8b0",
-    "correo": "luis.flores@gmail.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-002#Promos Fast 7",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-002#Box Marino 40",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-002#Ceviches 52",
-        "cantidad": 1
-      },
-      {
-        "producto_id": "LOCAL-002#Promociones 12",
-        "cantidad": 2
-      }
-    ],
-    "costo": 322.73,
-    "direccion": "Calle 124 #221",
-    "estado": "cocinando",
-    "created_at": "2025-11-30T16:53:26.025457"
+    "created_at": "2025-11-30T16:06:54.710819"
   },
   {
     "local_id": "LOCAL-001",
-    "pedido_id": "fc5443d3-29a2-4cd6-8193-24618013cd30",
-    "correo": "luis.flores@gmail.com",
+    "pedido_id": "130cdbb7-0b5f-4dae-80f0-5c276f74c555",
+    "correo": "sofia.flores@gmail.com",
     "productos": [
       {
-        "producto_id": "LOCAL-001#Box Marino 31",
+        "producto_id": "LOCAL-001#Rondas Marinas 12",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-001#Promos Fast 57",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-001#Dobles 23",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-001#Trios Marinos 49",
+        "cantidad": 2
+      }
+    ],
+    "costo": 241.8,
+    "direccion": "Calle 139 #427",
+    "estado": "cocinando",
+    "created_at": "2025-11-30T16:09:54.710831"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "pedido_id": "6f079104-ab43-4b46-a7e7-969a18463c70",
+    "correo": "carlos.lopez@outlook.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-001#Mostrimar 29",
         "cantidad": 3
       }
     ],
-    "costo": 180.69,
-    "direccion": "Calle 100 #305",
+    "costo": 239.28,
+    "direccion": "Calle 99 #580",
     "estado": "empacando",
-    "created_at": "2025-11-30T16:21:26.025471"
+    "created_at": "2025-11-30T16:53:54.710843"
   },
   {
     "local_id": "LOCAL-002",
-    "pedido_id": "09ea51cd-7531-449a-8258-563428e25fcc",
-    "correo": "camila.castro@gmail.com",
+    "pedido_id": "a67ed911-8362-4a0c-85c8-fc7791a99440",
+    "correo": "camila.sanchez@outlook.com",
     "productos": [
       {
-        "producto_id": "LOCAL-002#Mega Marino 59",
+        "producto_id": "LOCAL-002#Duos Marinos 34",
         "cantidad": 3
       }
     ],
-    "costo": 207.12,
-    "direccion": "Calle 6 #979",
-    "estado": "enviando",
-    "created_at": "2025-11-30T16:17:26.025500"
+    "costo": 117.78,
+    "direccion": "Calle 23 #870",
+    "estado": "empacando",
+    "created_at": "2025-11-30T16:08:54.710863"
   },
   {
-    "local_id": "LOCAL-003",
-    "pedido_id": "4715f823-d56a-435c-859f-2dd8e06f33b6",
-    "correo": "luis.flores@gmail.com",
+    "local_id": "LOCAL-001",
+    "pedido_id": "b626f7a7-5ec1-4541-95e1-b6d98d0597ee",
+    "correo": "isabel.morales@gmail.com",
     "productos": [
       {
-        "producto_id": "LOCAL-003#Bowls Del Tigre 20",
+        "producto_id": "LOCAL-001#Trios Marinos 13",
         "cantidad": 3
+      }
+    ],
+    "costo": 175.53,
+    "direccion": "Calle 68 #586",
+    "estado": "procesando",
+    "created_at": "2025-11-30T16:56:54.710879"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "pedido_id": "4601154d-74f8-4fdf-8e80-92830d5adb87",
+    "correo": "miguel.garcia@gmail.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-002#Mega Marino 27",
+        "cantidad": 1
       },
       {
-        "producto_id": "LOCAL-003#Fritazo 28",
+        "producto_id": "LOCAL-002#Box Marino 6",
         "cantidad": 1
       }
     ],
-    "costo": 122.73,
-    "direccion": "Calle 92 #356",
+    "costo": 115.5,
+    "direccion": "Calle 34 #125",
+    "estado": "procesando",
+    "created_at": "2025-11-30T17:07:54.710889"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "pedido_id": "686c528d-38b7-49d6-941b-e8cf9f6f4e1f",
+    "correo": "camila.sanchez@outlook.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-003#Ceviches 39",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-003#Leche de Tigre 21",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-003#Mega Marino 25",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-003#Promos Fast 8",
+        "cantidad": 2
+      }
+    ],
+    "costo": 361.0,
+    "direccion": "Calle 92 #479",
+    "estado": "enviando",
+    "created_at": "2025-11-30T16:32:54.710900"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "pedido_id": "334653b3-4c0d-45b8-bfe2-297b448a096b",
+    "correo": "andres.fernandez@hotmail.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-003#Mega Marino 25",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-003#Box Marino 3",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-003#Duos Marinos 30",
+        "cantidad": 1
+      }
+    ],
+    "costo": 209.44,
+    "direccion": "Calle 148 #946",
+    "estado": "cocinando",
+    "created_at": "2025-11-30T16:23:54.710920"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "pedido_id": "48a56819-c5fb-49b2-a490-c316fadf39a7",
+    "correo": "camila.fernandez@outlook.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-002#Duos Marinos 1",
+        "cantidad": 2
+      }
+    ],
+    "costo": 40.64,
+    "direccion": "Calle 35 #235",
+    "estado": "empacando",
+    "created_at": "2025-11-30T16:41:54.710933"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "pedido_id": "942bf97b-97cd-491d-953a-e6ad3699f391",
+    "correo": "luis.ortiz@outlook.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-003#Mega Marino 25",
+        "cantidad": 3
+      },
+      {
+        "producto_id": "LOCAL-003#Familiares 54",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-003#Ceviches 39",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-003#Leche de Tigre 31",
+        "cantidad": 1
+      }
+    ],
+    "costo": 293.49,
+    "direccion": "Calle 152 #290",
+    "estado": "empacando",
+    "created_at": "2025-11-30T17:08:54.710950"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "pedido_id": "6a93f0ac-9ae0-4b5a-8678-9c98433ee7e7",
+    "correo": "isabel.morales@gmail.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-002#Promos Fast 45",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-002#Box Marino 6",
+        "cantidad": 1
+      }
+    ],
+    "costo": 112.67,
+    "direccion": "Calle 22 #321",
+    "estado": "procesando",
+    "created_at": "2025-11-30T17:10:54.710966"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "pedido_id": "d80a5471-a2f2-49ab-ba73-c2e7d3f8a0d6",
+    "correo": "luis.ortiz@outlook.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-003#Leche de Tigre 31",
+        "cantidad": 3
+      },
+      {
+        "producto_id": "LOCAL-003#Familiares 54",
+        "cantidad": 1
+      }
+    ],
+    "costo": 74.75,
+    "direccion": "Calle 184 #287",
     "estado": "recibido",
-    "created_at": "2025-11-30T16:55:26.025522"
+    "created_at": "2025-11-30T16:42:54.710976"
   },
   {
-    "local_id": "LOCAL-001",
-    "pedido_id": "07f93161-640b-43f7-81fc-657940c85bbb",
-    "correo": "pedro.sanchez@outlook.com",
+    "local_id": "LOCAL-003",
+    "pedido_id": "008665ff-504e-4596-903f-d504fce152cc",
+    "correo": "carlos.morales@hotmail.com",
     "productos": [
       {
-        "producto_id": "LOCAL-001#Promociones 39",
+        "producto_id": "LOCAL-003#Express 41",
         "cantidad": 3
       },
       {
-        "producto_id": "LOCAL-001#Dobles 50",
+        "producto_id": "LOCAL-003#Leche de Tigre 31",
         "cantidad": 2
       }
     ],
-    "costo": 266.18,
-    "direccion": "Calle 137 #249",
+    "costo": 159.61,
+    "direccion": "Calle 37 #595",
+    "estado": "cocinando",
+    "created_at": "2025-11-30T16:45:54.710997"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "pedido_id": "ef63d52a-bbad-4e2c-9e2a-a5a09dae933e",
+    "correo": "miguel.sanchez@gmail.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-003#Leche de Tigre 31",
+        "cantidad": 3
+      },
+      {
+        "producto_id": "LOCAL-003#Ceviches 39",
+        "cantidad": 3
+      }
+    ],
+    "costo": 177.33,
+    "direccion": "Calle 14 #438",
+    "estado": "enviando",
+    "created_at": "2025-11-30T17:14:54.711012"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "pedido_id": "84e8daf2-1e6e-4c05-a812-45b1c5419f1a",
+    "correo": "jose.castro@gmail.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-003#Familiares 54",
+        "cantidad": 3
+      },
+      {
+        "producto_id": "LOCAL-003#Duos Marinos 30",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-003#Express 37",
+        "cantidad": 2
+      }
+    ],
+    "costo": 159.86,
+    "direccion": "Calle 175 #798",
+    "estado": "cocinando",
+    "created_at": "2025-11-30T16:56:54.711029"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "pedido_id": "365abb3c-5543-4d47-a060-6274f0ccf085",
+    "correo": "miguel.sanchez@gmail.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-001#Mostrimar 15",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-001#Fritazo 51",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-001#Mega Marino 14",
+        "cantidad": 1
+      }
+    ],
+    "costo": 244.5,
+    "direccion": "Calle 74 #639",
     "estado": "empacando",
-    "created_at": "2025-11-30T16:59:26.025552"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "pedido_id": "d0541d50-0787-48c3-a5b8-cb364d2fa292",
-    "correo": "sofia.rodriguez@outlook.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-001#Promos Fast 21",
-        "cantidad": 1
-      }
-    ],
-    "costo": 69.76,
-    "direccion": "Calle 38 #187",
-    "estado": "procesando",
-    "created_at": "2025-11-30T16:14:26.025574"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "pedido_id": "9e26f100-efe5-42cd-b0a3-2c7bf54c7b40",
-    "correo": "pedro.sanchez@outlook.com",
-    "productos": [
-      {
-        "producto_id": "LOCAL-001#Box Marino 54",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-001#Promos Fast 21",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-001#Ceviches 22",
-        "cantidad": 2
-      },
-      {
-        "producto_id": "LOCAL-001#Dobles 50",
-        "cantidad": 1
-      }
-    ],
-    "costo": 451.43,
-    "direccion": "Calle 37 #865",
-    "estado": "enviando",
-    "created_at": "2025-11-30T16:30:26.025593"
+    "created_at": "2025-11-30T17:01:54.711042"
   },
   {
     "local_id": "LOCAL-002",
-    "pedido_id": "e31a2e7b-1630-49d8-b8bc-99b9a3b38c43",
-    "correo": "luis.fernandez@outlook.com",
+    "pedido_id": "d0a5f9e5-ca61-4bdb-b949-03541628f314",
+    "correo": "sofia.rojas@outlook.com",
     "productos": [
       {
-        "producto_id": "LOCAL-002#Promos Fast 10",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-002#Ceviches 38",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-002#Promociones 12",
-        "cantidad": 3
-      },
-      {
-        "producto_id": "LOCAL-002#Express 1",
+        "producto_id": "LOCAL-002#Leche de Tigre 42",
         "cantidad": 1
       }
     ],
-    "costo": 569.42,
-    "direccion": "Calle 13 #837",
-    "estado": "procesando",
-    "created_at": "2025-11-30T16:00:26.025615"
+    "costo": 27.36,
+    "direccion": "Calle 114 #192",
+    "estado": "empacando",
+    "created_at": "2025-11-30T16:17:54.711055"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "pedido_id": "fe6b3965-d182-4902-981a-94394052dee7",
+    "correo": "camila.fernandez@outlook.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-003#Sopas Power 50",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-003#Duos Marinos 30",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-003#Promos Fast 20",
+        "cantidad": 1
+      }
+    ],
+    "costo": 109.69,
+    "direccion": "Calle 131 #455",
+    "estado": "empacando",
+    "created_at": "2025-11-30T17:11:54.711089"
   },
   {
     "local_id": "LOCAL-002",
-    "pedido_id": "156d3c3a-f105-4db4-b405-0e6ce1883c0c",
-    "correo": "juan.torres@outlook.com",
+    "pedido_id": "00d76d2b-8a8f-461a-8c86-6b4941265e27",
+    "correo": "jose.rojas@hotmail.com",
     "productos": [
       {
-        "producto_id": "LOCAL-002#Leche de Tigre 18",
+        "producto_id": "LOCAL-002#Dobles 33",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-002#Mega Marino 27",
         "cantidad": 3
       },
       {
-        "producto_id": "LOCAL-002#Promociones 12",
+        "producto_id": "LOCAL-002#Dobles 5",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-002#Duos Marinos 34",
+        "cantidad": 2
+      }
+    ],
+    "costo": 384.81,
+    "direccion": "Calle 84 #650",
+    "estado": "enviando",
+    "created_at": "2025-11-30T17:09:54.711105"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "pedido_id": "6acda760-7b34-4475-9035-1de3b42f0851",
+    "correo": "carlos.morales@hotmail.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-002#Promociones 44",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-002#Dobles 33",
         "cantidad": 3
       }
     ],
-    "costo": 151.59,
-    "direccion": "Calle 101 #111",
+    "costo": 254.95,
+    "direccion": "Calle 51 #373",
     "estado": "enviando",
-    "created_at": "2025-11-30T15:43:26.025669"
+    "created_at": "2025-11-30T16:42:54.711130"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "pedido_id": "8ea92df3-81b1-4ee0-8cc1-c0097e3e7ce7",
+    "correo": "carlos.lopez@outlook.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-002#Familiares 2",
+        "cantidad": 2
+      }
+    ],
+    "costo": 152.88,
+    "direccion": "Calle 113 #986",
+    "estado": "enviando",
+    "created_at": "2025-11-30T16:29:54.711145"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "pedido_id": "5ad4bff9-1b29-49d1-b8e1-f18a84854a33",
+    "correo": "carlos.garcia@hotmail.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-002#Mostrimar 38",
+        "cantidad": 3
+      },
+      {
+        "producto_id": "LOCAL-002#Duos Marinos 1",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-002#Dobles 5",
+        "cantidad": 2
+      }
+    ],
+    "costo": 346.07,
+    "direccion": "Calle 196 #195",
+    "estado": "cocinando",
+    "created_at": "2025-11-30T16:44:54.711186"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "pedido_id": "cf7926bc-0dad-421b-ba71-d9df1c6f2d52",
+    "correo": "sofia.rojas@outlook.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-003#Leche de Tigre 21",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-003#Ceviches 39",
+        "cantidad": 1
+      }
+    ],
+    "costo": 76.46,
+    "direccion": "Calle 25 #223",
+    "estado": "recibido",
+    "created_at": "2025-11-30T16:19:54.711206"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "pedido_id": "27020968-7505-4f5a-acb8-903898645790",
+    "correo": "carlos.gonzalez@hotmail.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-001#Mega Marino 14",
+        "cantidad": 3
+      }
+    ],
+    "costo": 200.04,
+    "direccion": "Calle 85 #770",
+    "estado": "enviando",
+    "created_at": "2025-11-30T17:02:54.711224"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "pedido_id": "756fa605-7b36-46c0-af96-20d8d0a0f4d6",
+    "correo": "pedro.rodriguez@outlook.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-001#Mega Marino 14",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-001#Promos Fast 57",
+        "cantidad": 2
+      }
+    ],
+    "costo": 193.04,
+    "direccion": "Calle 122 #455",
+    "estado": "empacando",
+    "created_at": "2025-11-30T16:56:54.711248"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "pedido_id": "07ff1cd1-1556-4621-8780-19a319db4d30",
+    "correo": "camila.fernandez@outlook.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-002#Dobles 60",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-002#Promos Fast 45",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-002#Dobles 5",
+        "cantidad": 1
+      }
+    ],
+    "costo": 160.04,
+    "direccion": "Calle 94 #616",
+    "estado": "recibido",
+    "created_at": "2025-11-30T16:09:54.711263"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "pedido_id": "cc6be899-7935-4efd-a6c8-8e924c015d96",
+    "correo": "carmen.silva@gmail.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-002#Dobles 5",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-002#Mega Marino 27",
+        "cantidad": 1
+      },
+      {
+        "producto_id": "LOCAL-002#Trios Marinos 47",
+        "cantidad": 3
+      }
+    ],
+    "costo": 312.76,
+    "direccion": "Calle 183 #553",
+    "estado": "procesando",
+    "created_at": "2025-11-30T16:51:54.711283"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "pedido_id": "401a129b-f7e6-444d-819e-f13cdbe58009",
+    "correo": "camila.fernandez@outlook.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-001#Mega Marino 14",
+        "cantidad": 2
+      },
+      {
+        "producto_id": "LOCAL-001#Familiares 56",
+        "cantidad": 1
+      }
+    ],
+    "costo": 164.96,
+    "direccion": "Calle 161 #718",
+    "estado": "empacando",
+    "created_at": "2025-11-30T17:06:54.711293"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "pedido_id": "7e761cf7-653e-4bb7-b847-ca26c8184d0a",
+    "correo": "isabel.morales@gmail.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-002#Mostrimar 38",
+        "cantidad": 2
+      }
+    ],
+    "costo": 112.86,
+    "direccion": "Calle 44 #663",
+    "estado": "procesando",
+    "created_at": "2025-11-30T16:03:54.711309"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "pedido_id": "8a53840c-6ffc-4997-b567-9cf56cc0f5ed",
+    "correo": "sofia.torres@gmail.com",
+    "productos": [
+      {
+        "producto_id": "LOCAL-001#Mostrimar 29",
+        "cantidad": 2
+      }
+    ],
+    "costo": 159.52,
+    "direccion": "Calle 111 #740",
+    "estado": "cocinando",
+    "created_at": "2025-11-30T16:01:54.711318"
   }
 ]

@@ -207,8 +207,8 @@ def generar_pedidos_y_historial(locales, usuarios, productos, cantidad=None):
             dur = random.randint(2, 15)
             t_fin = t_actual + timedelta(minutes=dur)
             historial_estados.append({
-                "estado_id": str(uuid.uuid4()),
-                "pedido_id": pedido_id,
+                "pedido_id": pedido_id,                              # PK
+                "timestamp": t_actual.isoformat(),                   # SK
                 "estado": estado,
                 "hora_inicio": t_actual.isoformat(),
                 "hora_fin": t_fin.isoformat()

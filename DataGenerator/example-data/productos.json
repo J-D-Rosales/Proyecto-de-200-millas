@@ -1,602 +1,602 @@
 [
   {
     "local_id": "LOCAL-002",
-    "producto_id": "f7c76a15-23cd-4714-baf9-632136303b21",
-    "nombre": "Express 1",
-    "precio": 48.44,
-    "descripcion": "Delicioso plato de la categoría Express",
-    "categoria": "Express",
-    "stock": 3,
-    "imagen_url": "https://example.com/productos/local-002/express-1.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "92533482-8c51-431f-bbc1-8cfaa6781787",
-    "nombre": "Promociones 2",
-    "precio": 55.04,
-    "descripcion": "Delicioso plato de la categoría Promociones",
-    "categoria": "Promociones",
-    "stock": 38,
-    "imagen_url": "https://example.com/productos/local-003/promociones-2.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "43e78b0b-c0de-46ea-9c9a-4e79f0fb8c4a",
-    "nombre": "Leche de Tigre 3",
-    "precio": 56.06,
-    "descripcion": "Delicioso plato de la categoría Leche de Tigre",
-    "categoria": "Leche de Tigre",
-    "stock": 17,
-    "imagen_url": "https://example.com/productos/local-002/leche-de-tigre-3.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "4c74a5f6-3012-409c-a400-ededce215938",
-    "nombre": "Box Marino 4",
-    "precio": 60.88,
-    "descripcion": "Delicioso plato de la categoría Box Marino",
-    "categoria": "Box Marino",
-    "stock": 15,
-    "imagen_url": "https://example.com/productos/local-003/box-marino-4.jpg"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "producto_id": "a7325aab-671c-4266-b720-9e432b220511",
-    "nombre": "Mega Marino 5",
-    "precio": 66.27,
-    "descripcion": "Delicioso plato de la categoría Mega Marino",
-    "categoria": "Mega Marino",
-    "stock": 13,
-    "imagen_url": "https://example.com/productos/local-001/mega-marino-5.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "149718bd-8002-4553-9b13-ff137e4c2bbf",
-    "nombre": "Trios Marinos 6",
-    "precio": 72.32,
-    "descripcion": "Delicioso plato de la categoría Trios Marinos",
-    "categoria": "Trios Marinos",
-    "stock": 23,
-    "imagen_url": "https://example.com/productos/local-002/trios-marinos-6.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "82635461-ea97-4c8f-ad71-73106285354d",
-    "nombre": "Promos Fast 7",
-    "precio": 29.26,
-    "descripcion": "Delicioso plato de la categoría Promos Fast",
-    "categoria": "Promos Fast",
-    "stock": 18,
-    "imagen_url": "https://example.com/productos/local-002/promos-fast-7.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "4710cc68-adda-4906-9694-0b314eaa1d49",
-    "nombre": "Bowls Del Tigre 8",
-    "precio": 61.19,
-    "descripcion": "Delicioso plato de la categoría Bowls Del Tigre",
-    "categoria": "Bowls Del Tigre",
-    "stock": 32,
-    "imagen_url": "https://example.com/productos/local-002/bowls-del-tigre-8.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "158abe77-b2d8-4fcb-a517-240cb9930f5e",
-    "nombre": "Sopas Power 9",
-    "precio": 64.38,
-    "descripcion": "Delicioso plato de la categoría Sopas Power",
-    "categoria": "Sopas Power",
-    "stock": 41,
-    "imagen_url": "https://example.com/productos/local-003/sopas-power-9.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "b83c65b2-44c1-4527-9c3c-444800ea5c14",
-    "nombre": "Promos Fast 10",
-    "precio": 68.64,
-    "descripcion": "Delicioso plato de la categoría Promos Fast",
-    "categoria": "Promos Fast",
-    "stock": 6,
-    "imagen_url": "https://example.com/productos/local-002/promos-fast-10.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "396472d2-7f8d-4a7c-875f-b73886b807e1",
-    "nombre": "Express 11",
-    "precio": 15.18,
-    "descripcion": "Delicioso plato de la categoría Express",
-    "categoria": "Express",
-    "stock": 47,
-    "imagen_url": "https://example.com/productos/local-003/express-11.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "cd197b24-0ec6-42f5-9f6d-583642f4e3f8",
-    "nombre": "Promociones 12",
-    "precio": 34.32,
-    "descripcion": "Delicioso plato de la categoría Promociones",
-    "categoria": "Promociones",
-    "stock": 38,
-    "imagen_url": "https://example.com/productos/local-002/promociones-12.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "f5a62a29-f454-49ee-8297-540384ef823e",
-    "nombre": "Mostrimar 13",
-    "precio": 43.3,
-    "descripcion": "Delicioso plato de la categoría Mostrimar",
-    "categoria": "Mostrimar",
-    "stock": 47,
-    "imagen_url": "https://example.com/productos/local-002/mostrimar-13.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "5105acee-deb9-4a28-be39-25b378c33562",
-    "nombre": "Fritazo 14",
-    "precio": 32.88,
-    "descripcion": "Delicioso plato de la categoría Fritazo",
-    "categoria": "Fritazo",
-    "stock": 9,
-    "imagen_url": "https://example.com/productos/local-003/fritazo-14.jpg"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "producto_id": "3ca25e2f-a942-4b2e-9631-ac2b8ab0877c",
-    "nombre": "Mega Marino 15",
-    "precio": 15.86,
-    "descripcion": "Delicioso plato de la categoría Mega Marino",
-    "categoria": "Mega Marino",
-    "stock": 18,
-    "imagen_url": "https://example.com/productos/local-001/mega-marino-15.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "afb95d2a-591c-4765-bf21-0e216669eb2a",
-    "nombre": "Familiares 16",
-    "precio": 34.74,
-    "descripcion": "Delicioso plato de la categoría Familiares",
-    "categoria": "Familiares",
-    "stock": 45,
-    "imagen_url": "https://example.com/productos/local-003/familiares-16.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "764df793-d7ee-4f83-92cc-19d988212f2b",
-    "nombre": "Duos Marinos 17",
-    "precio": 60.11,
+    "producto_id": "a32b2562-59d0-46a2-845f-0ce8df5a1db7",
+    "nombre": "Duos Marinos 1",
+    "precio": 20.32,
     "descripcion": "Delicioso plato de la categoría Duos Marinos",
     "categoria": "Duos Marinos",
-    "stock": 30,
-    "imagen_url": "https://example.com/productos/local-003/duos-marinos-17.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "04cc3137-7b1d-4852-9c8c-70304ecac3da",
-    "nombre": "Leche de Tigre 18",
-    "precio": 16.21,
-    "descripcion": "Delicioso plato de la categoría Leche de Tigre",
-    "categoria": "Leche de Tigre",
-    "stock": 46,
-    "imagen_url": "https://example.com/productos/local-002/leche-de-tigre-18.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "a42bb1da-6c71-4d8e-be31-5ddfa4971e32",
-    "nombre": "Dobles 19",
-    "precio": 35.49,
-    "descripcion": "Delicioso plato de la categoría Dobles",
-    "categoria": "Dobles",
-    "stock": 50,
-    "imagen_url": "https://example.com/productos/local-003/dobles-19.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "883bb8c2-7488-4ffb-b2dd-47a7e96b335c",
-    "nombre": "Bowls Del Tigre 20",
-    "precio": 29.45,
-    "descripcion": "Delicioso plato de la categoría Bowls Del Tigre",
-    "categoria": "Bowls Del Tigre",
-    "stock": 17,
-    "imagen_url": "https://example.com/productos/local-003/bowls-del-tigre-20.jpg"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "producto_id": "15909632-a66b-4c69-b50a-776225c781d3",
-    "nombre": "Promos Fast 21",
-    "precio": 69.76,
-    "descripcion": "Delicioso plato de la categoría Promos Fast",
-    "categoria": "Promos Fast",
-    "stock": 28,
-    "imagen_url": "https://example.com/productos/local-001/promos-fast-21.jpg"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "producto_id": "80d6b731-690d-4dca-a2dc-b10ed775c1e0",
-    "nombre": "Ceviches 22",
-    "precio": 31.51,
-    "descripcion": "Delicioso plato de la categoría Ceviches",
-    "categoria": "Ceviches",
-    "stock": 27,
-    "imagen_url": "https://example.com/productos/local-001/ceviches-22.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "065d148c-2854-41bc-a3e9-8effb68fb520",
-    "nombre": "Ceviches 23",
-    "precio": 37.86,
-    "descripcion": "Delicioso plato de la categoría Ceviches",
-    "categoria": "Ceviches",
-    "stock": 23,
-    "imagen_url": "https://example.com/productos/local-003/ceviches-23.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "687afd5f-a97a-4920-9eb9-a685635524c7",
-    "nombre": "Ceviches 24",
-    "precio": 24.35,
-    "descripcion": "Delicioso plato de la categoría Ceviches",
-    "categoria": "Ceviches",
-    "stock": 3,
-    "imagen_url": "https://example.com/productos/local-003/ceviches-24.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "15c173b2-f61d-4eb9-af6c-5a30ba151afc",
-    "nombre": "Box Marino 25",
-    "precio": 62.57,
-    "descripcion": "Delicioso plato de la categoría Box Marino",
-    "categoria": "Box Marino",
-    "stock": 10,
-    "imagen_url": "https://example.com/productos/local-002/box-marino-25.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "afc70306-ecc0-4aaa-ae07-aa2a6361cb5d",
-    "nombre": "Sopas Power 26",
-    "precio": 71.88,
-    "descripcion": "Delicioso plato de la categoría Sopas Power",
-    "categoria": "Sopas Power",
-    "stock": 30,
-    "imagen_url": "https://example.com/productos/local-003/sopas-power-26.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "9a4b9509-72ef-4709-ab81-84e219ef076a",
-    "nombre": "Ceviches 27",
-    "precio": 32.09,
-    "descripcion": "Delicioso plato de la categoría Ceviches",
-    "categoria": "Ceviches",
-    "stock": 46,
-    "imagen_url": "https://example.com/productos/local-003/ceviches-27.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "3374aa93-59bf-4f2d-bca0-af320c8dea35",
-    "nombre": "Fritazo 28",
-    "precio": 34.38,
-    "descripcion": "Delicioso plato de la categoría Fritazo",
-    "categoria": "Fritazo",
-    "stock": 9,
-    "imagen_url": "https://example.com/productos/local-003/fritazo-28.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "900e798a-1f76-4ae5-9a64-4fefddca14b9",
-    "nombre": "Ceviches 29",
-    "precio": 78.9,
-    "descripcion": "Delicioso plato de la categoría Ceviches",
-    "categoria": "Ceviches",
-    "stock": 4,
-    "imagen_url": "https://example.com/productos/local-003/ceviches-29.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "83723169-45a3-4cd1-9fd5-8a2133bcd745",
-    "nombre": "Ceviches 30",
-    "precio": 51.03,
-    "descripcion": "Delicioso plato de la categoría Ceviches",
-    "categoria": "Ceviches",
-    "stock": 7,
-    "imagen_url": "https://example.com/productos/local-002/ceviches-30.jpg"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "producto_id": "fc84ecb1-7124-4807-b218-21bce721bd63",
-    "nombre": "Box Marino 31",
-    "precio": 60.23,
-    "descripcion": "Delicioso plato de la categoría Box Marino",
-    "categoria": "Box Marino",
     "stock": 22,
-    "imagen_url": "https://example.com/productos/local-001/box-marino-31.jpg"
+    "imagen_url": "https://example.com/productos/local-002/duos-marinos-1.jpg"
   },
   {
     "local_id": "LOCAL-002",
-    "producto_id": "fea4ec22-cc4b-494f-a769-4b5c3e837a0c",
-    "nombre": "Bowls Del Tigre 32",
-    "precio": 43.97,
-    "descripcion": "Delicioso plato de la categoría Bowls Del Tigre",
-    "categoria": "Bowls Del Tigre",
+    "producto_id": "9fee3567-4614-4586-895d-47d7ed89de9f",
+    "nombre": "Familiares 2",
+    "precio": 76.44,
+    "descripcion": "Delicioso plato de la categoría Familiares",
+    "categoria": "Familiares",
     "stock": 28,
-    "imagen_url": "https://example.com/productos/local-002/bowls-del-tigre-32.jpg"
+    "imagen_url": "https://example.com/productos/local-002/familiares-2.jpg"
   },
   {
     "local_id": "LOCAL-003",
-    "producto_id": "a02ea0da-8189-4999-8c24-7014cf07838d",
-    "nombre": "Fritazo 33",
-    "precio": 75.42,
-    "descripcion": "Delicioso plato de la categoría Fritazo",
-    "categoria": "Fritazo",
-    "stock": 33,
-    "imagen_url": "https://example.com/productos/local-003/fritazo-33.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "30e92586-e43b-40c6-b18b-f7e268687075",
-    "nombre": "Leche de Tigre 34",
-    "precio": 44.84,
-    "descripcion": "Delicioso plato de la categoría Leche de Tigre",
-    "categoria": "Leche de Tigre",
-    "stock": 39,
-    "imagen_url": "https://example.com/productos/local-003/leche-de-tigre-34.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "2b4575a8-3425-489c-b0b0-b625feaa4bd2",
-    "nombre": "Familiares 35",
-    "precio": 25.91,
-    "descripcion": "Delicioso plato de la categoría Familiares",
-    "categoria": "Familiares",
-    "stock": 37,
-    "imagen_url": "https://example.com/productos/local-003/familiares-35.jpg"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "producto_id": "4e4e8c50-9203-4361-b393-264ca1642b4d",
-    "nombre": "Dobles 36",
-    "precio": 21.75,
-    "descripcion": "Delicioso plato de la categoría Dobles",
-    "categoria": "Dobles",
-    "stock": 7,
-    "imagen_url": "https://example.com/productos/local-001/dobles-36.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "ff6c38a2-f0b3-43bd-b934-848959fe46af",
-    "nombre": "Box Marino 37",
-    "precio": 15.74,
-    "descripcion": "Delicioso plato de la categoría Box Marino",
-    "categoria": "Box Marino",
-    "stock": 50,
-    "imagen_url": "https://example.com/productos/local-003/box-marino-37.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "50947fe5-0124-428d-9853-3af09a7e39ea",
-    "nombre": "Ceviches 38",
-    "precio": 70.7,
-    "descripcion": "Delicioso plato de la categoría Ceviches",
-    "categoria": "Ceviches",
-    "stock": 33,
-    "imagen_url": "https://example.com/productos/local-002/ceviches-38.jpg"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "producto_id": "6db07f24-a1af-44b7-9152-31c8ab4a6a16",
-    "nombre": "Promociones 39",
-    "precio": 37.32,
-    "descripcion": "Delicioso plato de la categoría Promociones",
-    "categoria": "Promociones",
-    "stock": 25,
-    "imagen_url": "https://example.com/productos/local-001/promociones-39.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "f69f28be-2f6c-4267-b8ea-c54ccdd0d5b3",
-    "nombre": "Box Marino 40",
-    "precio": 57.38,
-    "descripcion": "Delicioso plato de la categoría Box Marino",
-    "categoria": "Box Marino",
-    "stock": 44,
-    "imagen_url": "https://example.com/productos/local-002/box-marino-40.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "2dadfb72-9c5f-4468-8b44-5cdfc1d99463",
-    "nombre": "Dobles 41",
-    "precio": 73.9,
-    "descripcion": "Delicioso plato de la categoría Dobles",
-    "categoria": "Dobles",
-    "stock": 3,
-    "imagen_url": "https://example.com/productos/local-002/dobles-41.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "d310b9ba-d700-425c-ba08-ea443a11b32f",
-    "nombre": "Trios Marinos 42",
-    "precio": 23.28,
-    "descripcion": "Delicioso plato de la categoría Trios Marinos",
-    "categoria": "Trios Marinos",
-    "stock": 30,
-    "imagen_url": "https://example.com/productos/local-003/trios-marinos-42.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "da566878-ae1c-47b5-a400-d1bb31ed29b7",
-    "nombre": "Familiares 43",
-    "precio": 48.18,
-    "descripcion": "Delicioso plato de la categoría Familiares",
-    "categoria": "Familiares",
-    "stock": 14,
-    "imagen_url": "https://example.com/productos/local-003/familiares-43.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "d5b815eb-1d66-44f5-8c79-eee3a6eb9140",
-    "nombre": "Box Marino 44",
-    "precio": 42.93,
+    "producto_id": "c04d063a-c226-4844-b565-be81b2e5b593",
+    "nombre": "Box Marino 3",
+    "precio": 61.16,
     "descripcion": "Delicioso plato de la categoría Box Marino",
     "categoria": "Box Marino",
     "stock": 40,
-    "imagen_url": "https://example.com/productos/local-003/box-marino-44.jpg"
+    "imagen_url": "https://example.com/productos/local-003/box-marino-3.jpg"
   },
   {
-    "local_id": "LOCAL-003",
-    "producto_id": "788242b2-fe79-4ac6-8cf1-dd3a0515a89a",
-    "nombre": "Express 45",
-    "precio": 76.36,
+    "local_id": "LOCAL-001",
+    "producto_id": "e518518b-0634-4521-8922-c16db958eea3",
+    "nombre": "Express 4",
+    "precio": 38.16,
     "descripcion": "Delicioso plato de la categoría Express",
     "categoria": "Express",
-    "stock": 8,
-    "imagen_url": "https://example.com/productos/local-003/express-45.jpg"
+    "stock": 21,
+    "imagen_url": "https://example.com/productos/local-001/express-4.jpg"
   },
   {
     "local_id": "LOCAL-002",
-    "producto_id": "5a6ef4e5-41f2-41e6-9082-5b59c4960985",
-    "nombre": "Trios Marinos 46",
-    "precio": 55.52,
+    "producto_id": "5e2ff6b4-9d07-4384-a2f5-395cb2834567",
+    "nombre": "Dobles 5",
+    "precio": 78.23,
+    "descripcion": "Delicioso plato de la categoría Dobles",
+    "categoria": "Dobles",
+    "stock": 47,
+    "imagen_url": "https://example.com/productos/local-002/dobles-5.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "fdf1a571-b9d4-4840-8506-ba67e25fa834",
+    "nombre": "Box Marino 6",
+    "precio": 60.33,
+    "descripcion": "Delicioso plato de la categoría Box Marino",
+    "categoria": "Box Marino",
+    "stock": 25,
+    "imagen_url": "https://example.com/productos/local-002/box-marino-6.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "80349c39-eb5c-4105-aba6-315d27392518",
+    "nombre": "Sopas Power 7",
+    "precio": 22.34,
+    "descripcion": "Delicioso plato de la categoría Sopas Power",
+    "categoria": "Sopas Power",
+    "stock": 1,
+    "imagen_url": "https://example.com/productos/local-001/sopas-power-7.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "86c59985-c26a-4692-a266-10e6164877a7",
+    "nombre": "Promos Fast 8",
+    "precio": 70.8,
+    "descripcion": "Delicioso plato de la categoría Promos Fast",
+    "categoria": "Promos Fast",
+    "stock": 2,
+    "imagen_url": "https://example.com/productos/local-003/promos-fast-8.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "e430d187-47df-43fb-a2da-9cba34ab3efc",
+    "nombre": "Familiares 9",
+    "precio": 25.65,
+    "descripcion": "Delicioso plato de la categoría Familiares",
+    "categoria": "Familiares",
+    "stock": 28,
+    "imagen_url": "https://example.com/productos/local-001/familiares-9.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "34a5ead2-e71c-4089-b2b6-833ef605079c",
+    "nombre": "Dobles 10",
+    "precio": 58.1,
+    "descripcion": "Delicioso plato de la categoría Dobles",
+    "categoria": "Dobles",
+    "stock": 4,
+    "imagen_url": "https://example.com/productos/local-003/dobles-10.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "6c046e96-ac84-4d17-93b7-cfa475c0da23",
+    "nombre": "Express 11",
+    "precio": 36.65,
+    "descripcion": "Delicioso plato de la categoría Express",
+    "categoria": "Express",
+    "stock": 13,
+    "imagen_url": "https://example.com/productos/local-001/express-11.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "cad6c467-bf72-40ca-bbef-7fd831ad1a2c",
+    "nombre": "Rondas Marinas 12",
+    "precio": 22.06,
+    "descripcion": "Delicioso plato de la categoría Rondas Marinas",
+    "categoria": "Rondas Marinas",
+    "stock": 41,
+    "imagen_url": "https://example.com/productos/local-001/rondas-marinas-12.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "074d00b3-0c1a-45d1-a270-600702607ad4",
+    "nombre": "Trios Marinos 13",
+    "precio": 58.51,
+    "descripcion": "Delicioso plato de la categoría Trios Marinos",
+    "categoria": "Trios Marinos",
+    "stock": 36,
+    "imagen_url": "https://example.com/productos/local-001/trios-marinos-13.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "3783ff1c-3e63-4c89-a3ce-1d5134fcf7a0",
+    "nombre": "Mega Marino 14",
+    "precio": 66.68,
+    "descripcion": "Delicioso plato de la categoría Mega Marino",
+    "categoria": "Mega Marino",
+    "stock": 25,
+    "imagen_url": "https://example.com/productos/local-001/mega-marino-14.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "33c5d557-ee5a-4a4e-8c8d-eb8eef534457",
+    "nombre": "Mostrimar 15",
+    "precio": 43.93,
+    "descripcion": "Delicioso plato de la categoría Mostrimar",
+    "categoria": "Mostrimar",
+    "stock": 13,
+    "imagen_url": "https://example.com/productos/local-001/mostrimar-15.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "0156480d-2f63-499a-a60c-110dde88a935",
+    "nombre": "Mostrimar 16",
+    "precio": 18.19,
+    "descripcion": "Delicioso plato de la categoría Mostrimar",
+    "categoria": "Mostrimar",
+    "stock": 39,
+    "imagen_url": "https://example.com/productos/local-002/mostrimar-16.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "ca0d5288-c229-4806-b982-227dd0214246",
+    "nombre": "Duos Marinos 17",
+    "precio": 78.29,
+    "descripcion": "Delicioso plato de la categoría Duos Marinos",
+    "categoria": "Duos Marinos",
+    "stock": 14,
+    "imagen_url": "https://example.com/productos/local-001/duos-marinos-17.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "1c6f2624-7740-4435-abdc-f1bd8744994d",
+    "nombre": "Express 18",
+    "precio": 44.88,
+    "descripcion": "Delicioso plato de la categoría Express",
+    "categoria": "Express",
+    "stock": 35,
+    "imagen_url": "https://example.com/productos/local-003/express-18.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "6993f53c-e1df-4447-8cd3-cc03313273cb",
+    "nombre": "Duos Marinos 19",
+    "precio": 67.32,
+    "descripcion": "Delicioso plato de la categoría Duos Marinos",
+    "categoria": "Duos Marinos",
+    "stock": 11,
+    "imagen_url": "https://example.com/productos/local-003/duos-marinos-19.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "40f37b3e-07db-4b8f-b0c9-266105a590ce",
+    "nombre": "Promos Fast 20",
+    "precio": 51.17,
+    "descripcion": "Delicioso plato de la categoría Promos Fast",
+    "categoria": "Promos Fast",
+    "stock": 38,
+    "imagen_url": "https://example.com/productos/local-003/promos-fast-20.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "e2bfc114-f403-442c-9ca3-b7d6dd36dab3",
+    "nombre": "Leche de Tigre 21",
+    "precio": 35.61,
+    "descripcion": "Delicioso plato de la categoría Leche de Tigre",
+    "categoria": "Leche de Tigre",
+    "stock": 0,
+    "imagen_url": "https://example.com/productos/local-003/leche-de-tigre-21.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "b3bcc7fa-5ea0-4547-90a3-9266e4be1926",
+    "nombre": "Rondas Marinas 22",
+    "precio": 33.6,
+    "descripcion": "Delicioso plato de la categoría Rondas Marinas",
+    "categoria": "Rondas Marinas",
+    "stock": 44,
+    "imagen_url": "https://example.com/productos/local-002/rondas-marinas-22.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "e59f9ae8-4700-475c-80ec-0ebd1967635c",
+    "nombre": "Dobles 23",
+    "precio": 42.88,
+    "descripcion": "Delicioso plato de la categoría Dobles",
+    "categoria": "Dobles",
+    "stock": 41,
+    "imagen_url": "https://example.com/productos/local-001/dobles-23.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "44b3f6b2-9b27-4e91-a34e-a20f963e9968",
+    "nombre": "Box Marino 24",
+    "precio": 15.23,
+    "descripcion": "Delicioso plato de la categoría Box Marino",
+    "categoria": "Box Marino",
+    "stock": 48,
+    "imagen_url": "https://example.com/productos/local-002/box-marino-24.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "30a8ee6b-596c-48a5-9981-30943a79d3c2",
+    "nombre": "Mega Marino 25",
+    "precio": 71.47,
+    "descripcion": "Delicioso plato de la categoría Mega Marino",
+    "categoria": "Mega Marino",
+    "stock": 34,
+    "imagen_url": "https://example.com/productos/local-003/mega-marino-25.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "93a024c0-f98a-49b3-af4e-f2e4a26f0c3c",
+    "nombre": "Ceviches 26",
+    "precio": 48.38,
+    "descripcion": "Delicioso plato de la categoría Ceviches",
+    "categoria": "Ceviches",
+    "stock": 22,
+    "imagen_url": "https://example.com/productos/local-002/ceviches-26.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "ff0739d1-bde2-4821-af24-a6f61f4718e7",
+    "nombre": "Mega Marino 27",
+    "precio": 55.17,
+    "descripcion": "Delicioso plato de la categoría Mega Marino",
+    "categoria": "Mega Marino",
+    "stock": 32,
+    "imagen_url": "https://example.com/productos/local-002/mega-marino-27.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "6da15eed-3b9a-41e2-9482-3a2987022b5d",
+    "nombre": "Trios Marinos 28",
+    "precio": 23.26,
+    "descripcion": "Delicioso plato de la categoría Trios Marinos",
+    "categoria": "Trios Marinos",
+    "stock": 30,
+    "imagen_url": "https://example.com/productos/local-001/trios-marinos-28.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "05eb5121-ae18-421f-b526-f0ba9e9e4fa3",
+    "nombre": "Mostrimar 29",
+    "precio": 79.76,
+    "descripcion": "Delicioso plato de la categoría Mostrimar",
+    "categoria": "Mostrimar",
+    "stock": 35,
+    "imagen_url": "https://example.com/productos/local-001/mostrimar-29.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "1e8c3e9e-6e6f-4ede-b38c-ee4877869bfb",
+    "nombre": "Duos Marinos 30",
+    "precio": 15.65,
+    "descripcion": "Delicioso plato de la categoría Duos Marinos",
+    "categoria": "Duos Marinos",
+    "stock": 2,
+    "imagen_url": "https://example.com/productos/local-003/duos-marinos-30.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "c1c9628f-becd-4ec4-b59f-ae97125cecc7",
+    "nombre": "Leche de Tigre 31",
+    "precio": 18.26,
+    "descripcion": "Delicioso plato de la categoría Leche de Tigre",
+    "categoria": "Leche de Tigre",
+    "stock": 0,
+    "imagen_url": "https://example.com/productos/local-003/leche-de-tigre-31.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "c93f4128-7793-40fb-a66c-b374057ebc8c",
+    "nombre": "Leche de Tigre 32",
+    "precio": 60.16,
+    "descripcion": "Delicioso plato de la categoría Leche de Tigre",
+    "categoria": "Leche de Tigre",
+    "stock": 26,
+    "imagen_url": "https://example.com/productos/local-001/leche-de-tigre-32.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "b29dacb9-49d9-4c2a-824a-5be267df66e8",
+    "nombre": "Dobles 33",
+    "precio": 62.55,
+    "descripcion": "Delicioso plato de la categoría Dobles",
+    "categoria": "Dobles",
+    "stock": 37,
+    "imagen_url": "https://example.com/productos/local-002/dobles-33.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "c8650599-4695-402b-bdc3-9db15b716a59",
+    "nombre": "Duos Marinos 34",
+    "precio": 39.26,
+    "descripcion": "Delicioso plato de la categoría Duos Marinos",
+    "categoria": "Duos Marinos",
+    "stock": 21,
+    "imagen_url": "https://example.com/productos/local-002/duos-marinos-34.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "f1ecb9d6-b91f-4a79-9552-8cad8fe4d993",
+    "nombre": "Promociones 35",
+    "precio": 17.13,
+    "descripcion": "Delicioso plato de la categoría Promociones",
+    "categoria": "Promociones",
+    "stock": 18,
+    "imagen_url": "https://example.com/productos/local-001/promociones-35.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "e6ea1438-2d80-4265-a057-ce868a22ec40",
+    "nombre": "Duos Marinos 36",
+    "precio": 49.86,
+    "descripcion": "Delicioso plato de la categoría Duos Marinos",
+    "categoria": "Duos Marinos",
+    "stock": 29,
+    "imagen_url": "https://example.com/productos/local-002/duos-marinos-36.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "91835dd7-f941-408f-a872-518011053ecf",
+    "nombre": "Express 37",
+    "precio": 42.15,
+    "descripcion": "Delicioso plato de la categoría Express",
+    "categoria": "Express",
+    "stock": 45,
+    "imagen_url": "https://example.com/productos/local-003/express-37.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "5268e93f-bd03-4f1a-9c16-fd50ff2eec96",
+    "nombre": "Mostrimar 38",
+    "precio": 56.43,
+    "descripcion": "Delicioso plato de la categoría Mostrimar",
+    "categoria": "Mostrimar",
+    "stock": 8,
+    "imagen_url": "https://example.com/productos/local-002/mostrimar-38.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "8807ecf3-f555-45cf-b434-7823aa8884a3",
+    "nombre": "Ceviches 39",
+    "precio": 40.85,
+    "descripcion": "Delicioso plato de la categoría Ceviches",
+    "categoria": "Ceviches",
+    "stock": 12,
+    "imagen_url": "https://example.com/productos/local-003/ceviches-39.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "845b43c0-073b-4672-992f-8c739d92bd18",
+    "nombre": "Dobles 40",
+    "precio": 64.35,
+    "descripcion": "Delicioso plato de la categoría Dobles",
+    "categoria": "Dobles",
+    "stock": 28,
+    "imagen_url": "https://example.com/productos/local-002/dobles-40.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "a9beb6f8-dc5c-48d3-b890-516803318d3b",
+    "nombre": "Express 41",
+    "precio": 41.03,
+    "descripcion": "Delicioso plato de la categoría Express",
+    "categoria": "Express",
+    "stock": 43,
+    "imagen_url": "https://example.com/productos/local-003/express-41.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "2ece8ff0-45ec-4154-9102-bc8b4c16d134",
+    "nombre": "Leche de Tigre 42",
+    "precio": 27.36,
+    "descripcion": "Delicioso plato de la categoría Leche de Tigre",
+    "categoria": "Leche de Tigre",
+    "stock": 39,
+    "imagen_url": "https://example.com/productos/local-002/leche-de-tigre-42.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "77172808-2143-407d-8bf2-9c2e8c6ea717",
+    "nombre": "Familiares 43",
+    "precio": 28.42,
+    "descripcion": "Delicioso plato de la categoría Familiares",
+    "categoria": "Familiares",
+    "stock": 38,
+    "imagen_url": "https://example.com/productos/local-003/familiares-43.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "5e074904-2a7a-499a-a93a-d7e3a29a88fb",
+    "nombre": "Promociones 44",
+    "precio": 33.65,
+    "descripcion": "Delicioso plato de la categoría Promociones",
+    "categoria": "Promociones",
+    "stock": 25,
+    "imagen_url": "https://example.com/productos/local-002/promociones-44.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "27a18c96-cebd-4899-8419-4ea9e01d0d89",
+    "nombre": "Promos Fast 45",
+    "precio": 26.17,
+    "descripcion": "Delicioso plato de la categoría Promos Fast",
+    "categoria": "Promos Fast",
+    "stock": 16,
+    "imagen_url": "https://example.com/productos/local-002/promos-fast-45.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "f9aab5b3-93b8-4dc4-9ccd-b5d994f2c4df",
+    "nombre": "Leche de Tigre 46",
+    "precio": 49.66,
+    "descripcion": "Delicioso plato de la categoría Leche de Tigre",
+    "categoria": "Leche de Tigre",
+    "stock": 30,
+    "imagen_url": "https://example.com/productos/local-003/leche-de-tigre-46.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "5888d718-4b6f-427b-96ba-cd06aa119921",
+    "nombre": "Trios Marinos 47",
+    "precio": 33.71,
     "descripcion": "Delicioso plato de la categoría Trios Marinos",
     "categoria": "Trios Marinos",
     "stock": 38,
-    "imagen_url": "https://example.com/productos/local-002/trios-marinos-46.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "4079ebbe-9f17-45ed-8812-5af1847ba8fd",
-    "nombre": "Sopas Power 47",
-    "precio": 57.62,
-    "descripcion": "Delicioso plato de la categoría Sopas Power",
-    "categoria": "Sopas Power",
-    "stock": 44,
-    "imagen_url": "https://example.com/productos/local-003/sopas-power-47.jpg"
+    "imagen_url": "https://example.com/productos/local-002/trios-marinos-47.jpg"
   },
   {
     "local_id": "LOCAL-001",
-    "producto_id": "31f6a0c3-145b-4094-977f-8a1cd75b4f62",
-    "nombre": "Rondas Marinas 48",
-    "precio": 29.77,
-    "descripcion": "Delicioso plato de la categoría Rondas Marinas",
-    "categoria": "Rondas Marinas",
-    "stock": 6,
-    "imagen_url": "https://example.com/productos/local-001/rondas-marinas-48.jpg"
+    "producto_id": "c40c441e-64f6-4696-8606-3e2410e00791",
+    "nombre": "Leche de Tigre 48",
+    "precio": 35.26,
+    "descripcion": "Delicioso plato de la categoría Leche de Tigre",
+    "categoria": "Leche de Tigre",
+    "stock": 30,
+    "imagen_url": "https://example.com/productos/local-001/leche-de-tigre-48.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "a74d579c-c030-400c-a86a-19b1fde791b2",
+    "nombre": "Trios Marinos 49",
+    "precio": 41.04,
+    "descripcion": "Delicioso plato de la categoría Trios Marinos",
+    "categoria": "Trios Marinos",
+    "stock": 19,
+    "imagen_url": "https://example.com/productos/local-001/trios-marinos-49.jpg"
   },
   {
     "local_id": "LOCAL-003",
-    "producto_id": "a2b6468e-e7b2-4862-abb4-eb154da2f443",
-    "nombre": "Promos Fast 49",
-    "precio": 48.79,
+    "producto_id": "b700bb76-c1f3-4c8e-9e35-54825c2ebc20",
+    "nombre": "Sopas Power 50",
+    "precio": 27.22,
+    "descripcion": "Delicioso plato de la categoría Sopas Power",
+    "categoria": "Sopas Power",
+    "stock": 37,
+    "imagen_url": "https://example.com/productos/local-003/sopas-power-50.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "ab25cd3c-b363-4a38-b415-6d51c33c2549",
+    "nombre": "Fritazo 51",
+    "precio": 44.98,
+    "descripcion": "Delicioso plato de la categoría Fritazo",
+    "categoria": "Fritazo",
+    "stock": 50,
+    "imagen_url": "https://example.com/productos/local-001/fritazo-51.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "2fe6bc91-6c24-44f0-9519-33169f84e74f",
+    "nombre": "Express 52",
+    "precio": 26.94,
+    "descripcion": "Delicioso plato de la categoría Express",
+    "categoria": "Express",
+    "stock": 9,
+    "imagen_url": "https://example.com/productos/local-001/express-52.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "fbaef5a0-5246-4ab0-ac6f-e7da84401d32",
+    "nombre": "Mostrimar 53",
+    "precio": 68.19,
+    "descripcion": "Delicioso plato de la categoría Mostrimar",
+    "categoria": "Mostrimar",
+    "stock": 5,
+    "imagen_url": "https://example.com/productos/local-001/mostrimar-53.jpg"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "producto_id": "3babf9ef-7520-4884-b6d5-0f259af9912e",
+    "nombre": "Familiares 54",
+    "precio": 19.97,
+    "descripcion": "Delicioso plato de la categoría Familiares",
+    "categoria": "Familiares",
+    "stock": 6,
+    "imagen_url": "https://example.com/productos/local-003/familiares-54.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "e3ac7392-fe98-4e50-bb0c-83426b29a89a",
+    "nombre": "Ceviches 55",
+    "precio": 32.37,
+    "descripcion": "Delicioso plato de la categoría Ceviches",
+    "categoria": "Ceviches",
+    "stock": 3,
+    "imagen_url": "https://example.com/productos/local-001/ceviches-55.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "3b7d56fb-ef75-4c8c-8565-d7bd87d26ae8",
+    "nombre": "Familiares 56",
+    "precio": 31.6,
+    "descripcion": "Delicioso plato de la categoría Familiares",
+    "categoria": "Familiares",
+    "stock": 6,
+    "imagen_url": "https://example.com/productos/local-001/familiares-56.jpg"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "producto_id": "b44d2171-d130-4fae-b323-c78c667f997d",
+    "nombre": "Promos Fast 57",
+    "precio": 29.84,
     "descripcion": "Delicioso plato de la categoría Promos Fast",
     "categoria": "Promos Fast",
-    "stock": 9,
-    "imagen_url": "https://example.com/productos/local-003/promos-fast-49.jpg"
+    "stock": 4,
+    "imagen_url": "https://example.com/productos/local-001/promos-fast-57.jpg"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "producto_id": "9e0a2f3d-0621-40aa-b629-e58cdde3645c",
+    "nombre": "Bowls Del Tigre 58",
+    "precio": 63.9,
+    "descripcion": "Delicioso plato de la categoría Bowls Del Tigre",
+    "categoria": "Bowls Del Tigre",
+    "stock": 20,
+    "imagen_url": "https://example.com/productos/local-002/bowls-del-tigre-58.jpg"
   },
   {
     "local_id": "LOCAL-001",
-    "producto_id": "6bb4376d-81d4-46ec-b6e9-cec3f6160b82",
-    "nombre": "Dobles 50",
-    "precio": 77.11,
-    "descripcion": "Delicioso plato de la categoría Dobles",
-    "categoria": "Dobles",
-    "stock": 36,
-    "imagen_url": "https://example.com/productos/local-001/dobles-50.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "42b4ebad-6fd4-4b15-950f-750cadbf9128",
-    "nombre": "Dobles 51",
-    "precio": 65.25,
-    "descripcion": "Delicioso plato de la categoría Dobles",
-    "categoria": "Dobles",
-    "stock": 42,
-    "imagen_url": "https://example.com/productos/local-002/dobles-51.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "cf7e9e31-f0fe-4552-bc62-c764805a3ca3",
-    "nombre": "Ceviches 52",
-    "precio": 51.55,
-    "descripcion": "Delicioso plato de la categoría Ceviches",
-    "categoria": "Ceviches",
-    "stock": 7,
-    "imagen_url": "https://example.com/productos/local-002/ceviches-52.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "c8bf0c7f-fc28-427b-a4f6-5e13aaaefd62",
-    "nombre": "Sopas Power 53",
-    "precio": 73.13,
+    "producto_id": "34f2ffd7-1314-45d4-a793-fe1a75c7fec6",
+    "nombre": "Sopas Power 59",
+    "precio": 30.16,
     "descripcion": "Delicioso plato de la categoría Sopas Power",
     "categoria": "Sopas Power",
-    "stock": 10,
-    "imagen_url": "https://example.com/productos/local-003/sopas-power-53.jpg"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "producto_id": "f74b075b-8fec-452b-a3dd-2a9b97fa0842",
-    "nombre": "Box Marino 54",
-    "precio": 51.01,
-    "descripcion": "Delicioso plato de la categoría Box Marino",
-    "categoria": "Box Marino",
-    "stock": 17,
-    "imagen_url": "https://example.com/productos/local-001/box-marino-54.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "d52750e4-f707-45a4-8c92-16ef92730a12",
-    "nombre": "Leche de Tigre 55",
-    "precio": 31.33,
-    "descripcion": "Delicioso plato de la categoría Leche de Tigre",
-    "categoria": "Leche de Tigre",
-    "stock": 1,
-    "imagen_url": "https://example.com/productos/local-003/leche-de-tigre-55.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "5cbd4a94-1893-42bd-9a22-992ad844ad7e",
-    "nombre": "Mega Marino 56",
-    "precio": 67.03,
-    "descripcion": "Delicioso plato de la categoría Mega Marino",
-    "categoria": "Mega Marino",
-    "stock": 12,
-    "imagen_url": "https://example.com/productos/local-003/mega-marino-56.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "39438ada-1c7b-435f-a72f-1a86a2746065",
-    "nombre": "Sopas Power 57",
-    "precio": 35.67,
-    "descripcion": "Delicioso plato de la categoría Sopas Power",
-    "categoria": "Sopas Power",
-    "stock": 34,
-    "imagen_url": "https://example.com/productos/local-003/sopas-power-57.jpg"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "producto_id": "2c63bdff-d932-40b1-9e66-5e7e5d86d60c",
-    "nombre": "Ceviches 58",
-    "precio": 39.91,
-    "descripcion": "Delicioso plato de la categoría Ceviches",
-    "categoria": "Ceviches",
-    "stock": 19,
-    "imagen_url": "https://example.com/productos/local-003/ceviches-58.jpg"
+    "stock": 46,
+    "imagen_url": "https://example.com/productos/local-001/sopas-power-59.jpg"
   },
   {
     "local_id": "LOCAL-002",
-    "producto_id": "1855dac9-4ea6-4035-ac4b-5cc65e8bab0f",
-    "nombre": "Mega Marino 59",
-    "precio": 69.04,
-    "descripcion": "Delicioso plato de la categoría Mega Marino",
-    "categoria": "Mega Marino",
-    "stock": 26,
-    "imagen_url": "https://example.com/productos/local-002/mega-marino-59.jpg"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "producto_id": "83907296-23c7-408f-b363-442f5793cf38",
-    "nombre": "Leche de Tigre 60",
-    "precio": 61.98,
-    "descripcion": "Delicioso plato de la categoría Leche de Tigre",
-    "categoria": "Leche de Tigre",
-    "stock": 17,
-    "imagen_url": "https://example.com/productos/local-002/leche-de-tigre-60.jpg"
+    "producto_id": "878d638d-8084-4a9f-a956-9c6e95b90f12",
+    "nombre": "Dobles 60",
+    "precio": 29.47,
+    "descripcion": "Delicioso plato de la categoría Dobles",
+    "categoria": "Dobles",
+    "stock": 41,
+    "imagen_url": "https://example.com/productos/local-002/dobles-60.jpg"
   }
 ]

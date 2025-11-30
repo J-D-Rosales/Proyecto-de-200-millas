@@ -5,16 +5,17 @@
   "type": "object",
   "x-dynamodb": {
     "partition_key": "pedido_id",
-    "sort_key": "estado_id"
+    "sort_key": "timestamp"
   },
   "properties": {
-    "estado_id": {
-      "type": "string",
-      "description": "Identificador único del registro de estado (por ejemplo, UUID)"
-    },
     "pedido_id": {
       "type": "string",
       "description": "Identificador del pedido al que pertenece este cambio de estado"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp del cambio de estado (ISO 8601) - Sort Key"
     },
     "estado": {
       "type": "string",
@@ -33,9 +34,9 @@
     },
     "empleado": {
       "type": "string",
-      "description": "Identificador del empleado que se encargo del pedido"
+      "description": "Identificador del empleado que se encargo del pedido (opcional)"
     }
   },
-  "required": ["estado_id", "pedido_id", "estado", "hora_inicio", "hora_fin"],
+  "required": ["pedido_id", "timestamp", "estado", "hora_inicio", "hora_fin"],
   "additionalProperties": false
 }

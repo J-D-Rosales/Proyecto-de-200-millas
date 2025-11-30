@@ -6,7 +6,7 @@ provider:
   region: us-east-1
   stage: ${opt:stage, 'dev'}
   memorySize: 512
-  timeout: 300
+  timeout: 20
   iam:
     role: arn:aws:iam::${env:AWS_ACCOUNT_ID}:role/LabRole
   environment:

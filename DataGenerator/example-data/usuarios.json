@@ -6,177 +6,177 @@
     "role": "Admin"
   },
   {
-    "nombre": "Laura Ramírez",
-    "correo": "laura.ramirez@gmail.com",
-    "contrasena": "ger_323c29a4",
+    "nombre": "Juan Rodríguez",
+    "correo": "juan.rodriguez@hotmail.com",
+    "contrasena": "ger_268f0f21",
     "role": "Gerente"
   },
   {
-    "nombre": "Juan Pérez",
-    "correo": "juan.perez@outlook.com",
-    "contrasena": "ger_3d4ba5ac",
+    "nombre": "Diego Morales",
+    "correo": "diego.morales@gmail.com",
+    "contrasena": "ger_59ff84d9",
     "role": "Gerente"
   },
   {
-    "nombre": "Miguel Torres",
-    "correo": "miguel.torres@gmail.com",
-    "contrasena": "ger_331d6465",
+    "nombre": "Carlos Silva",
+    "correo": "carlos.silva@outlook.com",
+    "contrasena": "ger_230cc272",
     "role": "Gerente"
   },
   {
-    "nombre": "Carlos Fernández",
-    "correo": "carlos.fernandez@hotmail.com",
-    "contrasena": "cli_64e28ca658",
+    "nombre": "Carmen Silva",
+    "correo": "carmen.silva@gmail.com",
+    "contrasena": "cli_f76b174660",
     "role": "Cliente"
   },
   {
-    "nombre": "Luis Fernández",
-    "correo": "luis.fernandez@hotmail.com",
-    "contrasena": "cli_901119b2a6",
+    "nombre": "José Castro",
+    "correo": "jose.castro@gmail.com",
+    "contrasena": "cli_17e54a4379",
     "role": "Cliente"
   },
   {
-    "nombre": "Camila Castro",
-    "correo": "camila.castro@gmail.com",
-    "contrasena": "cli_3b910b1e89",
+    "nombre": "María López",
+    "correo": "maria.lopez@hotmail.com",
+    "contrasena": "cli_aae54f1dd9",
     "role": "Cliente"
   },
   {
-    "nombre": "Miguel Martínez",
-    "correo": "miguel.martinez@hotmail.com",
-    "contrasena": "cli_dc42860634",
+    "nombre": "Camila Sánchez",
+    "correo": "camila.sanchez@outlook.com",
+    "contrasena": "cli_db98ef8d46",
     "role": "Cliente"
   },
   {
-    "nombre": "Luis Fernández",
-    "correo": "luis.fernandez@outlook.com",
-    "contrasena": "cli_541dafc8c3",
+    "nombre": "Carlos Morales",
+    "correo": "carlos.morales@hotmail.com",
+    "contrasena": "cli_7772c876cb",
     "role": "Cliente"
   },
   {
-    "nombre": "Andrés Pérez",
-    "correo": "andres.perez@hotmail.com",
-    "contrasena": "cli_79d05f8bf9",
+    "nombre": "Sofía Torres",
+    "correo": "sofia.torres@gmail.com",
+    "contrasena": "cli_da28d81cc7",
     "role": "Cliente"
   },
   {
-    "nombre": "Andrés Martínez",
-    "correo": "andres.martinez@hotmail.com",
-    "contrasena": "cli_4e98014870",
+    "nombre": "Miguel López",
+    "correo": "miguel.lopez@gmail.com",
+    "contrasena": "cli_9d4efb6e15",
     "role": "Cliente"
   },
   {
-    "nombre": "Isabel López",
-    "correo": "isabel.lopez@hotmail.com",
-    "contrasena": "cli_9a1b69d4a9",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "José Silva",
-    "correo": "jose.silva@gmail.com",
-    "contrasena": "cli_748c63872a",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "Ana Flores",
-    "correo": "ana.flores@outlook.com",
-    "contrasena": "cli_e54151e031",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "Carlos Castro",
-    "correo": "carlos.castro@gmail.com",
-    "contrasena": "cli_9a8d1e5891",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "Carmen Martínez",
-    "correo": "carmen.martinez@hotmail.com",
-    "contrasena": "cli_5244891dd4",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "Juan Silva",
-    "correo": "juan.silva@outlook.com",
-    "contrasena": "cli_d4aedf79ad",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "José Ortiz",
-    "correo": "jose.ortiz@gmail.com",
-    "contrasena": "cli_808d5ce76a",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "Luis Flores",
-    "correo": "luis.flores@gmail.com",
-    "contrasena": "cli_d5fc4cceaa",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "Sofía Rodríguez",
-    "correo": "sofia.rodriguez@outlook.com",
-    "contrasena": "cli_c023d28c39",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "Pedro Sánchez",
-    "correo": "pedro.sanchez@outlook.com",
-    "contrasena": "cli_6dde87bf00",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "Carlos Rodríguez",
-    "correo": "carlos.rodriguez@hotmail.com",
-    "contrasena": "cli_bbc06ae35b",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "Valentina Martínez",
-    "correo": "valentina.martinez@outlook.com",
-    "contrasena": "cli_7171875e87",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "Carlos García",
-    "correo": "carlos.garcia@hotmail.com",
-    "contrasena": "cli_1062625685",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "Juan Torres",
-    "correo": "juan.torres@outlook.com",
-    "contrasena": "cli_15f328d564",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "Isabel Ramírez",
-    "correo": "isabel.ramirez@hotmail.com",
-    "contrasena": "cli_2f8d18c99f",
-    "role": "Cliente"
-  },
-  {
-    "nombre": "Juan Pérez",
-    "correo": "juan.perez@hotmail.com",
-    "contrasena": "cli_9787559574",
+    "nombre": "Sofía Rojas",
+    "correo": "sofia.rojas@outlook.com",
+    "contrasena": "cli_5d70550c43",
     "role": "Cliente"
   },
   {
     "nombre": "Miguel García",
     "correo": "miguel.garcia@gmail.com",
-    "contrasena": "cli_627ac44057",
+    "contrasena": "cli_f3799b1408",
     "role": "Cliente"
   },
   {
-    "nombre": "Miguel González",
-    "correo": "miguel.gonzalez@hotmail.com",
-    "contrasena": "cli_3fdff8f8e5",
+    "nombre": "Carlos González",
+    "correo": "carlos.gonzalez@hotmail.com",
+    "contrasena": "cli_d5130323e1",
     "role": "Cliente"
   },
   {
-    "nombre": "Pedro García",
-    "correo": "pedro.garcia@hotmail.com",
-    "contrasena": "cli_775cbe0e03",
+    "nombre": "Luis Ortiz",
+    "correo": "luis.ortiz@outlook.com",
+    "contrasena": "cli_c0d1f697a3",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "Miguel Sánchez",
+    "correo": "miguel.sanchez@gmail.com",
+    "contrasena": "cli_4c8438e40c",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "Isabel Morales",
+    "correo": "isabel.morales@gmail.com",
+    "contrasena": "cli_7a348f0190",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "Camila Fernández",
+    "correo": "camila.fernandez@outlook.com",
+    "contrasena": "cli_a7d6fa7c05",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "Carlos García",
+    "correo": "carlos.garcia@hotmail.com",
+    "contrasena": "cli_5201cc9fdf",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "Pedro Rodríguez",
+    "correo": "pedro.rodriguez@outlook.com",
+    "contrasena": "cli_12adcc69d4",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "Valentina Ortiz",
+    "correo": "valentina.ortiz@hotmail.com",
+    "contrasena": "cli_9e0637b5cb",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "Juan Silva",
+    "correo": "juan.silva@gmail.com",
+    "contrasena": "cli_5f7184fff5",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "José Rojas",
+    "correo": "jose.rojas@hotmail.com",
+    "contrasena": "cli_51538256d0",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "Carlos Sánchez",
+    "correo": "carlos.sanchez@outlook.com",
+    "contrasena": "cli_88a8149cc9",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "Sofía Flores",
+    "correo": "sofia.flores@gmail.com",
+    "contrasena": "cli_ee77196184",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "Carlos López",
+    "correo": "carlos.lopez@outlook.com",
+    "contrasena": "cli_d047bd2970",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "Carmen Sánchez",
+    "correo": "carmen.sanchez@gmail.com",
+    "contrasena": "cli_ad81b53da4",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "Andrés García",
+    "correo": "andres.garcia@hotmail.com",
+    "contrasena": "cli_2048359bfc",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "Andrés Fernández",
+    "correo": "andres.fernandez@hotmail.com",
+    "contrasena": "cli_715eb15a1e",
+    "role": "Cliente"
+  },
+  {
+    "nombre": "Miguel Fernández",
+    "correo": "miguel.fernandez@outlook.com",
+    "contrasena": "cli_12baba9daa",
     "role": "Cliente"
   }
 ]

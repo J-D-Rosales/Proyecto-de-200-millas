@@ -1,282 +1,282 @@
 [
   {
-    "local_id": "LOCAL-001",
-    "dni": "84008674",
-    "nombre": "Camila",
-    "apellido": "Sánchez",
-    "role": "Despachador"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "91584881",
-    "nombre": "Luis",
-    "apellido": "Torres",
-    "role": "Repartidor"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "dni": "29705076",
-    "nombre": "Valentina",
-    "apellido": "Flores",
-    "role": "Cocinero"
-  },
-  {
     "local_id": "LOCAL-003",
-    "dni": "70593882",
-    "nombre": "Ana",
-    "apellido": "Torres",
-    "role": "Cocinero"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "19033248",
-    "nombre": "Carlos",
-    "apellido": "Martínez",
-    "role": "Repartidor"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "dni": "85819828",
-    "nombre": "Luis",
-    "apellido": "Rojas",
-    "role": "Cocinero"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "dni": "82578551",
-    "nombre": "Valentina",
-    "apellido": "García",
-    "role": "Cocinero"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "dni": "77208319",
-    "nombre": "Carmen",
-    "apellido": "García",
-    "role": "Cocinero"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "88994569",
-    "nombre": "Diego",
-    "apellido": "Flores",
-    "role": "Cocinero"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "90391143",
+    "dni": "98358332",
     "nombre": "Juan",
-    "apellido": "Silva",
-    "role": "Cocinero"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "59933175",
-    "nombre": "Laura",
-    "apellido": "Pérez",
-    "role": "Cocinero"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "dni": "81384043",
-    "nombre": "Carlos",
-    "apellido": "López",
-    "role": "Cocinero"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "18196463",
-    "nombre": "Miguel",
-    "apellido": "Rodríguez",
-    "role": "Cocinero"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "dni": "69095004",
-    "nombre": "Luis",
-    "apellido": "Rojas",
-    "role": "Despachador"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "dni": "97961331",
-    "nombre": "Pedro",
-    "apellido": "Rodríguez",
-    "role": "Cocinero"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "64717976",
-    "nombre": "Laura",
-    "apellido": "López",
-    "role": "Despachador"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "66334228",
-    "nombre": "Luis",
-    "apellido": "Rojas",
+    "apellido": "González",
     "role": "Repartidor"
   },
   {
-    "local_id": "LOCAL-001",
-    "dni": "69677664",
-    "nombre": "Miguel",
+    "local_id": "LOCAL-002",
+    "dni": "84760652",
+    "nombre": "Valentina",
     "apellido": "Fernández",
     "role": "Cocinero"
   },
   {
+    "local_id": "LOCAL-003",
+    "dni": "11526364",
+    "nombre": "Sofía",
+    "apellido": "Rojas",
+    "role": "Repartidor"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "dni": "60741740",
+    "nombre": "José",
+    "apellido": "López",
+    "role": "Cocinero"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "dni": "73533561",
+    "nombre": "María",
+    "apellido": "Torres",
+    "role": "Repartidor"
+  },
+  {
     "local_id": "LOCAL-001",
-    "dni": "97242100",
+    "dni": "85855438",
+    "nombre": "Miguel",
+    "apellido": "Castro",
+    "role": "Repartidor"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "dni": "14157846",
+    "nombre": "Valentina",
+    "apellido": "Martínez",
+    "role": "Despachador"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "dni": "12468106",
     "nombre": "Luis",
+    "apellido": "García",
+    "role": "Repartidor"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "55272321",
+    "nombre": "Carlos",
+    "apellido": "Ortiz",
+    "role": "Despachador"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "dni": "36107908",
+    "nombre": "Juan",
+    "apellido": "García",
+    "role": "Despachador"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "34563212",
+    "nombre": "Andrés",
+    "apellido": "Martínez",
+    "role": "Despachador"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "dni": "22118443",
+    "nombre": "Carlos",
+    "apellido": "Martínez",
+    "role": "Cocinero"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "81212919",
+    "nombre": "Juan",
+    "apellido": "García",
+    "role": "Despachador"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "dni": "59685680",
+    "nombre": "Valentina",
+    "apellido": "Martínez",
+    "role": "Repartidor"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "46052833",
+    "nombre": "Laura",
+    "apellido": "Ramírez",
+    "role": "Despachador"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "77805706",
+    "nombre": "Sofía",
+    "apellido": "Pérez",
+    "role": "Repartidor"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "21798066",
+    "nombre": "Sofía",
+    "apellido": "Fernández",
+    "role": "Repartidor"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "dni": "25922127",
+    "nombre": "Juan",
+    "apellido": "Ortiz",
+    "role": "Despachador"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "dni": "69566453",
+    "nombre": "Juan",
+    "apellido": "García",
+    "role": "Despachador"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "41663046",
+    "nombre": "Carmen",
+    "apellido": "Castro",
+    "role": "Repartidor"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "80938525",
+    "nombre": "María",
+    "apellido": "Martínez",
+    "role": "Repartidor"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "89610408",
+    "nombre": "Valentina",
+    "apellido": "Fernández",
+    "role": "Despachador"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "dni": "83484114",
+    "nombre": "Laura",
+    "apellido": "Castro",
+    "role": "Cocinero"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "88305005",
+    "nombre": "José",
+    "apellido": "Ramírez",
+    "role": "Cocinero"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "65321917",
+    "nombre": "Luis",
+    "apellido": "Rojas",
+    "role": "Despachador"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "dni": "52781538",
+    "nombre": "Carmen",
     "apellido": "Morales",
     "role": "Despachador"
   },
   {
     "local_id": "LOCAL-003",
-    "dni": "76127694",
+    "dni": "84631576",
+    "nombre": "María",
+    "apellido": "Torres",
+    "role": "Despachador"
+  },
+  {
+    "local_id": "LOCAL-003",
+    "dni": "47462625",
+    "nombre": "María",
+    "apellido": "López",
+    "role": "Despachador"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "dni": "65626543",
+    "nombre": "María",
+    "apellido": "Sánchez",
+    "role": "Despachador"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "28629262",
+    "nombre": "Pedro",
+    "apellido": "Flores",
+    "role": "Despachador"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "dni": "58866800",
+    "nombre": "Carmen",
+    "apellido": "Fernández",
+    "role": "Repartidor"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "dni": "42645640",
+    "nombre": "Diego",
+    "apellido": "Pérez",
+    "role": "Repartidor"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "36284384",
     "nombre": "Ana",
     "apellido": "Castro",
     "role": "Despachador"
   },
   {
     "local_id": "LOCAL-001",
-    "dni": "92413579",
-    "nombre": "Miguel",
-    "apellido": "Silva",
-    "role": "Repartidor"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "24066975",
-    "nombre": "José",
-    "apellido": "Fernández",
-    "role": "Cocinero"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "67572034",
-    "nombre": "Miguel",
-    "apellido": "Ramírez",
-    "role": "Despachador"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "dni": "35220205",
-    "nombre": "Luis",
-    "apellido": "González",
-    "role": "Despachador"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "39214583",
-    "nombre": "Miguel",
-    "apellido": "Pérez",
-    "role": "Repartidor"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "65007142",
-    "nombre": "Sofía",
-    "apellido": "Morales",
-    "role": "Repartidor"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "dni": "88610620",
-    "nombre": "María",
-    "apellido": "Pérez",
-    "role": "Despachador"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "dni": "22762395",
-    "nombre": "Ana",
-    "apellido": "Rojas",
-    "role": "Cocinero"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "dni": "34971442",
-    "nombre": "Pedro",
-    "apellido": "Morales",
-    "role": "Repartidor"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "dni": "19930086",
-    "nombre": "Andrés",
-    "apellido": "Rojas",
-    "role": "Repartidor"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "dni": "50230387",
-    "nombre": "Carmen",
-    "apellido": "Ramírez",
-    "role": "Despachador"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "64040389",
-    "nombre": "Carlos",
-    "apellido": "López",
-    "role": "Repartidor"
-  },
-  {
-    "local_id": "LOCAL-003",
-    "dni": "41976001",
-    "nombre": "Ana",
-    "apellido": "Ramírez",
-    "role": "Repartidor"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "70906697",
-    "nombre": "Miguel",
-    "apellido": "Flores",
-    "role": "Repartidor"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "52996702",
-    "nombre": "Diego",
-    "apellido": "Ortiz",
-    "role": "Despachador"
-  },
-  {
-    "local_id": "LOCAL-002",
-    "dni": "48516208",
-    "nombre": "Juan",
+    "dni": "47210170",
+    "nombre": "Valentina",
     "apellido": "García",
     "role": "Repartidor"
   },
   {
-    "local_id": "LOCAL-003",
-    "dni": "50063058",
+    "local_id": "LOCAL-001",
+    "dni": "68682761",
+    "nombre": "Pedro",
+    "apellido": "López",
+    "role": "Repartidor"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "68042210",
+    "nombre": "Diego",
+    "apellido": "Fernández",
+    "role": "Repartidor"
+  },
+  {
+    "local_id": "LOCAL-002",
+    "dni": "33403804",
     "nombre": "Ana",
     "apellido": "Morales",
+    "role": "Cocinero"
+  },
+  {
+    "local_id": "LOCAL-001",
+    "dni": "39182535",
+    "nombre": "Luis",
+    "apellido": "Sánchez",
     "role": "Despachador"
   },
   {
     "local_id": "LOCAL-002",
-    "dni": "79670502",
-    "nombre": "María",
-    "apellido": "Ortiz",
-    "role": "Despachador"
-  },
-  {
-    "local_id": "LOCAL-001",
-    "dni": "62322774",
-    "nombre": "Diego",
-    "apellido": "Ortiz",
+    "dni": "97092305",
+    "nombre": "Sofía",
+    "apellido": "Torres",
     "role": "Cocinero"
   },
   {
-    "local_id": "LOCAL-003",
-    "dni": "52196305",
-    "nombre": "Diego",
-    "apellido": "Pérez",
+    "local_id": "LOCAL-001",
+    "dni": "76459345",
+    "nombre": "Valentina",
+    "apellido": "Ramírez",
     "role": "Despachador"
   }
 ]
