@@ -1,821 +1,919 @@
 [
   {
-    "pedido_id": "2f781aa1-71cf-40be-b037-70cc8481778b",
-    "timestamp": "2025-11-30T16:25:54.710449",
+    "pedido_id": "45645f8d-1b66-4918-a9ba-7a025878b7b4",
+    "estado_id": "7618c2fc-66e3-4c76-99ca-60b065e3cde5",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:25:54.710449",
-    "hora_fin": "2025-11-30T16:39:54.710449"
+    "hora_inicio": "2025-11-30T17:33:19.953192",
+    "hora_fin": "2025-11-30T17:42:19.953192"
   },
   {
-    "pedido_id": "2f781aa1-71cf-40be-b037-70cc8481778b",
-    "timestamp": "2025-11-30T16:39:54.710449",
+    "pedido_id": "45645f8d-1b66-4918-a9ba-7a025878b7b4",
+    "estado_id": "9b162a1a-e6a5-4eed-aae5-121d882b1aab",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:39:54.710449",
-    "hora_fin": "2025-11-30T16:41:54.710449"
+    "hora_inicio": "2025-11-30T17:42:19.953192",
+    "hora_fin": "2025-11-30T17:53:19.953192"
   },
   {
-    "pedido_id": "2f781aa1-71cf-40be-b037-70cc8481778b",
-    "timestamp": "2025-11-30T16:41:54.710449",
+    "pedido_id": "45645f8d-1b66-4918-a9ba-7a025878b7b4",
+    "estado_id": "fa74dc9c-2e9b-47a6-973e-213b20020589",
     "estado": "empacando",
-    "hora_inicio": "2025-11-30T16:41:54.710449",
-    "hora_fin": "2025-11-30T16:45:54.710449"
+    "hora_inicio": "2025-11-30T17:53:19.953192",
+    "hora_fin": "2025-11-30T18:08:19.953192"
   },
   {
-    "pedido_id": "2f781aa1-71cf-40be-b037-70cc8481778b",
-    "timestamp": "2025-11-30T16:45:54.710449",
+    "pedido_id": "45645f8d-1b66-4918-a9ba-7a025878b7b4",
+    "estado_id": "53d98222-c9bf-4fa4-bd6c-c590c4534819",
     "estado": "enviando",
-    "hora_inicio": "2025-11-30T16:45:54.710449",
-    "hora_fin": "2025-11-30T16:51:54.710449"
+    "hora_inicio": "2025-11-30T18:08:19.953192",
+    "hora_fin": "2025-11-30T18:22:19.953192"
   },
   {
-    "pedido_id": "2f781aa1-71cf-40be-b037-70cc8481778b",
-    "timestamp": "2025-11-30T16:51:54.710449",
+    "pedido_id": "45645f8d-1b66-4918-a9ba-7a025878b7b4",
+    "estado_id": "ebb56627-8736-4184-aca3-873c93424e5a",
     "estado": "recibido",
-    "hora_inicio": "2025-11-30T16:51:54.710449",
-    "hora_fin": "2025-11-30T17:04:54.710449"
+    "hora_inicio": "2025-11-30T18:22:19.953192",
+    "hora_fin": "2025-11-30T18:31:19.953192"
   },
   {
-    "pedido_id": "11407d39-b820-4f6d-a057-eef133d911a1",
-    "timestamp": "2025-11-30T17:16:54.710612",
+    "pedido_id": "d5dd4e3c-229a-4432-968e-4ce637468b34",
+    "estado_id": "03620e09-50ad-4d47-a5c2-21b2e88a86ad",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T17:16:54.710612",
-    "hora_fin": "2025-11-30T17:30:54.710612"
+    "hora_inicio": "2025-11-30T17:06:19.953282",
+    "hora_fin": "2025-11-30T17:21:19.953282"
   },
   {
-    "pedido_id": "45b16dc5-00ef-4bbd-949d-def583ec72fd",
-    "timestamp": "2025-11-30T16:47:54.710650",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:47:54.710650",
-    "hora_fin": "2025-11-30T17:02:54.710650"
-  },
-  {
-    "pedido_id": "833033f2-104b-45ca-8cae-40c16c47e777",
-    "timestamp": "2025-11-30T15:57:54.710672",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T15:57:54.710672",
-    "hora_fin": "2025-11-30T16:01:54.710672"
-  },
-  {
-    "pedido_id": "833033f2-104b-45ca-8cae-40c16c47e777",
-    "timestamp": "2025-11-30T16:01:54.710672",
+    "pedido_id": "d5dd4e3c-229a-4432-968e-4ce637468b34",
+    "estado_id": "1161fab4-b304-406f-8213-e93dc30c1814",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:01:54.710672",
-    "hora_fin": "2025-11-30T16:08:54.710672"
+    "hora_inicio": "2025-11-30T17:21:19.953282",
+    "hora_fin": "2025-11-30T17:27:19.953282"
   },
   {
-    "pedido_id": "833033f2-104b-45ca-8cae-40c16c47e777",
-    "timestamp": "2025-11-30T16:08:54.710672",
+    "pedido_id": "d5dd4e3c-229a-4432-968e-4ce637468b34",
+    "estado_id": "f9a281f9-8fb0-4b92-8f7d-1f2c2c6584a4",
     "estado": "empacando",
-    "hora_inicio": "2025-11-30T16:08:54.710672",
-    "hora_fin": "2025-11-30T16:19:54.710672"
+    "hora_inicio": "2025-11-30T17:27:19.953282",
+    "hora_fin": "2025-11-30T17:31:19.953282"
   },
   {
-    "pedido_id": "833033f2-104b-45ca-8cae-40c16c47e777",
-    "timestamp": "2025-11-30T16:19:54.710672",
-    "estado": "enviando",
-    "hora_inicio": "2025-11-30T16:19:54.710672",
-    "hora_fin": "2025-11-30T16:25:54.710672"
-  },
-  {
-    "pedido_id": "f57125c4-765a-4ecd-8876-933e07cf8eed",
-    "timestamp": "2025-11-30T16:56:54.710694",
+    "pedido_id": "4d9050f1-8b72-4069-9b92-ab76601c20f1",
+    "estado_id": "5907e49f-a87e-43b8-b254-919f9dab5a62",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:56:54.710694",
-    "hora_fin": "2025-11-30T16:59:54.710694"
+    "hora_inicio": "2025-11-30T16:45:19.953309",
+    "hora_fin": "2025-11-30T16:55:19.953309"
   },
   {
-    "pedido_id": "f57125c4-765a-4ecd-8876-933e07cf8eed",
-    "timestamp": "2025-11-30T16:59:54.710694",
+    "pedido_id": "4d9050f1-8b72-4069-9b92-ab76601c20f1",
+    "estado_id": "0a92fc2d-4cc4-4ade-8659-79ec193a9e08",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:59:54.710694",
-    "hora_fin": "2025-11-30T17:10:54.710694"
+    "hora_inicio": "2025-11-30T16:55:19.953309",
+    "hora_fin": "2025-11-30T17:04:19.953309"
   },
   {
-    "pedido_id": "8af5531d-ca4b-4cc0-a6f1-40a31638c512",
-    "timestamp": "2025-11-30T17:15:54.710714",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T17:15:54.710714",
-    "hora_fin": "2025-11-30T17:24:54.710714"
-  },
-  {
-    "pedido_id": "8af5531d-ca4b-4cc0-a6f1-40a31638c512",
-    "timestamp": "2025-11-30T17:24:54.710714",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T17:24:54.710714",
-    "hora_fin": "2025-11-30T17:27:54.710714"
-  },
-  {
-    "pedido_id": "8af5531d-ca4b-4cc0-a6f1-40a31638c512",
-    "timestamp": "2025-11-30T17:27:54.710714",
+    "pedido_id": "4d9050f1-8b72-4069-9b92-ab76601c20f1",
+    "estado_id": "95af59be-8a6f-4fec-9c82-2449a4ae8db3",
     "estado": "empacando",
-    "hora_inicio": "2025-11-30T17:27:54.710714",
-    "hora_fin": "2025-11-30T17:42:54.710714"
+    "hora_inicio": "2025-11-30T17:04:19.953309",
+    "hora_fin": "2025-11-30T17:10:19.953309"
   },
   {
-    "pedido_id": "8af5531d-ca4b-4cc0-a6f1-40a31638c512",
-    "timestamp": "2025-11-30T17:42:54.710714",
+    "pedido_id": "4d9050f1-8b72-4069-9b92-ab76601c20f1",
+    "estado_id": "72ad5844-59f4-443b-bb6b-279df8cc5d5f",
     "estado": "enviando",
-    "hora_inicio": "2025-11-30T17:42:54.710714",
-    "hora_fin": "2025-11-30T17:53:54.710714"
+    "hora_inicio": "2025-11-30T17:10:19.953309",
+    "hora_fin": "2025-11-30T17:16:19.953309"
   },
   {
-    "pedido_id": "8af5531d-ca4b-4cc0-a6f1-40a31638c512",
-    "timestamp": "2025-11-30T17:53:54.710714",
+    "pedido_id": "4d9050f1-8b72-4069-9b92-ab76601c20f1",
+    "estado_id": "fb574ba5-dfd1-4fc9-8d30-e9f8ca57c2c9",
     "estado": "recibido",
-    "hora_inicio": "2025-11-30T17:53:54.710714",
-    "hora_fin": "2025-11-30T18:00:54.710714"
+    "hora_inicio": "2025-11-30T17:16:19.953309",
+    "hora_fin": "2025-11-30T17:19:19.953309"
   },
   {
-    "pedido_id": "88ae4410-df14-4d5b-a071-744eeb8de8aa",
-    "timestamp": "2025-11-30T16:40:54.710736",
+    "pedido_id": "7f087f92-1dbb-4852-b16b-b375f9e10756",
+    "estado_id": "f08ad95a-98d5-41bd-8635-cb81c9c2ae7f",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:40:54.710736",
-    "hora_fin": "2025-11-30T16:45:54.710736"
+    "hora_inicio": "2025-11-30T16:53:19.953341",
+    "hora_fin": "2025-11-30T17:06:19.953341"
   },
   {
-    "pedido_id": "9a5101bf-b898-4c74-b152-fb7436f24578",
-    "timestamp": "2025-11-30T16:00:54.710753",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:00:54.710753",
-    "hora_fin": "2025-11-30T16:06:54.710753"
-  },
-  {
-    "pedido_id": "9a5101bf-b898-4c74-b152-fb7436f24578",
-    "timestamp": "2025-11-30T16:06:54.710753",
+    "pedido_id": "7f087f92-1dbb-4852-b16b-b375f9e10756",
+    "estado_id": "2a862c96-4a37-491d-bc9e-ecde1c78ddee",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:06:54.710753",
-    "hora_fin": "2025-11-30T16:14:54.710753"
+    "hora_inicio": "2025-11-30T17:06:19.953341",
+    "hora_fin": "2025-11-30T17:16:19.953341"
   },
   {
-    "pedido_id": "9a5101bf-b898-4c74-b152-fb7436f24578",
-    "timestamp": "2025-11-30T16:14:54.710753",
+    "pedido_id": "7f087f92-1dbb-4852-b16b-b375f9e10756",
+    "estado_id": "a190d173-349b-40c2-a84a-be479fec0a82",
     "estado": "empacando",
-    "hora_inicio": "2025-11-30T16:14:54.710753",
-    "hora_fin": "2025-11-30T16:18:54.710753"
+    "hora_inicio": "2025-11-30T17:16:19.953341",
+    "hora_fin": "2025-11-30T17:26:19.953341"
   },
   {
-    "pedido_id": "9a5101bf-b898-4c74-b152-fb7436f24578",
-    "timestamp": "2025-11-30T16:18:54.710753",
-    "estado": "enviando",
-    "hora_inicio": "2025-11-30T16:18:54.710753",
-    "hora_fin": "2025-11-30T16:20:54.710753"
-  },
-  {
-    "pedido_id": "00d8a648-ac15-48e2-9cf6-648d8f9e913e",
-    "timestamp": "2025-11-30T16:25:54.710778",
+    "pedido_id": "cc362681-b705-417a-a16c-5d773d38c6d4",
+    "estado_id": "f4769092-d419-4760-bfcd-99a8d0006431",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:25:54.710778",
-    "hora_fin": "2025-11-30T16:32:54.710778"
+    "hora_inicio": "2025-11-30T17:19:19.953371",
+    "hora_fin": "2025-11-30T17:25:19.953371"
   },
   {
-    "pedido_id": "00d8a648-ac15-48e2-9cf6-648d8f9e913e",
-    "timestamp": "2025-11-30T16:32:54.710778",
+    "pedido_id": "cc362681-b705-417a-a16c-5d773d38c6d4",
+    "estado_id": "7fa949cd-60c4-47fd-a514-0ac2b730494d",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:32:54.710778",
-    "hora_fin": "2025-11-30T16:43:54.710778"
+    "hora_inicio": "2025-11-30T17:25:19.953371",
+    "hora_fin": "2025-11-30T17:36:19.953371"
   },
   {
-    "pedido_id": "00d8a648-ac15-48e2-9cf6-648d8f9e913e",
-    "timestamp": "2025-11-30T16:43:54.710778",
+    "pedido_id": "cc362681-b705-417a-a16c-5d773d38c6d4",
+    "estado_id": "c54529bb-7615-42f1-8020-43e89d37d0b9",
     "estado": "empacando",
-    "hora_inicio": "2025-11-30T16:43:54.710778",
-    "hora_fin": "2025-11-30T16:45:54.710778"
+    "hora_inicio": "2025-11-30T17:36:19.953371",
+    "hora_fin": "2025-11-30T17:50:19.953371"
   },
   {
-    "pedido_id": "00d8a648-ac15-48e2-9cf6-648d8f9e913e",
-    "timestamp": "2025-11-30T16:45:54.710778",
+    "pedido_id": "cc362681-b705-417a-a16c-5d773d38c6d4",
+    "estado_id": "4e0c472e-dc26-4649-82bd-64e5a4cb8648",
     "estado": "enviando",
-    "hora_inicio": "2025-11-30T16:45:54.710778",
-    "hora_fin": "2025-11-30T16:48:54.710778"
+    "hora_inicio": "2025-11-30T17:50:19.953371",
+    "hora_fin": "2025-11-30T17:56:19.953371"
   },
   {
-    "pedido_id": "00d8a648-ac15-48e2-9cf6-648d8f9e913e",
-    "timestamp": "2025-11-30T16:48:54.710778",
+    "pedido_id": "cc362681-b705-417a-a16c-5d773d38c6d4",
+    "estado_id": "1a441d66-3e3b-4fa8-b317-c6a68105a4ac",
     "estado": "recibido",
-    "hora_inicio": "2025-11-30T16:48:54.710778",
-    "hora_fin": "2025-11-30T16:53:54.710778"
+    "hora_inicio": "2025-11-30T17:56:19.953371",
+    "hora_fin": "2025-11-30T18:09:19.953371"
   },
   {
-    "pedido_id": "4f7cc4e1-0b0a-4fd4-abbc-34e5bb9ddfae",
-    "timestamp": "2025-11-30T16:18:54.710800",
+    "pedido_id": "2ddaa04d-2a8b-49b7-8652-9e0c5e110380",
+    "estado_id": "82d374e3-1089-4e90-8509-30dec64d3e63",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:18:54.710800",
-    "hora_fin": "2025-11-30T16:20:54.710800"
+    "hora_inicio": "2025-11-30T16:30:19.953400",
+    "hora_fin": "2025-11-30T16:34:19.953400"
   },
   {
-    "pedido_id": "4f7cc4e1-0b0a-4fd4-abbc-34e5bb9ddfae",
-    "timestamp": "2025-11-30T16:20:54.710800",
+    "pedido_id": "2ddaa04d-2a8b-49b7-8652-9e0c5e110380",
+    "estado_id": "66dad91c-892c-418d-a646-dc973a84e8b5",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:20:54.710800",
-    "hora_fin": "2025-11-30T16:27:54.710800"
+    "hora_inicio": "2025-11-30T16:34:19.953400",
+    "hora_fin": "2025-11-30T16:48:19.953400"
   },
   {
-    "pedido_id": "4f7cc4e1-0b0a-4fd4-abbc-34e5bb9ddfae",
-    "timestamp": "2025-11-30T16:27:54.710800",
+    "pedido_id": "2ddaa04d-2a8b-49b7-8652-9e0c5e110380",
+    "estado_id": "0916218e-8c3b-434c-a457-badebd7fcf6d",
     "estado": "empacando",
-    "hora_inicio": "2025-11-30T16:27:54.710800",
-    "hora_fin": "2025-11-30T16:33:54.710800"
+    "hora_inicio": "2025-11-30T16:48:19.953400",
+    "hora_fin": "2025-11-30T17:02:19.953400"
   },
   {
-    "pedido_id": "4f7cc4e1-0b0a-4fd4-abbc-34e5bb9ddfae",
-    "timestamp": "2025-11-30T16:33:54.710800",
+    "pedido_id": "2ddaa04d-2a8b-49b7-8652-9e0c5e110380",
+    "estado_id": "92df6bb6-8d26-4aa8-93cf-557e0335cdb7",
     "estado": "enviando",
-    "hora_inicio": "2025-11-30T16:33:54.710800",
-    "hora_fin": "2025-11-30T16:43:54.710800"
+    "hora_inicio": "2025-11-30T17:02:19.953400",
+    "hora_fin": "2025-11-30T17:14:19.953400"
   },
   {
-    "pedido_id": "4f7cc4e1-0b0a-4fd4-abbc-34e5bb9ddfae",
-    "timestamp": "2025-11-30T16:43:54.710800",
+    "pedido_id": "2ddaa04d-2a8b-49b7-8652-9e0c5e110380",
+    "estado_id": "5c9947c8-f711-4763-a570-0b7fc1ad230f",
     "estado": "recibido",
-    "hora_inicio": "2025-11-30T16:43:54.710800",
-    "hora_fin": "2025-11-30T16:46:54.710800"
+    "hora_inicio": "2025-11-30T17:14:19.953400",
+    "hora_fin": "2025-11-30T17:16:19.953400"
   },
   {
-    "pedido_id": "fa4add5e-f41a-4ac3-83ac-b773ac70ca12",
-    "timestamp": "2025-11-30T16:06:54.710819",
+    "pedido_id": "27bcdfd0-ff81-4e84-8109-66d8d4681d21",
+    "estado_id": "cf37dcac-a57b-47a5-b935-ba6681c285d5",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:06:54.710819",
-    "hora_fin": "2025-11-30T16:17:54.710819"
+    "hora_inicio": "2025-11-30T16:36:19.953433",
+    "hora_fin": "2025-11-30T16:47:19.953433"
   },
   {
-    "pedido_id": "130cdbb7-0b5f-4dae-80f0-5c276f74c555",
-    "timestamp": "2025-11-30T16:09:54.710831",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:09:54.710831",
-    "hora_fin": "2025-11-30T16:18:54.710831"
-  },
-  {
-    "pedido_id": "130cdbb7-0b5f-4dae-80f0-5c276f74c555",
-    "timestamp": "2025-11-30T16:18:54.710831",
+    "pedido_id": "27bcdfd0-ff81-4e84-8109-66d8d4681d21",
+    "estado_id": "b9bb1c60-60e3-42ca-8407-217185c95e3b",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:18:54.710831",
-    "hora_fin": "2025-11-30T16:24:54.710831"
+    "hora_inicio": "2025-11-30T16:47:19.953433",
+    "hora_fin": "2025-11-30T16:55:19.953433"
   },
   {
-    "pedido_id": "6f079104-ab43-4b46-a7e7-969a18463c70",
-    "timestamp": "2025-11-30T16:53:54.710843",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:53:54.710843",
-    "hora_fin": "2025-11-30T17:08:54.710843"
-  },
-  {
-    "pedido_id": "6f079104-ab43-4b46-a7e7-969a18463c70",
-    "timestamp": "2025-11-30T17:08:54.710843",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T17:08:54.710843",
-    "hora_fin": "2025-11-30T17:21:54.710843"
-  },
-  {
-    "pedido_id": "6f079104-ab43-4b46-a7e7-969a18463c70",
-    "timestamp": "2025-11-30T17:21:54.710843",
+    "pedido_id": "27bcdfd0-ff81-4e84-8109-66d8d4681d21",
+    "estado_id": "231c2302-2b6d-475c-a554-d08d48991556",
     "estado": "empacando",
-    "hora_inicio": "2025-11-30T17:21:54.710843",
-    "hora_fin": "2025-11-30T17:31:54.710843"
+    "hora_inicio": "2025-11-30T16:55:19.953433",
+    "hora_fin": "2025-11-30T17:06:19.953433"
   },
   {
-    "pedido_id": "a67ed911-8362-4a0c-85c8-fc7791a99440",
-    "timestamp": "2025-11-30T16:08:54.710863",
+    "pedido_id": "ba785aa8-fa47-4cde-8134-0eca79fb738f",
+    "estado_id": "2a98f007-5671-4dfe-b57b-a4e9f0931ffc",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:08:54.710863",
-    "hora_fin": "2025-11-30T16:12:54.710863"
+    "hora_inicio": "2025-11-30T17:18:19.953461",
+    "hora_fin": "2025-11-30T17:28:19.953461"
   },
   {
-    "pedido_id": "a67ed911-8362-4a0c-85c8-fc7791a99440",
-    "timestamp": "2025-11-30T16:12:54.710863",
+    "pedido_id": "ba785aa8-fa47-4cde-8134-0eca79fb738f",
+    "estado_id": "e32dac2d-a4a5-4b35-bc01-a93ea57f3390",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:12:54.710863",
-    "hora_fin": "2025-11-30T16:25:54.710863"
+    "hora_inicio": "2025-11-30T17:28:19.953461",
+    "hora_fin": "2025-11-30T17:42:19.953461"
   },
   {
-    "pedido_id": "a67ed911-8362-4a0c-85c8-fc7791a99440",
-    "timestamp": "2025-11-30T16:25:54.710863",
-    "estado": "empacando",
-    "hora_inicio": "2025-11-30T16:25:54.710863",
-    "hora_fin": "2025-11-30T16:29:54.710863"
-  },
-  {
-    "pedido_id": "b626f7a7-5ec1-4541-95e1-b6d98d0597ee",
-    "timestamp": "2025-11-30T16:56:54.710879",
+    "pedido_id": "e6fd00be-00c6-45db-a1a0-5d8f5800732f",
+    "estado_id": "31e2e4f5-e4bd-46de-acee-7be4f88b2ad8",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:56:54.710879",
-    "hora_fin": "2025-11-30T17:04:54.710879"
+    "hora_inicio": "2025-11-30T17:01:19.953480",
+    "hora_fin": "2025-11-30T17:11:19.953480"
   },
   {
-    "pedido_id": "4601154d-74f8-4fdf-8e80-92830d5adb87",
-    "timestamp": "2025-11-30T17:07:54.710889",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T17:07:54.710889",
-    "hora_fin": "2025-11-30T17:10:54.710889"
-  },
-  {
-    "pedido_id": "686c528d-38b7-49d6-941b-e8cf9f6f4e1f",
-    "timestamp": "2025-11-30T16:32:54.710900",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:32:54.710900",
-    "hora_fin": "2025-11-30T16:40:54.710900"
-  },
-  {
-    "pedido_id": "686c528d-38b7-49d6-941b-e8cf9f6f4e1f",
-    "timestamp": "2025-11-30T16:40:54.710900",
+    "pedido_id": "e6fd00be-00c6-45db-a1a0-5d8f5800732f",
+    "estado_id": "128048cb-1699-4a48-871d-a66bbef63066",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:40:54.710900",
-    "hora_fin": "2025-11-30T16:54:54.710900"
+    "hora_inicio": "2025-11-30T17:11:19.953480",
+    "hora_fin": "2025-11-30T17:24:19.953480"
   },
   {
-    "pedido_id": "686c528d-38b7-49d6-941b-e8cf9f6f4e1f",
-    "timestamp": "2025-11-30T16:54:54.710900",
+    "pedido_id": "e6fd00be-00c6-45db-a1a0-5d8f5800732f",
+    "estado_id": "a18bcbb8-2bf3-447d-a72b-fec08ce91daa",
     "estado": "empacando",
-    "hora_inicio": "2025-11-30T16:54:54.710900",
-    "hora_fin": "2025-11-30T17:06:54.710900"
+    "hora_inicio": "2025-11-30T17:24:19.953480",
+    "hora_fin": "2025-11-30T17:29:19.953480"
   },
   {
-    "pedido_id": "686c528d-38b7-49d6-941b-e8cf9f6f4e1f",
-    "timestamp": "2025-11-30T17:06:54.710900",
+    "pedido_id": "e5a64583-c153-493b-92a9-129bfb2a8108",
+    "estado_id": "afc6b589-2191-4ef9-98e9-f83180ce274e",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:55:19.953502",
+    "hora_fin": "2025-11-30T17:02:19.953502"
+  },
+  {
+    "pedido_id": "e5a64583-c153-493b-92a9-129bfb2a8108",
+    "estado_id": "ebd92876-7386-4f80-a92a-00c94fce69f7",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T17:02:19.953502",
+    "hora_fin": "2025-11-30T17:05:19.953502"
+  },
+  {
+    "pedido_id": "e5a64583-c153-493b-92a9-129bfb2a8108",
+    "estado_id": "37ca3947-c1ef-46f7-b0cb-346e742d4e29",
+    "estado": "empacando",
+    "hora_inicio": "2025-11-30T17:05:19.953502",
+    "hora_fin": "2025-11-30T17:12:19.953502"
+  },
+  {
+    "pedido_id": "d7c2f6d9-a0e3-47c9-873e-725e1c540d48",
+    "estado_id": "7e79c33f-68b7-4233-97b5-b60a2da7eb7d",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T17:07:19.953520",
+    "hora_fin": "2025-11-30T17:20:19.953520"
+  },
+  {
+    "pedido_id": "d7c2f6d9-a0e3-47c9-873e-725e1c540d48",
+    "estado_id": "28690de5-60f5-48ce-a232-734f5f94fe42",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T17:20:19.953520",
+    "hora_fin": "2025-11-30T17:33:19.953520"
+  },
+  {
+    "pedido_id": "d7c2f6d9-a0e3-47c9-873e-725e1c540d48",
+    "estado_id": "89876957-f97a-418e-8097-271591e72377",
+    "estado": "empacando",
+    "hora_inicio": "2025-11-30T17:33:19.953520",
+    "hora_fin": "2025-11-30T17:37:19.953520"
+  },
+  {
+    "pedido_id": "9ab7631e-b4ee-4b24-ae75-cb3e9f866698",
+    "estado_id": "8e9e3e95-73e5-4a73-bed7-0e62ad43f1e8",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T17:14:19.953544",
+    "hora_fin": "2025-11-30T17:22:19.953544"
+  },
+  {
+    "pedido_id": "c0afc216-6d93-4675-af21-69c47c5da5cd",
+    "estado_id": "2b1b145b-1c38-4b8a-be49-1462115ebd8b",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:21:19.953561",
+    "hora_fin": "2025-11-30T16:24:19.953561"
+  },
+  {
+    "pedido_id": "c0afc216-6d93-4675-af21-69c47c5da5cd",
+    "estado_id": "c6f91e77-a42f-4fe0-a7fb-8bc7959b9f34",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T16:24:19.953561",
+    "hora_fin": "2025-11-30T16:34:19.953561"
+  },
+  {
+    "pedido_id": "c0afc216-6d93-4675-af21-69c47c5da5cd",
+    "estado_id": "9aefd7b9-b6f4-44c4-b756-8a7eeaba3675",
+    "estado": "empacando",
+    "hora_inicio": "2025-11-30T16:34:19.953561",
+    "hora_fin": "2025-11-30T16:37:19.953561"
+  },
+  {
+    "pedido_id": "c0afc216-6d93-4675-af21-69c47c5da5cd",
+    "estado_id": "dbd480a2-589f-4345-b122-cc117fa1eabf",
     "estado": "enviando",
-    "hora_inicio": "2025-11-30T17:06:54.710900",
-    "hora_fin": "2025-11-30T17:15:54.710900"
+    "hora_inicio": "2025-11-30T16:37:19.953561",
+    "hora_fin": "2025-11-30T16:43:19.953561"
   },
   {
-    "pedido_id": "334653b3-4c0d-45b8-bfe2-297b448a096b",
-    "timestamp": "2025-11-30T16:23:54.710920",
+    "pedido_id": "ebc7903c-0214-4620-88af-f00694154c16",
+    "estado_id": "b0fd0d63-3040-4b48-a600-220359a7f23a",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:23:54.710920",
-    "hora_fin": "2025-11-30T16:35:54.710920"
+    "hora_inicio": "2025-11-30T17:03:19.953585",
+    "hora_fin": "2025-11-30T17:17:19.953585"
   },
   {
-    "pedido_id": "334653b3-4c0d-45b8-bfe2-297b448a096b",
-    "timestamp": "2025-11-30T16:35:54.710920",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:35:54.710920",
-    "hora_fin": "2025-11-30T16:41:54.710920"
-  },
-  {
-    "pedido_id": "48a56819-c5fb-49b2-a490-c316fadf39a7",
-    "timestamp": "2025-11-30T16:41:54.710933",
+    "pedido_id": "582c9265-a5df-492b-b709-50569a59d7cc",
+    "estado_id": "4a924359-3d45-462d-ba65-b927c7596825",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:41:54.710933",
-    "hora_fin": "2025-11-30T16:51:54.710933"
+    "hora_inicio": "2025-11-30T17:01:19.953600",
+    "hora_fin": "2025-11-30T17:06:19.953600"
   },
   {
-    "pedido_id": "48a56819-c5fb-49b2-a490-c316fadf39a7",
-    "timestamp": "2025-11-30T16:51:54.710933",
+    "pedido_id": "013d62b4-d453-453d-b728-5aa652efe045",
+    "estado_id": "25087087-ba15-47a0-b118-b364a2e1b7a0",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:11:19.953614",
+    "hora_fin": "2025-11-30T16:13:19.953614"
+  },
+  {
+    "pedido_id": "013d62b4-d453-453d-b728-5aa652efe045",
+    "estado_id": "709f9719-78e6-4172-a335-26e0c093e303",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:51:54.710933",
-    "hora_fin": "2025-11-30T16:54:54.710933"
+    "hora_inicio": "2025-11-30T16:13:19.953614",
+    "hora_fin": "2025-11-30T16:27:19.953614"
   },
   {
-    "pedido_id": "48a56819-c5fb-49b2-a490-c316fadf39a7",
-    "timestamp": "2025-11-30T16:54:54.710933",
+    "pedido_id": "013d62b4-d453-453d-b728-5aa652efe045",
+    "estado_id": "e8bc77bd-4c7c-4170-a52c-cfd256219fcc",
     "estado": "empacando",
-    "hora_inicio": "2025-11-30T16:54:54.710933",
-    "hora_fin": "2025-11-30T17:04:54.710933"
+    "hora_inicio": "2025-11-30T16:27:19.953614",
+    "hora_fin": "2025-11-30T16:40:19.953614"
   },
   {
-    "pedido_id": "942bf97b-97cd-491d-953a-e6ad3699f391",
-    "timestamp": "2025-11-30T17:08:54.710950",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T17:08:54.710950",
-    "hora_fin": "2025-11-30T17:11:54.710950"
-  },
-  {
-    "pedido_id": "942bf97b-97cd-491d-953a-e6ad3699f391",
-    "timestamp": "2025-11-30T17:11:54.710950",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T17:11:54.710950",
-    "hora_fin": "2025-11-30T17:13:54.710950"
-  },
-  {
-    "pedido_id": "942bf97b-97cd-491d-953a-e6ad3699f391",
-    "timestamp": "2025-11-30T17:13:54.710950",
-    "estado": "empacando",
-    "hora_inicio": "2025-11-30T17:13:54.710950",
-    "hora_fin": "2025-11-30T17:22:54.710950"
-  },
-  {
-    "pedido_id": "6a93f0ac-9ae0-4b5a-8678-9c98433ee7e7",
-    "timestamp": "2025-11-30T17:10:54.710966",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T17:10:54.710966",
-    "hora_fin": "2025-11-30T17:23:54.710966"
-  },
-  {
-    "pedido_id": "d80a5471-a2f2-49ab-ba73-c2e7d3f8a0d6",
-    "timestamp": "2025-11-30T16:42:54.710976",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:42:54.710976",
-    "hora_fin": "2025-11-30T16:45:54.710976"
-  },
-  {
-    "pedido_id": "d80a5471-a2f2-49ab-ba73-c2e7d3f8a0d6",
-    "timestamp": "2025-11-30T16:45:54.710976",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:45:54.710976",
-    "hora_fin": "2025-11-30T16:57:54.710976"
-  },
-  {
-    "pedido_id": "d80a5471-a2f2-49ab-ba73-c2e7d3f8a0d6",
-    "timestamp": "2025-11-30T16:57:54.710976",
-    "estado": "empacando",
-    "hora_inicio": "2025-11-30T16:57:54.710976",
-    "hora_fin": "2025-11-30T17:11:54.710976"
-  },
-  {
-    "pedido_id": "d80a5471-a2f2-49ab-ba73-c2e7d3f8a0d6",
-    "timestamp": "2025-11-30T17:11:54.710976",
+    "pedido_id": "013d62b4-d453-453d-b728-5aa652efe045",
+    "estado_id": "7bb1980a-75bf-4e29-851b-81dc9b3a3ebc",
     "estado": "enviando",
-    "hora_inicio": "2025-11-30T17:11:54.710976",
-    "hora_fin": "2025-11-30T17:22:54.710976"
+    "hora_inicio": "2025-11-30T16:40:19.953614",
+    "hora_fin": "2025-11-30T16:52:19.953614"
   },
   {
-    "pedido_id": "d80a5471-a2f2-49ab-ba73-c2e7d3f8a0d6",
-    "timestamp": "2025-11-30T17:22:54.710976",
+    "pedido_id": "013d62b4-d453-453d-b728-5aa652efe045",
+    "estado_id": "8927028e-03fe-45d3-9eb2-2d6349b271b5",
     "estado": "recibido",
-    "hora_inicio": "2025-11-30T17:22:54.710976",
-    "hora_fin": "2025-11-30T17:30:54.710976"
+    "hora_inicio": "2025-11-30T16:52:19.953614",
+    "hora_fin": "2025-11-30T17:03:19.953614"
   },
   {
-    "pedido_id": "008665ff-504e-4596-903f-d504fce152cc",
-    "timestamp": "2025-11-30T16:45:54.710997",
+    "pedido_id": "41685217-9549-453e-90c4-40b846734947",
+    "estado_id": "de0a022b-ee89-41af-b23d-bb6defba64b2",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:45:54.710997",
-    "hora_fin": "2025-11-30T16:49:54.710997"
+    "hora_inicio": "2025-11-30T16:43:19.953657",
+    "hora_fin": "2025-11-30T16:52:19.953657"
   },
   {
-    "pedido_id": "008665ff-504e-4596-903f-d504fce152cc",
-    "timestamp": "2025-11-30T16:49:54.710997",
+    "pedido_id": "41685217-9549-453e-90c4-40b846734947",
+    "estado_id": "014d81b6-c6f6-48c3-afe4-c9686ee8bbf8",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:49:54.710997",
-    "hora_fin": "2025-11-30T16:52:54.710997"
+    "hora_inicio": "2025-11-30T16:52:19.953657",
+    "hora_fin": "2025-11-30T16:58:19.953657"
   },
   {
-    "pedido_id": "ef63d52a-bbad-4e2c-9e2a-a5a09dae933e",
-    "timestamp": "2025-11-30T17:14:54.711012",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T17:14:54.711012",
-    "hora_fin": "2025-11-30T17:24:54.711012"
-  },
-  {
-    "pedido_id": "ef63d52a-bbad-4e2c-9e2a-a5a09dae933e",
-    "timestamp": "2025-11-30T17:24:54.711012",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T17:24:54.711012",
-    "hora_fin": "2025-11-30T17:32:54.711012"
-  },
-  {
-    "pedido_id": "ef63d52a-bbad-4e2c-9e2a-a5a09dae933e",
-    "timestamp": "2025-11-30T17:32:54.711012",
+    "pedido_id": "41685217-9549-453e-90c4-40b846734947",
+    "estado_id": "1a4f613e-60da-4909-8470-4f8c690ec257",
     "estado": "empacando",
-    "hora_inicio": "2025-11-30T17:32:54.711012",
-    "hora_fin": "2025-11-30T17:44:54.711012"
+    "hora_inicio": "2025-11-30T16:58:19.953657",
+    "hora_fin": "2025-11-30T17:06:19.953657"
   },
   {
-    "pedido_id": "ef63d52a-bbad-4e2c-9e2a-a5a09dae933e",
-    "timestamp": "2025-11-30T17:44:54.711012",
+    "pedido_id": "41685217-9549-453e-90c4-40b846734947",
+    "estado_id": "1d628bc2-7b91-4069-b888-cac54ae5ad63",
     "estado": "enviando",
-    "hora_inicio": "2025-11-30T17:44:54.711012",
-    "hora_fin": "2025-11-30T17:59:54.711012"
+    "hora_inicio": "2025-11-30T17:06:19.953657",
+    "hora_fin": "2025-11-30T17:08:19.953657"
   },
   {
-    "pedido_id": "84e8daf2-1e6e-4c05-a812-45b1c5419f1a",
-    "timestamp": "2025-11-30T16:56:54.711029",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:56:54.711029",
-    "hora_fin": "2025-11-30T17:01:54.711029"
-  },
-  {
-    "pedido_id": "84e8daf2-1e6e-4c05-a812-45b1c5419f1a",
-    "timestamp": "2025-11-30T17:01:54.711029",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T17:01:54.711029",
-    "hora_fin": "2025-11-30T17:14:54.711029"
-  },
-  {
-    "pedido_id": "365abb3c-5543-4d47-a060-6274f0ccf085",
-    "timestamp": "2025-11-30T17:01:54.711042",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T17:01:54.711042",
-    "hora_fin": "2025-11-30T17:08:54.711042"
-  },
-  {
-    "pedido_id": "365abb3c-5543-4d47-a060-6274f0ccf085",
-    "timestamp": "2025-11-30T17:08:54.711042",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T17:08:54.711042",
-    "hora_fin": "2025-11-30T17:15:54.711042"
-  },
-  {
-    "pedido_id": "365abb3c-5543-4d47-a060-6274f0ccf085",
-    "timestamp": "2025-11-30T17:15:54.711042",
-    "estado": "empacando",
-    "hora_inicio": "2025-11-30T17:15:54.711042",
-    "hora_fin": "2025-11-30T17:25:54.711042"
-  },
-  {
-    "pedido_id": "d0a5f9e5-ca61-4bdb-b949-03541628f314",
-    "timestamp": "2025-11-30T16:17:54.711055",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:17:54.711055",
-    "hora_fin": "2025-11-30T16:22:54.711055"
-  },
-  {
-    "pedido_id": "d0a5f9e5-ca61-4bdb-b949-03541628f314",
-    "timestamp": "2025-11-30T16:22:54.711055",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:22:54.711055",
-    "hora_fin": "2025-11-30T16:32:54.711055"
-  },
-  {
-    "pedido_id": "d0a5f9e5-ca61-4bdb-b949-03541628f314",
-    "timestamp": "2025-11-30T16:32:54.711055",
-    "estado": "empacando",
-    "hora_inicio": "2025-11-30T16:32:54.711055",
-    "hora_fin": "2025-11-30T16:34:54.711055"
-  },
-  {
-    "pedido_id": "fe6b3965-d182-4902-981a-94394052dee7",
-    "timestamp": "2025-11-30T17:11:54.711089",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T17:11:54.711089",
-    "hora_fin": "2025-11-30T17:26:54.711089"
-  },
-  {
-    "pedido_id": "fe6b3965-d182-4902-981a-94394052dee7",
-    "timestamp": "2025-11-30T17:26:54.711089",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T17:26:54.711089",
-    "hora_fin": "2025-11-30T17:34:54.711089"
-  },
-  {
-    "pedido_id": "fe6b3965-d182-4902-981a-94394052dee7",
-    "timestamp": "2025-11-30T17:34:54.711089",
-    "estado": "empacando",
-    "hora_inicio": "2025-11-30T17:34:54.711089",
-    "hora_fin": "2025-11-30T17:49:54.711089"
-  },
-  {
-    "pedido_id": "00d76d2b-8a8f-461a-8c86-6b4941265e27",
-    "timestamp": "2025-11-30T17:09:54.711105",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T17:09:54.711105",
-    "hora_fin": "2025-11-30T17:22:54.711105"
-  },
-  {
-    "pedido_id": "00d76d2b-8a8f-461a-8c86-6b4941265e27",
-    "timestamp": "2025-11-30T17:22:54.711105",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T17:22:54.711105",
-    "hora_fin": "2025-11-30T17:37:54.711105"
-  },
-  {
-    "pedido_id": "00d76d2b-8a8f-461a-8c86-6b4941265e27",
-    "timestamp": "2025-11-30T17:37:54.711105",
-    "estado": "empacando",
-    "hora_inicio": "2025-11-30T17:37:54.711105",
-    "hora_fin": "2025-11-30T17:42:54.711105"
-  },
-  {
-    "pedido_id": "00d76d2b-8a8f-461a-8c86-6b4941265e27",
-    "timestamp": "2025-11-30T17:42:54.711105",
-    "estado": "enviando",
-    "hora_inicio": "2025-11-30T17:42:54.711105",
-    "hora_fin": "2025-11-30T17:51:54.711105"
-  },
-  {
-    "pedido_id": "6acda760-7b34-4475-9035-1de3b42f0851",
-    "timestamp": "2025-11-30T16:42:54.711130",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:42:54.711130",
-    "hora_fin": "2025-11-30T16:50:54.711130"
-  },
-  {
-    "pedido_id": "6acda760-7b34-4475-9035-1de3b42f0851",
-    "timestamp": "2025-11-30T16:50:54.711130",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:50:54.711130",
-    "hora_fin": "2025-11-30T16:56:54.711130"
-  },
-  {
-    "pedido_id": "6acda760-7b34-4475-9035-1de3b42f0851",
-    "timestamp": "2025-11-30T16:56:54.711130",
-    "estado": "empacando",
-    "hora_inicio": "2025-11-30T16:56:54.711130",
-    "hora_fin": "2025-11-30T17:07:54.711130"
-  },
-  {
-    "pedido_id": "6acda760-7b34-4475-9035-1de3b42f0851",
-    "timestamp": "2025-11-30T17:07:54.711130",
-    "estado": "enviando",
-    "hora_inicio": "2025-11-30T17:07:54.711130",
-    "hora_fin": "2025-11-30T17:11:54.711130"
-  },
-  {
-    "pedido_id": "8ea92df3-81b1-4ee0-8cc1-c0097e3e7ce7",
-    "timestamp": "2025-11-30T16:29:54.711145",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:29:54.711145",
-    "hora_fin": "2025-11-30T16:43:54.711145"
-  },
-  {
-    "pedido_id": "8ea92df3-81b1-4ee0-8cc1-c0097e3e7ce7",
-    "timestamp": "2025-11-30T16:43:54.711145",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:43:54.711145",
-    "hora_fin": "2025-11-30T16:49:54.711145"
-  },
-  {
-    "pedido_id": "8ea92df3-81b1-4ee0-8cc1-c0097e3e7ce7",
-    "timestamp": "2025-11-30T16:49:54.711145",
-    "estado": "empacando",
-    "hora_inicio": "2025-11-30T16:49:54.711145",
-    "hora_fin": "2025-11-30T16:52:54.711145"
-  },
-  {
-    "pedido_id": "8ea92df3-81b1-4ee0-8cc1-c0097e3e7ce7",
-    "timestamp": "2025-11-30T16:52:54.711145",
-    "estado": "enviando",
-    "hora_inicio": "2025-11-30T16:52:54.711145",
-    "hora_fin": "2025-11-30T16:58:54.711145"
-  },
-  {
-    "pedido_id": "5ad4bff9-1b29-49d1-b8e1-f18a84854a33",
-    "timestamp": "2025-11-30T16:44:54.711186",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:44:54.711186",
-    "hora_fin": "2025-11-30T16:49:54.711186"
-  },
-  {
-    "pedido_id": "5ad4bff9-1b29-49d1-b8e1-f18a84854a33",
-    "timestamp": "2025-11-30T16:49:54.711186",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:49:54.711186",
-    "hora_fin": "2025-11-30T17:02:54.711186"
-  },
-  {
-    "pedido_id": "cf7926bc-0dad-421b-ba71-d9df1c6f2d52",
-    "timestamp": "2025-11-30T16:19:54.711206",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:19:54.711206",
-    "hora_fin": "2025-11-30T16:30:54.711206"
-  },
-  {
-    "pedido_id": "cf7926bc-0dad-421b-ba71-d9df1c6f2d52",
-    "timestamp": "2025-11-30T16:30:54.711206",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:30:54.711206",
-    "hora_fin": "2025-11-30T16:40:54.711206"
-  },
-  {
-    "pedido_id": "cf7926bc-0dad-421b-ba71-d9df1c6f2d52",
-    "timestamp": "2025-11-30T16:40:54.711206",
-    "estado": "empacando",
-    "hora_inicio": "2025-11-30T16:40:54.711206",
-    "hora_fin": "2025-11-30T16:55:54.711206"
-  },
-  {
-    "pedido_id": "cf7926bc-0dad-421b-ba71-d9df1c6f2d52",
-    "timestamp": "2025-11-30T16:55:54.711206",
-    "estado": "enviando",
-    "hora_inicio": "2025-11-30T16:55:54.711206",
-    "hora_fin": "2025-11-30T16:59:54.711206"
-  },
-  {
-    "pedido_id": "cf7926bc-0dad-421b-ba71-d9df1c6f2d52",
-    "timestamp": "2025-11-30T16:59:54.711206",
+    "pedido_id": "41685217-9549-453e-90c4-40b846734947",
+    "estado_id": "abfa93ca-e1f4-4cd9-bdf2-2a5d7d667bcf",
     "estado": "recibido",
-    "hora_inicio": "2025-11-30T16:59:54.711206",
-    "hora_fin": "2025-11-30T17:06:54.711206"
+    "hora_inicio": "2025-11-30T17:08:19.953657",
+    "hora_fin": "2025-11-30T17:11:19.953657"
   },
   {
-    "pedido_id": "27020968-7505-4f5a-acb8-903898645790",
-    "timestamp": "2025-11-30T17:02:54.711224",
+    "pedido_id": "da0d456c-15df-45b8-a393-fbf251baf3c8",
+    "estado_id": "3cd7de20-444d-46de-8708-23799089c751",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T17:02:54.711224",
-    "hora_fin": "2025-11-30T17:10:54.711224"
+    "hora_inicio": "2025-11-30T16:29:19.953693",
+    "hora_fin": "2025-11-30T16:41:19.953693"
   },
   {
-    "pedido_id": "27020968-7505-4f5a-acb8-903898645790",
-    "timestamp": "2025-11-30T17:10:54.711224",
+    "pedido_id": "613fa4b9-6346-4b57-a2eb-4a08549ce628",
+    "estado_id": "5095f849-b9ea-453d-83b9-84f766258692",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T17:17:19.953706",
+    "hora_fin": "2025-11-30T17:23:19.953706"
+  },
+  {
+    "pedido_id": "638bebca-de06-4110-b4dc-70385974d1fd",
+    "estado_id": "028a3a94-2e4d-4387-aa5a-9f7d2727a44d",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T17:03:19.953722",
+    "hora_fin": "2025-11-30T17:07:19.953722"
+  },
+  {
+    "pedido_id": "638bebca-de06-4110-b4dc-70385974d1fd",
+    "estado_id": "b3ae68d6-03bf-4b7c-b7d3-c6fd2e6645c1",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T17:10:54.711224",
-    "hora_fin": "2025-11-30T17:18:54.711224"
+    "hora_inicio": "2025-11-30T17:07:19.953722",
+    "hora_fin": "2025-11-30T17:15:19.953722"
   },
   {
-    "pedido_id": "27020968-7505-4f5a-acb8-903898645790",
-    "timestamp": "2025-11-30T17:18:54.711224",
+    "pedido_id": "638bebca-de06-4110-b4dc-70385974d1fd",
+    "estado_id": "bfa62043-871e-4773-9c15-85961a78ebef",
     "estado": "empacando",
-    "hora_inicio": "2025-11-30T17:18:54.711224",
-    "hora_fin": "2025-11-30T17:21:54.711224"
+    "hora_inicio": "2025-11-30T17:15:19.953722",
+    "hora_fin": "2025-11-30T17:24:19.953722"
   },
   {
-    "pedido_id": "27020968-7505-4f5a-acb8-903898645790",
-    "timestamp": "2025-11-30T17:21:54.711224",
+    "pedido_id": "638bebca-de06-4110-b4dc-70385974d1fd",
+    "estado_id": "1636a3d6-65ff-4ef4-b7cb-643e4a9e1bfe",
     "estado": "enviando",
-    "hora_inicio": "2025-11-30T17:21:54.711224",
-    "hora_fin": "2025-11-30T17:34:54.711224"
+    "hora_inicio": "2025-11-30T17:24:19.953722",
+    "hora_fin": "2025-11-30T17:31:19.953722"
   },
   {
-    "pedido_id": "756fa605-7b36-46c0-af96-20d8d0a0f4d6",
-    "timestamp": "2025-11-30T16:56:54.711248",
+    "pedido_id": "49e120cf-e1e7-4b9e-afa9-8493a54b0e85",
+    "estado_id": "61085f31-63ff-454f-b6c2-0739c563dee4",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:56:54.711248",
-    "hora_fin": "2025-11-30T17:06:54.711248"
+    "hora_inicio": "2025-11-30T16:56:19.953749",
+    "hora_fin": "2025-11-30T17:04:19.953749"
   },
   {
-    "pedido_id": "756fa605-7b36-46c0-af96-20d8d0a0f4d6",
-    "timestamp": "2025-11-30T17:06:54.711248",
+    "pedido_id": "49e120cf-e1e7-4b9e-afa9-8493a54b0e85",
+    "estado_id": "a669c795-8236-470b-8dd0-35ec9a66f970",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T17:06:54.711248",
-    "hora_fin": "2025-11-30T17:12:54.711248"
+    "hora_inicio": "2025-11-30T17:04:19.953749",
+    "hora_fin": "2025-11-30T17:10:19.953749"
   },
   {
-    "pedido_id": "756fa605-7b36-46c0-af96-20d8d0a0f4d6",
-    "timestamp": "2025-11-30T17:12:54.711248",
+    "pedido_id": "49e120cf-e1e7-4b9e-afa9-8493a54b0e85",
+    "estado_id": "b66a7e9e-b3d5-4873-a3b3-ece4bf494163",
     "estado": "empacando",
-    "hora_inicio": "2025-11-30T17:12:54.711248",
-    "hora_fin": "2025-11-30T17:16:54.711248"
+    "hora_inicio": "2025-11-30T17:10:19.953749",
+    "hora_fin": "2025-11-30T17:21:19.953749"
   },
   {
-    "pedido_id": "07ff1cd1-1556-4621-8780-19a319db4d30",
-    "timestamp": "2025-11-30T16:09:54.711263",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:09:54.711263",
-    "hora_fin": "2025-11-30T16:18:54.711263"
-  },
-  {
-    "pedido_id": "07ff1cd1-1556-4621-8780-19a319db4d30",
-    "timestamp": "2025-11-30T16:18:54.711263",
-    "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:18:54.711263",
-    "hora_fin": "2025-11-30T16:30:54.711263"
-  },
-  {
-    "pedido_id": "07ff1cd1-1556-4621-8780-19a319db4d30",
-    "timestamp": "2025-11-30T16:30:54.711263",
-    "estado": "empacando",
-    "hora_inicio": "2025-11-30T16:30:54.711263",
-    "hora_fin": "2025-11-30T16:40:54.711263"
-  },
-  {
-    "pedido_id": "07ff1cd1-1556-4621-8780-19a319db4d30",
-    "timestamp": "2025-11-30T16:40:54.711263",
+    "pedido_id": "49e120cf-e1e7-4b9e-afa9-8493a54b0e85",
+    "estado_id": "be57af75-5eef-4be1-8606-a5d962240c16",
     "estado": "enviando",
-    "hora_inicio": "2025-11-30T16:40:54.711263",
-    "hora_fin": "2025-11-30T16:47:54.711263"
+    "hora_inicio": "2025-11-30T17:21:19.953749",
+    "hora_fin": "2025-11-30T17:30:19.953749"
   },
   {
-    "pedido_id": "07ff1cd1-1556-4621-8780-19a319db4d30",
-    "timestamp": "2025-11-30T16:47:54.711263",
+    "pedido_id": "49e120cf-e1e7-4b9e-afa9-8493a54b0e85",
+    "estado_id": "19b0a299-d60b-44ba-9961-e3aff8bb2833",
     "estado": "recibido",
-    "hora_inicio": "2025-11-30T16:47:54.711263",
-    "hora_fin": "2025-11-30T16:49:54.711263"
+    "hora_inicio": "2025-11-30T17:30:19.953749",
+    "hora_fin": "2025-11-30T17:32:19.953749"
   },
   {
-    "pedido_id": "cc6be899-7935-4efd-a6c8-8e924c015d96",
-    "timestamp": "2025-11-30T16:51:54.711283",
+    "pedido_id": "3fe31c54-02b9-42bb-95f1-221ef3ce84c2",
+    "estado_id": "cd4f9cbb-3277-4f66-abd1-77c0dfd7963d",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:51:54.711283",
-    "hora_fin": "2025-11-30T17:01:54.711283"
+    "hora_inicio": "2025-11-30T16:47:19.953784",
+    "hora_fin": "2025-11-30T16:59:19.953784"
   },
   {
-    "pedido_id": "401a129b-f7e6-444d-819e-f13cdbe58009",
-    "timestamp": "2025-11-30T17:06:54.711293",
-    "estado": "procesando",
-    "hora_inicio": "2025-11-30T17:06:54.711293",
-    "hora_fin": "2025-11-30T17:12:54.711293"
-  },
-  {
-    "pedido_id": "401a129b-f7e6-444d-819e-f13cdbe58009",
-    "timestamp": "2025-11-30T17:12:54.711293",
+    "pedido_id": "3fe31c54-02b9-42bb-95f1-221ef3ce84c2",
+    "estado_id": "de4b3247-9e56-469d-a832-b16a49a0f990",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T17:12:54.711293",
-    "hora_fin": "2025-11-30T17:20:54.711293"
+    "hora_inicio": "2025-11-30T16:59:19.953784",
+    "hora_fin": "2025-11-30T17:06:19.953784"
   },
   {
-    "pedido_id": "401a129b-f7e6-444d-819e-f13cdbe58009",
-    "timestamp": "2025-11-30T17:20:54.711293",
+    "pedido_id": "3fe31c54-02b9-42bb-95f1-221ef3ce84c2",
+    "estado_id": "c5f2acd6-7255-4580-adf3-6126c42a5187",
     "estado": "empacando",
-    "hora_inicio": "2025-11-30T17:20:54.711293",
-    "hora_fin": "2025-11-30T17:27:54.711293"
+    "hora_inicio": "2025-11-30T17:06:19.953784",
+    "hora_fin": "2025-11-30T17:11:19.953784"
   },
   {
-    "pedido_id": "7e761cf7-653e-4bb7-b847-ca26c8184d0a",
-    "timestamp": "2025-11-30T16:03:54.711309",
+    "pedido_id": "3fe31c54-02b9-42bb-95f1-221ef3ce84c2",
+    "estado_id": "006703e1-f7c2-4109-8ec2-ea8944423b85",
+    "estado": "enviando",
+    "hora_inicio": "2025-11-30T17:11:19.953784",
+    "hora_fin": "2025-11-30T17:14:19.953784"
+  },
+  {
+    "pedido_id": "3fe31c54-02b9-42bb-95f1-221ef3ce84c2",
+    "estado_id": "3cf09035-f67f-4bca-a9d4-01a69f41a035",
+    "estado": "recibido",
+    "hora_inicio": "2025-11-30T17:14:19.953784",
+    "hora_fin": "2025-11-30T17:18:19.953784"
+  },
+  {
+    "pedido_id": "c296ec42-d133-4d69-9f85-517fc4a815d3",
+    "estado_id": "7b897a0e-d503-4978-8213-565428c3efcd",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:03:54.711309",
-    "hora_fin": "2025-11-30T16:12:54.711309"
+    "hora_inicio": "2025-11-30T17:28:19.953817",
+    "hora_fin": "2025-11-30T17:32:19.953817"
   },
   {
-    "pedido_id": "8a53840c-6ffc-4997-b567-9cf56cc0f5ed",
-    "timestamp": "2025-11-30T16:01:54.711318",
+    "pedido_id": "2f7deb1e-c509-4fd4-962d-2eaea3bffdd2",
+    "estado_id": "f5a4c33a-7642-4e78-a28c-a6b086cd31f4",
     "estado": "procesando",
-    "hora_inicio": "2025-11-30T16:01:54.711318",
-    "hora_fin": "2025-11-30T16:07:54.711318"
+    "hora_inicio": "2025-11-30T16:57:19.953836",
+    "hora_fin": "2025-11-30T17:10:19.953836"
   },
   {
-    "pedido_id": "8a53840c-6ffc-4997-b567-9cf56cc0f5ed",
-    "timestamp": "2025-11-30T16:07:54.711318",
+    "pedido_id": "2f7deb1e-c509-4fd4-962d-2eaea3bffdd2",
+    "estado_id": "0fdb03fc-e8c5-4537-9f78-c33f1ab4ec9e",
     "estado": "cocinando",
-    "hora_inicio": "2025-11-30T16:07:54.711318",
-    "hora_fin": "2025-11-30T16:19:54.711318"
+    "hora_inicio": "2025-11-30T17:10:19.953836",
+    "hora_fin": "2025-11-30T17:21:19.953836"
+  },
+  {
+    "pedido_id": "2f7deb1e-c509-4fd4-962d-2eaea3bffdd2",
+    "estado_id": "a7fda09f-34a7-4959-9bc6-a258babac0e3",
+    "estado": "empacando",
+    "hora_inicio": "2025-11-30T17:21:19.953836",
+    "hora_fin": "2025-11-30T17:34:19.953836"
+  },
+  {
+    "pedido_id": "2f7deb1e-c509-4fd4-962d-2eaea3bffdd2",
+    "estado_id": "46c884e4-bce3-422b-a958-628d52e09424",
+    "estado": "enviando",
+    "hora_inicio": "2025-11-30T17:34:19.953836",
+    "hora_fin": "2025-11-30T17:47:19.953836"
+  },
+  {
+    "pedido_id": "f3c6fca5-ad0c-4939-bbc4-8dffe751feae",
+    "estado_id": "04fbd560-169f-4bd5-a511-7e85e34eb1b5",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T17:11:19.953873",
+    "hora_fin": "2025-11-30T17:21:19.953873"
+  },
+  {
+    "pedido_id": "f3c6fca5-ad0c-4939-bbc4-8dffe751feae",
+    "estado_id": "641219ec-baf9-49a5-bd4b-726ecf79ad54",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T17:21:19.953873",
+    "hora_fin": "2025-11-30T17:26:19.953873"
+  },
+  {
+    "pedido_id": "f3c6fca5-ad0c-4939-bbc4-8dffe751feae",
+    "estado_id": "40baf724-0b7e-4b9d-9b33-f4438e7a310c",
+    "estado": "empacando",
+    "hora_inicio": "2025-11-30T17:26:19.953873",
+    "hora_fin": "2025-11-30T17:28:19.953873"
+  },
+  {
+    "pedido_id": "f3c6fca5-ad0c-4939-bbc4-8dffe751feae",
+    "estado_id": "779be104-3307-400a-b762-aac7dc0a6316",
+    "estado": "enviando",
+    "hora_inicio": "2025-11-30T17:28:19.953873",
+    "hora_fin": "2025-11-30T17:38:19.953873"
+  },
+  {
+    "pedido_id": "f3c6fca5-ad0c-4939-bbc4-8dffe751feae",
+    "estado_id": "0a77a333-2e8d-440e-a840-8006f15085de",
+    "estado": "recibido",
+    "hora_inicio": "2025-11-30T17:38:19.953873",
+    "hora_fin": "2025-11-30T17:42:19.953873"
+  },
+  {
+    "pedido_id": "0815adf2-6fa0-4b60-a300-a786f1c6edbf",
+    "estado_id": "b5550c6b-b566-4820-a8d5-76d72d81e557",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:57:19.953901",
+    "hora_fin": "2025-11-30T17:07:19.953901"
+  },
+  {
+    "pedido_id": "0815adf2-6fa0-4b60-a300-a786f1c6edbf",
+    "estado_id": "5428d3c5-3f1c-4284-842c-eb18cd26a574",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T17:07:19.953901",
+    "hora_fin": "2025-11-30T17:10:19.953901"
+  },
+  {
+    "pedido_id": "2473b9fa-665f-40bb-a51b-5b864ed39c60",
+    "estado_id": "bc9636f5-300c-4cd3-917f-fdc94e330af6",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T17:33:19.953917",
+    "hora_fin": "2025-11-30T17:48:19.953917"
+  },
+  {
+    "pedido_id": "2473b9fa-665f-40bb-a51b-5b864ed39c60",
+    "estado_id": "e5f76c59-60ea-47c6-938e-69f4769234c1",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T17:48:19.953917",
+    "hora_fin": "2025-11-30T17:57:19.953917"
+  },
+  {
+    "pedido_id": "2473b9fa-665f-40bb-a51b-5b864ed39c60",
+    "estado_id": "d3100e2f-9728-4695-a3b9-ef7a9bab041a",
+    "estado": "empacando",
+    "hora_inicio": "2025-11-30T17:57:19.953917",
+    "hora_fin": "2025-11-30T18:01:19.953917"
+  },
+  {
+    "pedido_id": "06a8538c-becf-4327-a20c-91fdc3b905fa",
+    "estado_id": "fd9653a1-1ed3-43a8-bca0-a278f4cdef63",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:13:19.953937",
+    "hora_fin": "2025-11-30T16:28:19.953937"
+  },
+  {
+    "pedido_id": "06a8538c-becf-4327-a20c-91fdc3b905fa",
+    "estado_id": "cd3d26ea-3b5c-4653-87b9-7aa7b4806b32",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T16:28:19.953937",
+    "hora_fin": "2025-11-30T16:39:19.953937"
+  },
+  {
+    "pedido_id": "06a8538c-becf-4327-a20c-91fdc3b905fa",
+    "estado_id": "f2e34cd8-51df-4dda-8fea-ed414bddd714",
+    "estado": "empacando",
+    "hora_inicio": "2025-11-30T16:39:19.953937",
+    "hora_fin": "2025-11-30T16:42:19.953937"
+  },
+  {
+    "pedido_id": "06a8538c-becf-4327-a20c-91fdc3b905fa",
+    "estado_id": "75974d3f-ba25-4237-951c-a39d83a43662",
+    "estado": "enviando",
+    "hora_inicio": "2025-11-30T16:42:19.953937",
+    "hora_fin": "2025-11-30T16:49:19.953937"
+  },
+  {
+    "pedido_id": "06a8538c-becf-4327-a20c-91fdc3b905fa",
+    "estado_id": "1ea7a126-4d78-4744-98b6-d8b5e9fbb331",
+    "estado": "recibido",
+    "hora_inicio": "2025-11-30T16:49:19.953937",
+    "hora_fin": "2025-11-30T16:58:19.953937"
+  },
+  {
+    "pedido_id": "0d1d9817-48bd-43ac-bb09-fc599b725e85",
+    "estado_id": "55b6a89b-c187-41b8-8c87-a0442f10affa",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T17:32:19.953969",
+    "hora_fin": "2025-11-30T17:45:19.953969"
+  },
+  {
+    "pedido_id": "0d1d9817-48bd-43ac-bb09-fc599b725e85",
+    "estado_id": "a5144811-46e2-4fa2-a6e7-f28aa4739a6b",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T17:45:19.953969",
+    "hora_fin": "2025-11-30T17:58:19.953969"
+  },
+  {
+    "pedido_id": "0d1d9817-48bd-43ac-bb09-fc599b725e85",
+    "estado_id": "dd3c99e9-9a3d-420c-991b-893666b4b84f",
+    "estado": "empacando",
+    "hora_inicio": "2025-11-30T17:58:19.953969",
+    "hora_fin": "2025-11-30T18:00:19.953969"
+  },
+  {
+    "pedido_id": "0d1d9817-48bd-43ac-bb09-fc599b725e85",
+    "estado_id": "fe6cd098-68a9-4549-af12-94bde2badd8b",
+    "estado": "enviando",
+    "hora_inicio": "2025-11-30T18:00:19.953969",
+    "hora_fin": "2025-11-30T18:03:19.953969"
+  },
+  {
+    "pedido_id": "0d1d9817-48bd-43ac-bb09-fc599b725e85",
+    "estado_id": "c3cdfece-96c0-4a9e-96b1-ab4a179864ed",
+    "estado": "recibido",
+    "hora_inicio": "2025-11-30T18:03:19.953969",
+    "hora_fin": "2025-11-30T18:18:19.953969"
+  },
+  {
+    "pedido_id": "5a87ee39-5fa7-4633-837a-fea1ba893ea5",
+    "estado_id": "5bf2f9a3-a079-4825-93a9-00d615eba589",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:28:19.953995",
+    "hora_fin": "2025-11-30T16:30:19.953995"
+  },
+  {
+    "pedido_id": "5a87ee39-5fa7-4633-837a-fea1ba893ea5",
+    "estado_id": "fc19f430-a420-48f5-852d-9b74175429b8",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T16:30:19.953995",
+    "hora_fin": "2025-11-30T16:41:19.953995"
+  },
+  {
+    "pedido_id": "e59c8122-3aeb-4306-a2b9-83991adc090a",
+    "estado_id": "230a8769-4928-4911-b7f0-7fb629234bfa",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:47:19.954012",
+    "hora_fin": "2025-11-30T16:52:19.954012"
+  },
+  {
+    "pedido_id": "e59c8122-3aeb-4306-a2b9-83991adc090a",
+    "estado_id": "26f7fca7-e7ca-41fd-95d0-8f88793edd0e",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T16:52:19.954012",
+    "hora_fin": "2025-11-30T17:01:19.954012"
+  },
+  {
+    "pedido_id": "e59c8122-3aeb-4306-a2b9-83991adc090a",
+    "estado_id": "83e96791-2a1a-4c23-ba50-7186ff1ec091",
+    "estado": "empacando",
+    "hora_inicio": "2025-11-30T17:01:19.954012",
+    "hora_fin": "2025-11-30T17:15:19.954012"
+  },
+  {
+    "pedido_id": "e45a6dd0-88a0-4717-95cf-4269a338a4ec",
+    "estado_id": "de3d78fe-9b7e-4d63-a2ac-5f37640e5289",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:59:19.954035",
+    "hora_fin": "2025-11-30T17:08:19.954035"
+  },
+  {
+    "pedido_id": "e45a6dd0-88a0-4717-95cf-4269a338a4ec",
+    "estado_id": "97848b3d-f5ab-41d3-bc34-e6ca9f2e745d",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T17:08:19.954035",
+    "hora_fin": "2025-11-30T17:11:19.954035"
+  },
+  {
+    "pedido_id": "e45a6dd0-88a0-4717-95cf-4269a338a4ec",
+    "estado_id": "421468ee-491d-42e8-bbda-9920b705690b",
+    "estado": "empacando",
+    "hora_inicio": "2025-11-30T17:11:19.954035",
+    "hora_fin": "2025-11-30T17:23:19.954035"
+  },
+  {
+    "pedido_id": "e45a6dd0-88a0-4717-95cf-4269a338a4ec",
+    "estado_id": "0ee0ff1d-90f7-4c60-839b-25c0fb07163d",
+    "estado": "enviando",
+    "hora_inicio": "2025-11-30T17:23:19.954035",
+    "hora_fin": "2025-11-30T17:31:19.954035"
+  },
+  {
+    "pedido_id": "d42366fa-6022-4223-93b7-a84973c684e6",
+    "estado_id": "0e7959ba-7054-4960-8a0c-ce6ba2a58e31",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:16:19.954066",
+    "hora_fin": "2025-11-30T16:28:19.954066"
+  },
+  {
+    "pedido_id": "d42366fa-6022-4223-93b7-a84973c684e6",
+    "estado_id": "28c74d74-2bc6-4339-95f3-45733a36adb0",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T16:28:19.954066",
+    "hora_fin": "2025-11-30T16:38:19.954066"
+  },
+  {
+    "pedido_id": "d42366fa-6022-4223-93b7-a84973c684e6",
+    "estado_id": "ed92f4fd-85f2-43cf-9c01-dfbd7c0e5882",
+    "estado": "empacando",
+    "hora_inicio": "2025-11-30T16:38:19.954066",
+    "hora_fin": "2025-11-30T16:51:19.954066"
+  },
+  {
+    "pedido_id": "d42366fa-6022-4223-93b7-a84973c684e6",
+    "estado_id": "eca5a555-79bd-4a2e-a616-267929f01c5a",
+    "estado": "enviando",
+    "hora_inicio": "2025-11-30T16:51:19.954066",
+    "hora_fin": "2025-11-30T16:56:19.954066"
+  },
+  {
+    "pedido_id": "d42366fa-6022-4223-93b7-a84973c684e6",
+    "estado_id": "5911bf4f-0750-412a-8643-26061dcccae9",
+    "estado": "recibido",
+    "hora_inicio": "2025-11-30T16:56:19.954066",
+    "hora_fin": "2025-11-30T17:08:19.954066"
+  },
+  {
+    "pedido_id": "1c4270e2-d708-43e9-9a92-c5ec18b27ff6",
+    "estado_id": "55fe3085-b285-45d2-acdc-ad75257edb96",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T17:21:19.954095",
+    "hora_fin": "2025-11-30T17:27:19.954095"
+  },
+  {
+    "pedido_id": "1c4270e2-d708-43e9-9a92-c5ec18b27ff6",
+    "estado_id": "76bf910c-45dd-454e-87bb-8377c19544e9",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T17:27:19.954095",
+    "hora_fin": "2025-11-30T17:42:19.954095"
+  },
+  {
+    "pedido_id": "52ae2a7b-0eb9-4bab-a66a-c1d7dab09815",
+    "estado_id": "600e701f-5de5-486c-8be4-4f160f46dd21",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:33:19.954110",
+    "hora_fin": "2025-11-30T16:44:19.954110"
+  },
+  {
+    "pedido_id": "52ae2a7b-0eb9-4bab-a66a-c1d7dab09815",
+    "estado_id": "4f8c20d9-4365-42b4-8277-2f527b0a3c6c",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T16:44:19.954110",
+    "hora_fin": "2025-11-30T16:47:19.954110"
+  },
+  {
+    "pedido_id": "52ae2a7b-0eb9-4bab-a66a-c1d7dab09815",
+    "estado_id": "e237ea16-3138-4dff-ba0e-0d412a0bbd3f",
+    "estado": "empacando",
+    "hora_inicio": "2025-11-30T16:47:19.954110",
+    "hora_fin": "2025-11-30T16:52:19.954110"
+  },
+  {
+    "pedido_id": "52ae2a7b-0eb9-4bab-a66a-c1d7dab09815",
+    "estado_id": "3c23eefe-a42e-41d4-9def-0dba699ecfc2",
+    "estado": "enviando",
+    "hora_inicio": "2025-11-30T16:52:19.954110",
+    "hora_fin": "2025-11-30T16:59:19.954110"
+  },
+  {
+    "pedido_id": "42f56c74-aec6-478b-bcee-b8fc5608c15a",
+    "estado_id": "dbda5fd3-c606-4fcb-b61c-09c0eac23bb6",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:11:19.954137",
+    "hora_fin": "2025-11-30T16:21:19.954137"
+  },
+  {
+    "pedido_id": "072b919e-dd33-4752-942f-9991b4722d2e",
+    "estado_id": "db1be3f9-7f33-44a7-8c75-e0390c3ad88f",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:44:19.954152",
+    "hora_fin": "2025-11-30T16:53:19.954152"
+  },
+  {
+    "pedido_id": "6c5a3ec0-62c3-4038-8fd8-cb9b3738d9c7",
+    "estado_id": "d56774df-1b3a-409b-9955-bb2c84cd442d",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:27:19.954165",
+    "hora_fin": "2025-11-30T16:29:19.954165"
+  },
+  {
+    "pedido_id": "6c5a3ec0-62c3-4038-8fd8-cb9b3738d9c7",
+    "estado_id": "27cd9701-5b08-4e50-b0da-82ea9b0582e3",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T16:29:19.954165",
+    "hora_fin": "2025-11-30T16:31:19.954165"
+  },
+  {
+    "pedido_id": "6c5a3ec0-62c3-4038-8fd8-cb9b3738d9c7",
+    "estado_id": "9aa00401-ef38-4b7c-8f7f-9494f16f5b6b",
+    "estado": "empacando",
+    "hora_inicio": "2025-11-30T16:31:19.954165",
+    "hora_fin": "2025-11-30T16:43:19.954165"
+  },
+  {
+    "pedido_id": "6c5a3ec0-62c3-4038-8fd8-cb9b3738d9c7",
+    "estado_id": "e37f5075-25ec-4ec4-8566-0e84f87d21a4",
+    "estado": "enviando",
+    "hora_inicio": "2025-11-30T16:43:19.954165",
+    "hora_fin": "2025-11-30T16:45:19.954165"
+  },
+  {
+    "pedido_id": "6c5a3ec0-62c3-4038-8fd8-cb9b3738d9c7",
+    "estado_id": "7bb3642e-dc37-48b5-ac48-e6d5dd2f9f21",
+    "estado": "recibido",
+    "hora_inicio": "2025-11-30T16:45:19.954165",
+    "hora_fin": "2025-11-30T16:58:19.954165"
+  },
+  {
+    "pedido_id": "f76d93a8-a91b-4902-9ac9-984e97f7eb26",
+    "estado_id": "39fb1246-1176-42c5-a7e5-156bd3862237",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:40:19.954194",
+    "hora_fin": "2025-11-30T16:46:19.954194"
+  },
+  {
+    "pedido_id": "f76d93a8-a91b-4902-9ac9-984e97f7eb26",
+    "estado_id": "5d8a5901-28fe-4190-b656-f3761a6d34df",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T16:46:19.954194",
+    "hora_fin": "2025-11-30T17:01:19.954194"
+  },
+  {
+    "pedido_id": "f76d93a8-a91b-4902-9ac9-984e97f7eb26",
+    "estado_id": "0af088c4-d799-4a1f-a616-036d5312cf53",
+    "estado": "empacando",
+    "hora_inicio": "2025-11-30T17:01:19.954194",
+    "hora_fin": "2025-11-30T17:16:19.954194"
+  },
+  {
+    "pedido_id": "f76d93a8-a91b-4902-9ac9-984e97f7eb26",
+    "estado_id": "f8a1026d-3d83-4ea3-8dbd-ae2503b8d57b",
+    "estado": "enviando",
+    "hora_inicio": "2025-11-30T17:16:19.954194",
+    "hora_fin": "2025-11-30T17:26:19.954194"
+  },
+  {
+    "pedido_id": "6747d242-90e6-4575-aad2-0dee3c1c83af",
+    "estado_id": "be43ae6a-6e89-4ac3-83a8-e0fa23d9d5f4",
+    "estado": "procesando",
+    "hora_inicio": "2025-11-30T16:38:19.954223",
+    "hora_fin": "2025-11-30T16:41:19.954223"
+  },
+  {
+    "pedido_id": "6747d242-90e6-4575-aad2-0dee3c1c83af",
+    "estado_id": "9ff21c9f-91d7-4f53-88fb-f08ffa56deb2",
+    "estado": "cocinando",
+    "hora_inicio": "2025-11-30T16:41:19.954223",
+    "hora_fin": "2025-11-30T16:46:19.954223"
   }
 ]

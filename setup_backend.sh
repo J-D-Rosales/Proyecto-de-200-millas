@@ -164,8 +164,8 @@ create_dynamodb_tables() {
   # Tabla Historial Estados
   aws dynamodb create-table \
     --table-name "${TABLE_HISTORIAL_ESTADOS}" \
-    --attribute-definitions AttributeName=pedido_id,AttributeType=S AttributeName=timestamp,AttributeType=S \
-    --key-schema AttributeName=pedido_id,KeyType=HASH AttributeName=timestamp,KeyType=RANGE \
+    --attribute-definitions AttributeName=pedido_id,AttributeType=S AttributeName=estado_id,AttributeType=S \
+    --key-schema AttributeName=pedido_id,KeyType=HASH AttributeName=estado_id,KeyType=RANGE \
     --billing-mode PAY_PER_REQUEST \
     --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_HISTORIAL_ESTADOS} ya existe"
   
