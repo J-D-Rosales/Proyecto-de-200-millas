@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Empleado - 200 Millas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">200 Millas</h1>
+                <div class="user-info">
+                    <span class="user-name" id="userName">Empleado</span>
+                    <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Login/Register Section -->
+        <section class="login-section" id="loginSection">
+            <div class="login-card">
+                <div class="login-header">
+                    <h2 id="formTitle">Iniciar Sesión</h2>
+                    <p class="login-subtitle">200 Millas - Sistema de Gestión</p>
+                </div>
+                
+                <!-- Login Form -->
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required placeholder="correo@ejemplo.com" autocomplete="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Contraseña</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••" autocomplete="current-password">
+                    </div>
+                    <button type="submit" class="btn-primary">Iniciar Sesión</button>
+                    <div class="error-message" id="loginError"></div>
+                </form>
+
+                <!-- Register Form -->
+                <form id="registerForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="registerNombre">Nombre Completo</label>
+                        <input type="text" id="registerNombre" required placeholder="Juan Pérez">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" required placeholder="correo@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Contraseña</label>
+                        <input type="password" id="registerPassword" required placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerRole">Rol</label>
+                        <select id="registerRole" required>
+                            <option value="">Selecciona un rol</option>
+                            <option value="Cliente">Cliente</option>
+                            <option value="Gerente">Gerente</option>
+                            <option value="Cocinero">Cocinero</option>
+                            <option value="Repartidor">Repartidor</option>
+                            <option value="Despachador">Despachador</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Registrarse</button>
+                    <div class="error-message" id="registerError"></div>
+                </form>
+
+                <!-- Toggle between forms -->
+                <div class="form-toggle">
+                    <button type="button" id="toggleFormBtn" class="btn-link">¿No tienes cuenta? Regístrate</button>
+                </div>
+
+                <div class="login-hint">
+                    <div class="hint-divider">
+                        <span>Tipos de acceso</span>
+                    </div>
+                    <div class="hint-items">
+                        <div class="hint-item">
+                            <strong>Gerente:</strong> Dashboard de analytics
+                        </div>
+                        <div class="hint-item">
+                            <strong>Cocinero/Repartidor:</strong> Gestión de pedidos
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent" style="display: none;">
+            <!-- Analytics Section (Admin Only) -->
+            <section class="analytics-section" id="analyticsSection" style="display: none;">
+                <!-- KPIs Cards -->
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-icon" style="background-color: #3498db20;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3498db" stroke-width="2">
+                                <path d="M3 3h18v18H3V3z"/>
+                                <path d="M3 9h18M9 21V9"/>
+                            </svg>
+                        </div>
+                        <div class="kpi-content">
+                            <div class="kpi-label">Total Pedidos</div>
+                            <div class="kpi-value" id="kpiTotalPedidos">0</div>
+                            <div class="kpi-change positive" id="kpiTotalChange">+0%</div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-icon" style="background-color: #27ae6020;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </div>
+                        <div class="kpi-content">
+                            <div class="kpi-label">Pedidos Entregados</div>
+                            <div class="kpi-value" id="kpiEntregados">0</div>
+                            <div class="kpi-change positive" id="kpiEntregadosChange">+0%</div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-icon" style="background-color: #f39c1220;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f39c12" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <div class="kpi-content">
+                            <div class="kpi-label">En Proceso</div>
+                            <div class="kpi-value" id="kpiEnProceso">0</div>
+                            <div class="kpi-subtitle" id="kpiEnProcesoDetalle">0 pendientes</div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-icon" style="background-color: #9b59b620;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9b59b6" stroke-width="2">
+                                <path d="M12 2v20M2 12h20"/>
+                            </svg>
+                        </div>
+                        <div class="kpi-content">
+                            <div class="kpi-label">Ingresos Totales</div>
+                            <div class="kpi-value" id="kpiIngresos">$0.00</div>
+                            <div class="kpi-change positive" id="kpiIngresosChange">+0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="charts-row">
+                    <!-- Estado de Pedidos Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Distribución por Estado</h3>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="estadoChart"></canvas>
+                        </div>
+                        <div class="chart-legend" id="estadoLegend"></div>
+                    </div>
+
+                    <!-- Tendencia de Pedidos -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Rendimiento Operativo</h3>
+                        </div>
+                        <div class="chart-body">
+                            <div class="metric-bars" id="metricBars"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detalles de Estados -->
+                <div class="details-card">
+                    <div class="details-header">
+                        <h3>Detalles por Estado</h3>
+                        <button class="btn-refresh btn-small" onclick="loadOrders()">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M14 8C14 11.3137 11.3137 14 8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C9.84931 2 11.5 2.84268 12.5858 4.17157" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Actualizar
+                        </button>
+                    </div>
+                    <div class="details-grid" id="estadosDetails"></div>
+                </div>
+            </section>
+
+            <!-- Orders Section (Employee) -->
+            <section class="orders-section" id="ordersSection" style="display: none;">
+            
+            <!-- Formulario para cambiar estado de pedido -->
+            <div class="chart-card" style="margin-bottom: 20px;">
+                <div class="chart-header">
+                    <h3>Cambiar Estado de Pedido</h3>
+                </div>
+                <div class="chart-body">
+                    <form id="changeStatusForm" style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 15px; align-items: end;">
+                        <div class="form-group" style="margin: 0;">
+                            <label for="orderIdInput">Order ID</label>
+                            <input type="text" id="orderIdInput" placeholder="Ej: ORDER-001" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        </div>
+                        <div class="form-group" style="margin: 0;">
+                            <label for="empleadoIdInput">Empleado ID (DNI)</label>
+                            <input type="text" id="empleadoIdInput" placeholder="Ej: 12345678" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        </div>
+                        <div class="form-group" style="margin: 0;">
+                            <label for="statusActionSelect">Acción</label>
+                            <select id="statusActionSelect" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                                <option value="">Selecciona una acción</option>
+                                <option value="cocina_iniciar">Cocina: Iniciar Preparación</option>
+                                <option value="cocina_completar">Cocina: Completar</option>
+                                <option value="empaque_completar">Empaque: Completar</option>
+                                <option value="delivery_iniciar">Delivery: Iniciar</option>
+                                <option value="delivery_entregar">Delivery: Entregar</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-primary" style="padding: 10px 20px; white-space: nowrap;">
+                            Cambiar Estado
+                        </button>
+                    </form>
+                    <div class="error-message" id="statusChangeError" style="margin-top: 10px;"></div>
+                </div>
+            </div>
+
+            <!-- Consultar estado de pedido -->
+            <div class="chart-card" style="margin-bottom: 20px;">
+                <div class="chart-header">
+                    <h3>Consultar Estado de Pedido</h3>
+                </div>
+                <div class="chart-body">
+                    <form id="consultStatusForm" style="display: grid; grid-template-columns: 1fr auto; gap: 15px; align-items: end;">
+                        <div class="form-group" style="margin: 0;">
+                            <label for="consultOrderIdInput">Order ID</label>
+                            <input type="text" id="consultOrderIdInput" placeholder="Ej: ORDER-001" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        </div>
+                        <button type="submit" class="btn-secondary" style="padding: 10px 20px; white-space: nowrap;">
+                            Consultar
+                        </button>
+                    </form>
+                    <div id="orderStatusResult" style="margin-top: 15px;"></div>
+                </div>
+            </div>
+
+            <!-- Información de ayuda -->
+            <div class="chart-card" style="background-color: #f8f9fa;">
+                <div class="chart-header">
+                    <h3>Ayuda</h3>
+                </div>
+                <div class="chart-body" style="font-size: 14px; line-height: 1.6;">
+                    <p><strong>Flujo de Estados:</strong></p>
+                    <ol style="margin: 10px 0 10px 20px;">
+                        <li>Procesando (inicial)</li>
+                        <li>En Preparación (cocinero inicia)</li>
+                        <li>Cocina Completa (cocinero completa)</li>
+                        <li>Empaquetado (despachador)</li>
+                        <li>En Delivery (repartidor inicia)</li>
+                        <li>Entregado (repartidor completa)</li>
+                    </ol>
+                    <p style="margin-top: 15px;"><strong>Nota:</strong> Necesitas el Order ID y tu DNI de empleado para cambiar estados.</p>
+                </div>
+            </div>
+            </section>
+        </main>
+
+        <!-- Modal for Status Change -->
+        <div class="modal" id="statusModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Cambiar Estado del Pedido</h3>
+                    <button class="modal-close" id="modalClose">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="order-details" id="orderDetails">
+                        <!-- Order details will be shown here -->
+                    </div>
+                    <div class="form-group">
+                        <label for="newStatus">Nuevo Estado:</label>
+                        <select id="newStatus" class="select-status">
+                            <option value="">Seleccione un estado</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="en_preparacion">En Preparación</option>
+                            <option value="en_cocina">En Cocina</option>
+                            <option value="empaquetado">Empaquetado</option>
+                            <option value="en_delivery">En Delivery</option>
+                            <option value="entregado">Entregado</option>
+                            <option value="cancelado">Cancelado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="statusNote">Notas (opcional):</label>
+                        <textarea id="statusNote" class="textarea-note" placeholder="Agregar notas sobre el cambio de estado..." rows="3"></textarea>
+                    </div>
+                    <div class="error-message" id="modalError"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" id="btnCancelModal">Cancelar</button>
+                    <button class="btn-primary" id="btnConfirmStatus">Confirmar Cambio</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

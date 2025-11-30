@@ -1,0 +1,31 @@
+#!/bin/bash
+# Script de prueba rápida para el sistema de empleados 200 Millas
+
+echo "🚀 Iniciando servidor para pruebas..."
+echo ""
+echo "📍 Abriendo en: http://localhost:8080"
+echo ""
+echo "✅ FUNCIONALIDADES A PROBAR:"
+echo "   1. Registro de usuario (con rol)"
+echo "   2. Login con credenciales"
+echo "   3. Vista según rol (Gerente → Analytics, Empleado → Pedidos)"
+echo "   4. Cambio de estado de pedidos"
+echo ""
+echo "🔧 URLs de API configuradas:"
+echo "   - Users: https://g1m4xkh1u4.execute-api.us-east-1.amazonaws.com"
+echo "   - Empleados: https://v8fwfbvwvb.execute-api.us-east-1.amazonaws.com"
+echo ""
+echo "📝 PRUEBA RÁPIDA:"
+echo "   1. Haz clic en 'Regístrate'"
+echo "   2. Completa: nombre, email, contraseña"
+echo "   3. Selecciona rol: Gerente o Cocinero"
+echo "   4. Haz submit"
+echo "   5. Deberías ver tu panel según el rol"
+echo ""
+echo "🌐 Abre http://localhost:8080 en tu navegador"
+echo "   Presiona Ctrl+C para detener el servidor"
+echo ""
+echo "=================================================="
+
+cd "$(dirname "$0")"
+python3 -m http.server 8080
