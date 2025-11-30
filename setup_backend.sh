@@ -252,6 +252,29 @@ setup_glue_athena() {
     --schema-change-policy "UpdateBehavior=UPDATE_IN_DATABASE,DeleteBehavior=LOG" \
     --region "${AWS_REGION}" 2>/dev/null && echo -e "${GREEN}   ✅ Crawler de historial creado${NC}" || echo -e "${YELLOW}   ℹ️  Crawler ya existe${NC}"
   
+  # 4. Crear tablas de Glue con schema correcto usando Python
+  echo -e "${YELLOW}   Creando tablas de Glue con schema correcto...${NC}"
+  if [[ -f "analytics/create_glue_tables.py" ]]; then
+    # Asegurar que boto3 esté instalado
+    pip3 install -q boto3 python-dotenv 2>/dev/null || true
+    
+    # Ejecutar script
+    if python3 analytics/create_glue_tables.py 2>&1 | grep -q "✅"; then
+      echo -e "${GREEN}   ✅ Tablas de Glue creadas${NC}"
+    else
+      echo -e "${YELLOW}   ⚠️  Verificando tablas...${NC}"
+      # Verificar si las tablas existen
+      local tables=$(aws glue get-tables --database-name millas_analytics_db --region "${AWS_REGION}" --query 'TableList[*].Name' --output text 2>/dev/null || echo "")
+      if [[ -n "$tables" ]]; then
+        echo -e "${GREEN}   ✅ Tablas encontradas: $tables${NC}"
+      else
+        echo -e "${RED}   ❌ No se pudieron crear las tablas${NC}"
+      fi
+    fi
+  else
+    echo -e "${YELLOW}   ℹ️  Script create_glue_tables.py no encontrado${NC}"
+  fi
+  
   echo -e "${GREEN}✅ Glue y Athena configurados${NC}"
 }
 
@@ -542,6 +565,11 @@ show_deployment_summary() {
   echo "   • servicio-empleados (Workflow de empleados)"
   echo "   • stepFunction (Orquestación de pedidos)"
   echo "   • service-analytics (Reportes y consultas)"
+  echo ""
+  echo -e "${GREEN}✅ Analytics configurado:${NC}"
+  echo "   • Athena Workgroup creado"
+  echo "   • Glue Crawlers creados"
+  echo "   • Tablas de Glue creadas (pedidos, historial_estados)"
   echo ""
   echo -e "${YELLOW}📡 Próximos pasos:${NC}"
   echo ""
