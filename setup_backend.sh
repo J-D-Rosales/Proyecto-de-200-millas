@@ -118,50 +118,99 @@ upload_airflow_dag() {
   # echo -e "${GREEN}✅ DAG actualizado${NC}"
 }
 
+create_dynamodb_tables() {
+  echo -e "${BLUE}📚 Creando tablas DynamoDB...${NC}"
+  
+  # Tabla Usuarios
+  aws dynamodb create-table \
+    --table-name "${TABLE_USUARIOS}" \
+    --attribute-definitions AttributeName=correo,AttributeType=S \
+    --key-schema AttributeName=correo,KeyType=HASH \
+    --billing-mode PAY_PER_REQUEST \
+    --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_USUARIOS} ya existe"
+  
+  # Tabla Empleados
+  aws dynamodb create-table \
+    --table-name "${TABLE_EMPLEADOS}" \
+    --attribute-definitions AttributeName=local_id,AttributeType=S AttributeName=dni,AttributeType=S \
+    --key-schema AttributeName=local_id,KeyType=HASH AttributeName=dni,KeyType=RANGE \
+    --billing-mode PAY_PER_REQUEST \
+    --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_EMPLEADOS} ya existe"
+  
+  # Tabla Locales
+  aws dynamodb create-table \
+    --table-name "${TABLE_LOCALES}" \
+    --attribute-definitions AttributeName=local_id,AttributeType=S \
+    --key-schema AttributeName=local_id,KeyType=HASH \
+    --billing-mode PAY_PER_REQUEST \
+    --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_LOCALES} ya existe"
+  
+  # Tabla Productos
+  aws dynamodb create-table \
+    --table-name "${TABLE_PRODUCTOS}" \
+    --attribute-definitions AttributeName=local_id,AttributeType=S AttributeName=producto_id,AttributeType=S \
+    --key-schema AttributeName=local_id,KeyType=HASH AttributeName=producto_id,KeyType=RANGE \
+    --billing-mode PAY_PER_REQUEST \
+    --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_PRODUCTOS} ya existe"
+  
+  # Tabla Pedidos
+  aws dynamodb create-table \
+    --table-name "${TABLE_PEDIDOS}" \
+    --attribute-definitions AttributeName=local_id,AttributeType=S AttributeName=pedido_id,AttributeType=S \
+    --key-schema AttributeName=local_id,KeyType=HASH AttributeName=pedido_id,KeyType=RANGE \
+    --billing-mode PAY_PER_REQUEST \
+    --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_PEDIDOS} ya existe"
+  
+  # Tabla Historial Estados
+  aws dynamodb create-table \
+    --table-name "${TABLE_HISTORIAL_ESTADOS}" \
+    --attribute-definitions AttributeName=pedido_id,AttributeType=S AttributeName=timestamp,AttributeType=S \
+    --key-schema AttributeName=pedido_id,KeyType=HASH AttributeName=timestamp,KeyType=RANGE \
+    --billing-mode PAY_PER_REQUEST \
+    --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_HISTORIAL_ESTADOS} ya existe"
+  
+  # Tabla Tokens Usuarios
+  aws dynamodb create-table \
+    --table-name "${TABLE_TOKENS_USUARIOS}" \
+    --attribute-definitions AttributeName=token,AttributeType=S \
+    --key-schema AttributeName=token,KeyType=HASH \
+    --billing-mode PAY_PER_REQUEST \
+    --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_TOKENS_USUARIOS} ya existe"
+  
+  echo -e "${GREEN}✅ Tablas DynamoDB creadas${NC}"
+  
+  # Esperar a que las tablas estén activas
+  echo -e "${YELLOW}⏳ Esperando a que las tablas estén activas...${NC}"
+  sleep 5
+}
+
 deploy_infrastructure() {
-  echo -e "\n${BLUE}🏗️  Creando recursos de infraestructura (DynamoDB + S3 Imágenes)${NC}"
+  echo -e "\n${BLUE}🏗️  Creando recursos de infraestructura (DynamoDB + S3)${NC}"
+  
+  # 1) Crear bucket de imágenes
   ensure_images_bucket
+  
+  # 2) Crear tablas DynamoDB
+  create_dynamodb_tables
+  
+  # 3) Instalar dependencias Python para generador
+  echo -e "${YELLOW}📦 Instalando dependencias Python...${NC}"
+  pip3 install -q boto3 python-dotenv 2>/dev/null || pip3 install boto3 python-dotenv
 
-  echo -e "${YELLOW}📦 Instalando dependencias para generador/poblador...${NC}"
-  pip3 install -q boto3 python-dotenv
-
-  # 1) Crear tablas
-  if [[ -f "scripts/create_tables.py" ]]; then
-    echo -e "${BLUE}📚 Creando tablas DynamoDB (scripts/create_tables.py)...${NC}"
-    python3 scripts/create_tables.py
-  elif [[ -f "DataGenerator/create_tables.py" ]]; then
-    echo -e "${BLUE}📚 Creando tablas DynamoDB (DataGenerator/create_tables.py)...${NC}"
-    python3 DataGenerator/create_tables.py
-  else
-    echo -e "${YELLOW}ℹ️  No se encontró create_tables.py. Se asume que las tablas ya están creadas.${NC}"
-  fi
-
-  # 2) Generar datos
-  if [[ -f "scripts/generate_data.py" ]]; then
-    echo -e "${BLUE}🧪 Generando datos (scripts/generate_data.py)...${NC}"
-    python3 scripts/generate_data.py
-  elif [[ -f "DataGenerator/generate_data.py" ]]; then
-    echo -e "${BLUE}🧪 Generando datos (DataGenerator/generate_data.py)...${NC}"
-    python3 DataGenerator/generate_data.py
-  elif [[ -f "DataGenerator/DataGenerator.py" ]]; then
-    echo -e "${BLUE}🧪 Generando datos (DataGenerator/DataGenerator.py)...${NC}"
+  # 4) Generar datos de prueba
+  if [[ -f "DataGenerator/DataGenerator.py" ]]; then
+    echo -e "${BLUE}🧪 Generando datos de prueba...${NC}"
     python3 DataGenerator/DataGenerator.py
   else
-    echo -e "${YELLOW}ℹ️  No se encontró generate_data.py / DataGenerator.py. Saltando generación de datos.${NC}"
+    echo -e "${YELLOW}ℹ️  No se encontró DataGenerator.py. Saltando generación de datos.${NC}"
   fi
 
-  # 3) Poblar DynamoDB
-  if [[ -f "scripts/populate_dynamo.py" ]]; then
-    echo -e "${BLUE}📤 Poblando DynamoDB (scripts/populate_dynamo.py)...${NC}"
-    python3 scripts/populate_dynamo.py
-  elif [[ -f "DataGenerator/populate_dynamo.py" ]]; then
-    echo -e "${BLUE}📤 Poblando DynamoDB (DataGenerator/populate_dynamo.py)...${NC}"
-    python3 DataGenerator/populate_dynamo.py
-  elif [[ -f "DataGenerator/DataPoblator.py" ]]; then
-    echo -e "${BLUE}📤 Poblando DynamoDB (DataGenerator/DataPoblator.py)...${NC}"
+  # 5) Poblar DynamoDB
+  if [[ -f "DataGenerator/DataPoblator.py" ]]; then
+    echo -e "${BLUE}📤 Poblando tablas DynamoDB...${NC}"
     python3 DataGenerator/DataPoblator.py
   else
-    echo -e "${YELLOW}ℹ️  No se encontró populate_dynamo.py / DataPoblator.py. Saltando poblar datos.${NC}"
+    echo -e "${YELLOW}ℹ️  No se encontró DataPoblator.py. Saltando población de datos.${NC}"
   fi
 
   echo -e "${GREEN}✅ Infraestructura lista${NC}"
@@ -235,14 +284,16 @@ fix_eventbridge_rules() {
 
 deploy_services() {
   echo -e "\n${BLUE}🚀 Desplegando microservicios con Serverless...${NC}"
+  
+  # 1) Preparar dependencias (Lambda Layer)
   prepare_dependencies
-  # upload_airflow_dag   # ← activa si usas Airflow
   
-  # Desplegar servicios principales
-  echo -e "${YELLOW}📦 Desplegando servicios principales...${NC}"
+  # 2) Desplegar servicios principales usando serverless-compose
+  echo -e "${YELLOW}📦 Desplegando servicios principales (users, products, clientes)...${NC}"
   sls deploy
+  echo -e "${GREEN}✅ Servicios principales desplegados${NC}"
   
-  # Desplegar Step Functions
+  # 3) Desplegar Step Functions
   if [[ -d "stepFunction" ]]; then
     echo -e "${YELLOW}⚙️  Desplegando Step Functions...${NC}"
     pushd stepFunction > /dev/null
@@ -250,13 +301,13 @@ deploy_services() {
     popd > /dev/null
     echo -e "${GREEN}✅ Step Functions desplegado${NC}"
     
-    # Configurar EventBridge
+    # Configurar EventBridge para Step Functions
     fix_eventbridge_rules
   else
     echo -e "${YELLOW}ℹ️  No se encontró directorio stepFunction, saltando...${NC}"
   fi
   
-  # Desplegar servicio de empleados
+  # 4) Desplegar servicio de empleados
   if [[ -d "servicio-empleados" ]]; then
     echo -e "${YELLOW}👥 Desplegando servicio de empleados...${NC}"
     pushd servicio-empleados > /dev/null
@@ -267,35 +318,53 @@ deploy_services() {
     echo -e "${YELLOW}ℹ️  No se encontró directorio servicio-empleados, saltando...${NC}"
   fi
   
-  # Desplegar servicio de clientes
-  if [[ -d "clientes" ]]; then
-    echo -e "${YELLOW}👤 Desplegando servicio de clientes...${NC}"
-    pushd clientes > /dev/null
-    sls deploy
-    popd > /dev/null
-    echo -e "${GREEN}✅ Servicio de clientes desplegado${NC}"
-  else
-    echo -e "${YELLOW}ℹ️  No se encontró directorio clientes, saltando...${NC}"
-  fi
-  
-  # Desplegar servicio de analytics
+  # 5) Desplegar servicio de analytics
   if [[ -d "analytics" ]]; then
     echo -e "${YELLOW}📊 Desplegando servicio de analytics...${NC}"
     pushd analytics > /dev/null
-    bash setup_analytics.sh
+    
+    # Verificar si existe setup_analytics.sh
+    if [[ -f "setup_analytics.sh" ]]; then
+      bash setup_analytics.sh
+    else
+      # Si no existe el script, desplegar directamente
+      sls deploy
+    fi
+    
     popd > /dev/null
     echo -e "${GREEN}✅ Servicio de analytics desplegado${NC}"
   else
     echo -e "${YELLOW}ℹ️  No se encontró directorio analytics, saltando...${NC}"
   fi
   
-  echo -e "${GREEN}✅ Todos los microservicios desplegados${NC}"
+  echo -e "\n${GREEN}============================================================${NC}"
+  echo -e "${GREEN}✅ Todos los microservicios desplegados exitosamente${NC}"
+  echo -e "${GREEN}============================================================${NC}"
+  
+  # Mostrar URLs de API Gateway
+  echo -e "\n${BLUE}📡 URLs de API Gateway:${NC}"
+  echo -e "${YELLOW}Ejecuta estos comandos para obtener las URLs:${NC}"
+  echo ""
+  echo "  aws apigatewayv2 get-apis --query 'Items[?contains(Name, \`service-users\`)].ApiEndpoint' --output text"
+  echo "  aws apigatewayv2 get-apis --query 'Items[?contains(Name, \`service-products\`)].ApiEndpoint' --output text"
+  echo "  aws apigatewayv2 get-apis --query 'Items[?contains(Name, \`service-clientes\`)].ApiEndpoint' --output text"
+  echo "  aws apigatewayv2 get-apis --query 'Items[?contains(Name, \`servicio-empleados\`)].ApiEndpoint' --output text"
+  echo "  aws apigatewayv2 get-apis --query 'Items[?contains(Name, \`service-analytics\`)].ApiEndpoint' --output text"
+  echo ""
 }
 
 remove_services() {
   echo -e "\n${RED}🗑️  Eliminando microservicios...${NC}"
   
-  # Eliminar servicio de empleados
+  # 1) Eliminar servicio de analytics
+  if [[ -d "analytics" ]]; then
+    echo -e "${YELLOW}Eliminando servicio de analytics...${NC}"
+    pushd analytics > /dev/null
+    sls remove || true
+    popd > /dev/null
+  fi
+  
+  # 2) Eliminar servicio de empleados
   if [[ -d "servicio-empleados" ]]; then
     echo -e "${YELLOW}Eliminando servicio de empleados...${NC}"
     pushd servicio-empleados > /dev/null
@@ -303,16 +372,16 @@ remove_services() {
     popd > /dev/null
   fi
   
-  # Eliminar Step Functions y reglas de EventBridge
+  # 3) Eliminar Step Functions y reglas de EventBridge
   if [[ -d "stepFunction" ]]; then
     echo -e "${YELLOW}Eliminando Step Functions...${NC}"
     
     # Eliminar reglas de EventBridge primero
     local RULE_NAME="service-orders-cambiarEstado-manual"
-    if aws events describe-rule --name "${RULE_NAME}" --region us-east-1 >/dev/null 2>&1; then
-      echo -e "${YELLOW}Eliminando reglas de EventBridge...${NC}"
-      aws events remove-targets --rule "${RULE_NAME}" --ids "1" --region us-east-1 2>/dev/null || true
-      aws events delete-rule --name "${RULE_NAME}" --region us-east-1 2>/dev/null || true
+    if aws events describe-rule --name "${RULE_NAME}" --region "${AWS_REGION}" >/dev/null 2>&1; then
+      echo -e "${YELLOW}   Eliminando reglas de EventBridge...${NC}"
+      aws events remove-targets --rule "${RULE_NAME}" --ids "1" --region "${AWS_REGION}" 2>/dev/null || true
+      aws events delete-rule --name "${RULE_NAME}" --region "${AWS_REGION}" 2>/dev/null || true
     fi
     
     pushd stepFunction > /dev/null
@@ -320,8 +389,8 @@ remove_services() {
     popd > /dev/null
   fi
   
-  # Eliminar servicios principales
-  echo -e "${YELLOW}Eliminando servicios principales...${NC}"
+  # 4) Eliminar servicios principales (usando serverless-compose)
+  echo -e "${YELLOW}Eliminando servicios principales (users, products, clientes)...${NC}"
   sls remove || true
   
   echo -e "${GREEN}✅ Microservicios eliminados${NC}"
@@ -330,24 +399,75 @@ remove_services() {
 remove_infrastructure() {
   echo -e "\n${RED}🗑️  Eliminando recursos de infraestructura...${NC}"
 
+  # 1) Eliminar tablas DynamoDB
   echo -e "${YELLOW}Eliminando tablas DynamoDB...${NC}"
-  aws dynamodb delete-table --table-name "${TABLE_USUARIOS}" 2>/dev/null || echo "Tabla ${TABLE_USUARIOS} no existe"
-  aws dynamodb delete-table --table-name "${TABLE_EMPLEADOS}" 2>/dev/null || echo "Tabla ${TABLE_EMPLEADOS} no existe"
-  aws dynamodb delete-table --table-name "${TABLE_LOCALES}" 2>/dev/null || echo "Tabla ${TABLE_LOCALES} no existe"
-  aws dynamodb delete-table --table-name "${TABLE_PRODUCTOS}" 2>/dev/null || echo "Tabla ${TABLE_PRODUCTOS} no existe"
-  aws dynamodb delete-table --table-name "${TABLE_PEDIDOS}" 2>/dev/null || echo "Tabla ${TABLE_PEDIDOS} no existe"
-  aws dynamodb delete-table --table-name "${TABLE_HISTORIAL_ESTADOS}" 2>/dev/null || echo "Tabla ${TABLE_HISTORIAL_ESTADOS} no existe"
-  aws dynamodb delete-table --table-name "${TABLE_TOKENS_USUARIOS}" 2>/dev/null || echo "Tabla ${TABLE_TOKENS_USUARIOS} no existe"
-  # Espera corta opcional (algunas regiones tardan en soltar recursos)
-  sleep 3
-
+  aws dynamodb delete-table --table-name "${TABLE_USUARIOS}" --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_USUARIOS} no existe"
+  aws dynamodb delete-table --table-name "${TABLE_EMPLEADOS}" --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_EMPLEADOS} no existe"
+  aws dynamodb delete-table --table-name "${TABLE_LOCALES}" --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_LOCALES} no existe"
+  aws dynamodb delete-table --table-name "${TABLE_PRODUCTOS}" --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_PRODUCTOS} no existe"
+  aws dynamodb delete-table --table-name "${TABLE_PEDIDOS}" --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_PEDIDOS} no existe"
+  aws dynamodb delete-table --table-name "${TABLE_HISTORIAL_ESTADOS}" --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_HISTORIAL_ESTADOS} no existe"
+  aws dynamodb delete-table --table-name "${TABLE_TOKENS_USUARIOS}" --region "${AWS_REGION}" 2>/dev/null || echo "   Tabla ${TABLE_TOKENS_USUARIOS} no existe"
+  
+  # 2) Eliminar bucket de imágenes
   if [[ -n "${S3_BUCKET_NAME:-}" ]]; then
-    echo -e "${YELLOW}Eliminando bucket de imágenes...${NC}"
-    aws s3 rm "s3://${S3_BUCKET_NAME}" --recursive 2>/dev/null || echo "Bucket ${S3_BUCKET_NAME} vacío/no existe"
-    aws s3 rb "s3://${S3_BUCKET_NAME}" 2>/dev/null || echo "Bucket ${S3_BUCKET_NAME} no existe"
+    echo -e "${YELLOW}Eliminando bucket de imágenes (${S3_BUCKET_NAME})...${NC}"
+    aws s3 rm "s3://${S3_BUCKET_NAME}" --recursive 2>/dev/null || echo "   Bucket ${S3_BUCKET_NAME} vacío/no existe"
+    aws s3 rb "s3://${S3_BUCKET_NAME}" --region "${AWS_REGION}" 2>/dev/null || echo "   Bucket ${S3_BUCKET_NAME} no existe"
   fi
+  
+  # 3) Eliminar buckets de analytics (si existen)
+  local ANALYTICS_BUCKET="bucket-analytic-${AWS_ACCOUNT_ID}"
+  local ATHENA_BUCKET="athena-results-${AWS_ACCOUNT_ID}"
+  
+  echo -e "${YELLOW}Eliminando buckets de analytics...${NC}"
+  aws s3 rm "s3://${ANALYTICS_BUCKET}" --recursive 2>/dev/null || echo "   Bucket ${ANALYTICS_BUCKET} vacío/no existe"
+  aws s3 rb "s3://${ANALYTICS_BUCKET}" --region "${AWS_REGION}" 2>/dev/null || echo "   Bucket ${ANALYTICS_BUCKET} no existe"
+  
+  aws s3 rm "s3://${ATHENA_BUCKET}" --recursive 2>/dev/null || echo "   Bucket ${ATHENA_BUCKET} vacío/no existe"
+  aws s3 rb "s3://${ATHENA_BUCKET}" --region "${AWS_REGION}" 2>/dev/null || echo "   Bucket ${ATHENA_BUCKET} no existe"
 
   echo -e "${GREEN}✅ Infraestructura eliminada${NC}"
+}
+
+show_deployment_summary() {
+  echo ""
+  echo -e "${BLUE}============================================================${NC}"
+  echo -e "${BLUE}📋 RESUMEN DEL DESPLIEGUE${NC}"
+  echo -e "${BLUE}============================================================${NC}"
+  echo ""
+  echo -e "${GREEN}✅ Infraestructura:${NC}"
+  echo "   • 7 tablas DynamoDB creadas"
+  echo "   • Bucket S3 de imágenes: ${S3_BUCKET_NAME}"
+  echo "   • Buckets de analytics creados"
+  echo ""
+  echo -e "${GREEN}✅ Microservicios desplegados:${NC}"
+  echo "   • service-users (Usuarios y autenticación)"
+  echo "   • service-products (Gestión de productos)"
+  echo "   • service-clientes (Pedidos de clientes)"
+  echo "   • servicio-empleados (Workflow de empleados)"
+  echo "   • stepFunction (Orquestación de pedidos)"
+  echo "   • service-analytics (Reportes y consultas)"
+  echo ""
+  echo -e "${YELLOW}📡 Próximos pasos:${NC}"
+  echo ""
+  echo "1. Obtener URLs de API Gateway:"
+  echo "   aws apigatewayv2 get-apis --query 'Items[].{Name:Name,Endpoint:ApiEndpoint}' --output table"
+  echo ""
+  echo "2. Probar el sistema:"
+  echo "   • Importar la colección Postman: 200 Millas - API Collection COMPLETA.postman_collection.json"
+  echo "   • Crear un usuario: POST /users/register"
+  echo "   • Iniciar sesión: POST /users/login"
+  echo "   • Crear un pedido: POST /pedido/create"
+  echo ""
+  echo "3. Ver logs de una función:"
+  echo "   aws logs tail /aws/lambda/NOMBRE_FUNCION --follow"
+  echo ""
+  echo "4. Consultar analytics:"
+  echo "   • Exportar datos: POST /analytics/export"
+  echo "   • Ver reportes: POST /analytics/pedidos-por-local"
+  echo ""
+  echo -e "${BLUE}============================================================${NC}"
 }
 
 main() {
@@ -366,6 +486,7 @@ main() {
         echo "============================================================"
         deploy_infrastructure
         deploy_services
+        show_deployment_summary
         echo ""
         echo -e "${GREEN}============================================================${NC}"
         echo -e "${GREEN}🎉 DESPLIEGUE COMPLETADO EXITOSAMENTE${NC}"
@@ -398,7 +519,7 @@ main() {
         echo "============================================================"
         deploy_infrastructure
         echo ""
-        echo -e "${GREEN}✅ Listo${NC}"
+        echo -e "${GREEN}✅ Infraestructura creada${NC}"
         break
         ;;
       4)
@@ -408,7 +529,7 @@ main() {
         echo "============================================================"
         deploy_services
         echo ""
-        echo -e "${GREEN}✅ Listo${NC}"
+        echo -e "${GREEN}✅ Microservicios desplegados${NC}"
         break
         ;;
       5)

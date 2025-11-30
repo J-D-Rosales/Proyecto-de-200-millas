@@ -1,16 +1,87 @@
+# ============================================================
+# 200 MILLAS - GITIGNORE
+# ============================================================
 
-*.local
+# Environment variables
+.env
+.env.local
+.env.*.local
 
-# Editor directories and files
+# Serverless Framework
+.serverless/
+.serverless-compose/
+*.serverless
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+venv/
+ENV/
+env/
+
+# Lambda Layer dependencies
+python-dependencies/
+Dependencias/python-dependencies/
+node_modules/
+
+# AWS
+.aws-sam/
+
+# Data Generator outputs (opcional - descomentar si no quieres versionar datos generados)
+# DataGenerator/example-data/*.json
+
+# IDE
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
+*.swp
+*.swo
+*~
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-*.env
-*.serverless
-python-dependencies
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Project specific
+*.local

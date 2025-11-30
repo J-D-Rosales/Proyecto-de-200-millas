@@ -28,7 +28,7 @@ ESTADOS_PEDIDO = ["procesando","cocinando","empacando","enviando","recibido"]
 
 USUARIOS_TOTAL   = int(os.getenv("USUARIOS_TOTAL", "30"))
 EMPLEADOS_TOTAL  = int(os.getenv("EMPLEADOS_TOTAL", "40"))
-LOCALES_TOTAL    = int(os.getenv("LOCALES_TOTAL", "7"))
+LOCALES_TOTAL    = int(os.getenv("LOCALES_TOTAL", "3"))
 PRODUCTOS_TOTAL  = int(os.getenv("PRODUCTOS_TOTAL", "60"))
 PEDIDOS_TOTAL    = int(os.getenv("PEDIDOS_TOTAL", "40"))
 
