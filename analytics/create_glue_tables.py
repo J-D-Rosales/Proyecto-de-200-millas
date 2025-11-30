@@ -47,8 +47,8 @@ def create_pedidos_table():
                 'Columns': [
                     {'Name': 'local_id', 'Type': 'string'},
                     {'Name': 'pedido_id', 'Type': 'string'},
-                    {'Name': 'tenant_id_usuario', 'Type': 'string'},
-                    {'Name': 'productos', 'Type': 'array<struct<producto_id:string,cantidad:double>>'},
+                    {'Name': 'correo', 'Type': 'string'},
+                    {'Name': 'productos', 'Type': 'array<struct<producto_id:string,cantidad:int>>'},
                     {'Name': 'costo', 'Type': 'double'},
                     {'Name': 'direccion', 'Type': 'string'},
                     {'Name': 'estado', 'Type': 'string'},
