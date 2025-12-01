@@ -15,7 +15,9 @@ provider:
     ANALYTICS_BUCKET: bucket-analytic-${env:AWS_ACCOUNT_ID}
     GLUE_DATABASE: millas_analytics_db
     ATHENA_OUTPUT_BUCKET: athena-results-${env:AWS_ACCOUNT_ID}
-
+  httpApi:
+    cors: true
+    
 functions:
   # Función para exportar datos de DynamoDB a S3
   ExportDynamoDBToS3:
