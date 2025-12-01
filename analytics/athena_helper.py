@@ -13,7 +13,8 @@ athena_client = boto3.client('athena')
 CORS_HEADERS = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Headers": "Content-Type,Authorization",
-    "Access-Control-Allow-Methods": "POST,OPTIONS,GET"
+    "Access-Control-Allow-Methods": "POST,OPTIONS,GET",
+    "Content-Type": "application/json"
 }
 
 def execute_athena_query(query, workgroup='primary'):
